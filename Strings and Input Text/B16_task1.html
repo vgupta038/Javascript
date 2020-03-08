@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<input type="text" id="txt1"></br>
+	<button onclick="process()">Process</button></br>
+</body>
+<script>
+	function process(){
+		var inpField=document.getElementById("txt1");
+		var inpValue=inpField.value;
+		var len=inpValue.length;
+		var mid=len/2;
+		
+		var sub1=inpValue.substring(0,mid);
+		console.log(sub1);
+	}
+</script>
+</head>
+</html>

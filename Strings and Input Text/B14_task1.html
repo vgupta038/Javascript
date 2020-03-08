@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<input type="text" id="txt1"></br>
+	<button onclick="getText()">Get Text</button></br>
+</body>
+<script>
+	function getText(){
+		var inpField=document.getElementById("txt1");
+		var inpValue=inpField.value;
+		var len=inpValue.length;
+		var digits="";
+		for(var i=0;i<len;i++){
+			var ch=inpValue.charAt(i);
+			if(ch>='0' && ch<='9'){ digits=digits+ch;}
+		}
+		console.log("Digits= ",digits);
+	}
+</script>
+</head>
+</html>

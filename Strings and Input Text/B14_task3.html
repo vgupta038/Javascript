@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<input type="text" id="txt1"></br>
+	<button onclick="getText()">Get Text</button></br>
+</body>
+<script>
+	function getText(){
+		var inpField=document.getElementById("txt1");
+		var inpValue=inpField.value;
+		var len=inpValue.length;
+		var s1="";
+		for(var i=0;i<len;i++){
+			var ch=inpValue.charAt(i);
+			if(ch>='A' && ch<='Z'){s1=s1+ch+ch;}
+			else if(ch>='a' && ch<='z'){s1=s1+ch+ch;}
+			else if(ch>='0' && ch<='9'){ s1=s1+ch+ch+ch;}
+		}
+		console.log(s1);
+	}
+</script>
+</head>
+</html>

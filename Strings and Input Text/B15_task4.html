@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<input type="text" id="txt1"></br>
+	<input type="text" id="txt2"></br>
+	<button onclick="validate()">Validate</button></br>
+	<div id="txt1valid"></div>
+</body>
+<script>
+	function validate(){
+		var inpField1=document.getElementById("txt1");
+		var inpValue1=inpField1.value;
+		var inpField2=document.getElementById("txt2");
+		var inpValue2=inpField2.value;
+		var ele=document.getElementById("txt1valid");
+		
+		var num1=+inpValue1;
+		var num2=+inpValue2;
+		if(isNaN(num1)|| isNaN(num2)){
+			ele.innerHTML="Iinvalid input";
+		}	
+		else if(num2<num1){
+			ele.innerHTML="Iinvalid input";
+		}
+		else{
+			ele.innerHTML="";
+
+		}
+	}
+</script>
+</head>
+</html>

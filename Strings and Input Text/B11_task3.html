@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var str="x+y+xy+4x=7";
+	var countX=0;
+	var countY=0;
+	var len=str.length;
+	for(var i=0;i<len;i++){
+		var ch=str.charAt(i);
+		if(ch=='x'){countX++;}
+		if(ch=='y'){countY++;}
+	}
+	console.log("x= ",countX);
+	console.log("y= ",countY);
+</script>
+</head>
+</html>

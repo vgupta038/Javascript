@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<input type="text" id="txt1"></br>
+	<input type="text" id="txt2"></br>
+	<button onclick="process()">Process</button></br>
+</body>
+<script>
+	function process(){
+		var inpField1=document.getElementById("txt1");
+		var inpValue1=inpField1.value;
+		var inpField2=document.getElementById("txt2");
+		var inpValue2=inpField2.value;
+		var upper=inpValue1.toUpperCase();
+		console.log("Uppercase = ",upper);
+		var lower=inpValue1.toLowerCase();
+		console.log("Lowercase = ",lower);
+		
+		// -------------
+		var sub1=inpValue1.substring(0,4);
+		console.log("substring (0,4) = ",sub1);
+		// or
+		var sub2=inpValue1.substring(2,5);
+		console.log("substring (2,5) = ",sub2);
+		// or
+		var sub3=inpValue1.substring(4);
+		console.log("substring (2,5) = ",sub3);
+		
+		//-------------------
+		var eq1=(inpValue1==inpValue2);
+		console.log("are the strings same - ",eq1);
+	}
+</script>
+</head>
+</html>

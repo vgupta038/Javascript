@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<input type="text" id="txt1"></br>
+	<button onclick="validate()">Validate</button></br>
+	<div id="txt1valid"></div>
+</body>
+<script>
+	function validate(){
+		var inpField=document.getElementById("txt1");
+		var inpValue=inpField.value;
+		var ele=document.getElementById("txt1valid");
+		var num=+inpValue;
+		if(isNaN(num)||num<0){ele.innerHTML="input text is not valid";}
+		else {ele.innerHTML="";}	
+	}
+</script>
+</head>
+</html>

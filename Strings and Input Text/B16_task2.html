@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<input type="text" id="txt1"></br>
+	<button onclick="process()">Process</button></br>
+</body>
+<script>
+	function process(){
+		var inpField=document.getElementById("txt1");
+		var inpValue=inpField.value;
+		var len=inpValue.length;
+		if(len<7){console.log("Does not start");}
+		else{
+			var str=inpValue.substring(0,7);
+			var eq1=(str=="EDUFECT");
+			if(eq1== true){console.log("Starts with EDUFECT");}
+			else{console.log("Does not start");}
+		}
+	}
+</script>
+</head>
+</html>
