@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles004.css">
+</head>
+<body>
+	<button class='button1' onclick="showReact()">React</button></br>
+	<button class='button1' onclick="showAngular()">Angular</button></br>
+	<button class='button1' onclick="showJavascript()">Javascript</button></br>
+	<button class='button2' onclick="showReset()">Reset Text</button></br>
+
+	<div id="textmsg"></div>
+</body>
+<script>
+	function showReact(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="React is framework developed by Facebook";
+		ele.className="textreact";
+	}
+	function showAngular(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="Angular is supported by Google";
+		ele.className="textangular";
+	}
+	function showJavascript(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="Javascript is the center of all web apps";
+		ele.className="textjavascript";
+	}
+	function showReset(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="";
+	}
+</script>
+
+</html>

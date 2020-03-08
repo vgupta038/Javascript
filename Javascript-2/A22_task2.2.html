@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles2.css">
+</head>
+<body>
+</body>
+<script>
+	var i=1;
+	document.write("<table class='mytable'>");
+	document.write("<tr class='myheader'>");
+	document.write("<td>Number</td>");
+	document.write("<td>Remainder</td>");
+	document.write("<td>Comment</td>");
+	document.write("</tr>");
+	for(i=1;i<=12;i++){
+		var rem=i%4;
+		if(rem==0){
+			document.write("<tr class='divisiblerow'>");
+		}
+		else{
+			document.write("<tr class='row'>");
+		}
+		document.write("<td>",i,"</td>");
+		document.write("<td>",rem,"</td>");
+		if(rem==0){document.write("<td>","Multiple of 4","</td>");}
+		else{document.write("<td>","Not a Multiple of 4","</td>");}
+		document.write("</tr>");
+	}
+	document.write("</table>");
+	
+</script>
+</head>
+</html>

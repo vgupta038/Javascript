@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+</head>
+<body>
+</body>
+<script>
+	var i=1;
+	document.write("<table class='mytable'>");
+	document.write("<tr class='myheader'>");
+	document.write("<td>Number</td>");
+	document.write("<td>Square</td>");
+	document.write("</tr>");
+	for(i=1;i<=10;i++){
+		var sq=i*i;
+		var rem=i%2;
+		if(rem==0){
+			document.write("<tr class='myevenrow'>");
+		}
+		else{
+			document.write("<tr class='myoddrow'>");
+		}
+		document.write("<td>",i,"</td>");
+		document.write("<td>",sq,"</td>");
+		document.write("</tr>");
+	}
+	document.write("</table>");
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,23 @@
+.buttonPepsi{
+	background-color:#0000FF;
+	color: white;
+}
+.buttonCola{
+	background-color:red;
+	color: white;
+}
+.textpepsi{
+	background-color:#0000FF;;
+	color: white;
+	text-align: center;
+}
+.textcola{
+	background-color:#0000FF;
+	color: white;
+	text-align: center;
+}
+.texttie{
+	background-color:#444444;
+	color: white;
+	text-align: center;
+}

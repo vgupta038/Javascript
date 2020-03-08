@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<button onclick="addPower()">Next Power of 2</button></br>
+</body>
+<script>	
+	var x=1;
+	function addPower(){
+		var ele=document.createElement("div");
+		ele.innerHTML=x;
+		x=x*2;
+		document.body.appendChild(ele);
+	}
+</script>
+</head>
+</html>

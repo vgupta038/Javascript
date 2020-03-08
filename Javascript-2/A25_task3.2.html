@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles007.css">
+</head>
+<body>
+	Sales of Pepsi:</br>
+	<div id="textpepsi">0</div>
+	<button class='buttonPepsi' onclick="sellPepsi()">Sell 1 Pepsi</button></br>
+	Sales of Cocal Cola:</br>
+	<div id="textcola">0</div>
+	<button class='buttonCola' onclick="sellCola()">sell 1 Coca Cola</button></br>
+	<div id="textmsg"></div>
+	</body>
+<script>
+	function sellPepsi(){
+		var elepepsi=document.getElementById("textpepsi");
+		var pep=elepepsi.innerHTML;
+		var x = Number(pep);
+		x=x+1;
+		elepepsi.innerHTML=x+"";
+		var elecola=document.getElementById("textcola").innerHTML;
+		var col=Number(elecola);
+		if(x>col){
+			var txt=document.getElementById("textmsg");
+			txt.innerHTML="PEPSI";
+			txt.className="textpepsi";
+		}
+		else if(x<col){
+			var txt=document.getElementById("textmsg");
+			txt.innerHTML="Coca Cola";
+			txt.className="textcola";
+		}
+		else{
+			var txt=document.getElementById("textmsg");
+			txt.innerHTML="It is a TIE";
+			txt.className="texttie";
+		}
+	}
+	function sellCola(){
+		var elecola=document.getElementById("textcola");
+		var col=elecola.innerHTML;
+		var x = Number(col);
+		x=x+1;
+		elecola.innerHTML=x+"";
+		var elepepsi=document.getElementById("textpepsi").innerHTML;
+		var col=Number(elepepsi);
+		if(x>col){
+			var txt=document.getElementById("textmsg");
+			txt.innerHTML="Coca Cola";
+			txt.className="textcola";
+		}
+		else if(x<col){
+			var txt=document.getElementById("textmsg");
+			txt.innerHTML="Coca Cola";
+			txt.className="textcola";
+		}
+		else{
+			var txt=document.getElementById("textmsg");
+			txt.innerHTML="It is a TIE";
+			txt.className="texttie";
+		}
+		
+	}
+	
+</script>
+
+</html>

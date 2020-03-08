@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles005.css">
+</head>
+<body>
+	<button class='button1' onclick="showNum()">Add 1 to X</button></br>
+	<div id="textmsg"></div>
+</body>
+<script>
+	var x=0;
+	function showNum(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="";
+		if(x>5 && x<=10){	
+			ele.className="textgrey";
+		}
+		else if(x>10){
+			ele.className="textblack";
+		}
+		else{	
+			ele.className="textlightgrey";
+		}
+		ele.innerHTML="x="+x;
+		x=x+1;
+				
+		
+	}
+	
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles006.css">
+</head>
+<body>
+	Sales of Pepsi:</br>
+	<div id="textpepsi">0</div>
+	<button class='buttonPepsi' onclick="sellPepsi()">Sell 1 Pepsi</button></br>
+	Sales of Cocal Cola:</br>
+	<div id="textcola">0</div>
+	<button class='buttonCola' onclick="sellCola()">sell 1 Coca Cola</button></br>
+</body>
+<script>
+	function sellPepsi(){
+		var ele=document.getElementById("textpepsi");
+		var val=ele.innerHTML;
+		var x = Number(val);
+		x=x+1;
+		ele.innerHTML=x+"";
+	}
+	function sellCola(){
+		var ele=document.getElementById("textcola");
+		var val=ele.innerHTML;
+		var x = Number(val);
+		x=x+1;
+		ele.innerHTML=x+"";
+	}
+	
+</script>
+
+</html>

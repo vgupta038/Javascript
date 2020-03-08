@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles003.css">
+</head>
+<body>
+	<button class='button1' onclick="showGreen()">Green</button></br>
+	<button class='button1' onclick="showBlue()">Blue</button></br>
+	<div id="textmsg"></div>
+</body>
+<script>
+	function showGreen(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="MyStyle is green";
+		ele.className="txtgreen";
+	}
+	function showBlue(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="MyStyle is blue";
+		ele.className="txtblue";
+	}
+</script>
+
+</html>

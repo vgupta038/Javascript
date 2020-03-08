@@ -1,0 +1,19 @@
+.button1{
+	background-color:#0000BB;
+	color: white;
+}
+.textlightgrey{
+	background-color:#DDDDDD;
+	color: white;
+	text-align: left;
+}
+.textgrey{
+	background-color:#999999;
+	color: white;
+	text-align: center;
+}
+.textblack{
+	background-color:#444444;
+	color: white;
+	text-align: right;
+}

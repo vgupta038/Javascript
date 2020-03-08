@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<button onclick="showJavascript()">Javascript</button></br>
+	<button onclick="showAngular()">Angular</button></br>
+	<button onclick="showJava()">Java</button></br>
+	<div id="name"></div>
+</body>
+<script>
+	function showJavascript(){
+		var ele=document.getElementById("name");
+		console.log("ele",ele);
+		ele.innerHTML="Javascript";
+	}
+	function showAngular(){
+		var ele=document.getElementById("name");
+		ele.innerHTML="Angular";
+	}
+	function showJava(){
+		var ele=document.getElementById("name");
+		ele.innerHTML="Java";
+	}
+</script>
+</head>
+</html>

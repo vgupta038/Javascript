@@ -1,0 +1,23 @@
+.button1{
+	background-color:#6666AA;
+	color: white;
+}
+.button2{
+	background-color:#BBBBBB;
+	color: white;
+}
+.textreact{
+	background-color:#BBBB00;
+	color: white;
+	text-align: left;
+}
+.textangular{
+	background-color:#00BBBB;
+	color: white;
+	text-align: center;
+}
+.textjavascript{
+	background-color:#0000BB;
+	color: white;
+	text-align: right;
+}

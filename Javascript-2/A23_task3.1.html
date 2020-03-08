@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<button onclick="showDouble()">Double</button></br>
+	<div id="num">34</div>
+</body>
+<script>
+	function showDouble(){
+		var ele=document.getElementById("num");
+		console.log("ele",ele);
+		var n=ele.innerHTML;
+		var n1=+n;
+		ele.innerHTML=n1*2;
+		
+	}
+</script>
+</head>
+</html>

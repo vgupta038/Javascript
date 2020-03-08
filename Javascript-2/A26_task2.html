@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<button onclick="addXY()">Add X or Y</button></br>
+</body>
+<script>	
+	var str="";
+	var x=1;
+	var ptr="";
+	function addXY(){
+		var ele=document.createElement("div");
+		if(x%2==1){str="X";}
+		else{str="Y";}
+		ptr=ptr+str;
+		ele.innerHTML=ptr;
+		x=x+1;
+		document.body.appendChild(ele);
+	}
+</script>
+</head>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<p id="maths">30</p>
+	<p id="english">40</p>
+	<p id="science">50</p>
+	<p id="total"></p>
+</body>
+<script>
+	var ele1=document.getElementById("maths");
+	var marks1=ele1.innerHTML;
+	console.log(marks1);
+	var ele2=document.getElementById("english");
+	var marks2=ele2.innerHTML;
+	console.log(marks2);
+	var ele1=document.getElementById("science");
+	var marks3=ele1.innerHTML;
+	console.log(marks3);
+	var n1=+marks1;
+	var n2=+marks2;
+	var n3=+marks3;
+	var ele4=document.getElementById("total");
+	ele4.innerHTML=(n1+n2+n3);
+</script>
+</head>
+</html>

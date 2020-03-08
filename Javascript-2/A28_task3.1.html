@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mycss07.css">
+</head>
+<body>
+</body>
+<script>
+		var n=8;
+		var ele=document.createElement("div");
+		var str="";
+		for(var i =1;i<=n;i++){
+			var sq=i*i;
+			str=str+"<div class='divcell'>"+i+"</div>";
+			str=str+"<div class='divcell'>"+sq+"</div>";
+		}
+		ele.innerHTML=str;
+		ele.className="div1";
+		document.body.appendChild(ele);
+</script>
+</head>
+</html>

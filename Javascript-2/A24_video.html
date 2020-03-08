@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles001.css">
+</head>
+<body>
+	<button class='button1' onclick="showText()">Show text</button></br>
+	<button class='button1' onclick="changeText()">Change text</button></br>
+	<div class='txt1' id="textmsg"></div>
+</body>
+<script>
+	function showText(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="Show Text";
+	}
+	function changeText(){
+		var ele=document.getElementById("textmsg");
+		ele.innerHTML="Changing the Text";
+	}
+</script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mycss02.css">
+</head>
+<body>
+	<button onclick="addStyle1()">style1</button>
+	<button onclick="addStyle2()">style2</button>
+	<button onclick="addStyle3()">style3</button></br>
+</body>
+<script>	
+	
+	function addStyle1(){
+		var ele=document.createElement("div");
+		ele.innerHTML="STYLE 1: padding=20,margin=20,border=5";
+		ele.className="style1";
+		document.body.appendChild(ele);
+	}
+	function addStyle2(){
+		var ele=document.createElement("div");
+		ele.innerHTML="STYLE 2: padding=10,margin=40,border=10";
+		ele.className="style2";
+		document.body.appendChild(ele);
+	}
+	function addStyle3(){
+		var ele=document.createElement("div");
+		ele.innerHTML="STYLE 3: padding=40,margin=10,border=20";
+		ele.className="style3";
+		document.body.appendChild(ele);
+	}
+</script>
+</head>
+</html>
