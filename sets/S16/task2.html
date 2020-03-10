@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var s="A";
+	var len=s.length;
+	var mid = Math.floor(len/2);
+	var s1="";
+	var s2="";
+	var s3="";
+	for(var i=0;i<mid;i++){
+		var ch=s.charAt(i);
+		s1=s1+ch;
+	}
+	if(len%2==1){
+		s2=s2+s.charAt(mid);
+		mid=mid+1;
+	}
+	for(var i=mid;i<len;i++){
+		var ch=s.charAt(i);
+		s3=s3+ch;
+	}
+	console.log(s3+s2+s1);
+</script>
+</head>
+</html>

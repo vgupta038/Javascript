@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var str="Indian";
+	var len=str.length;
+	var s1="";
+	var s2="";
+	if(len%2==1){console.log("No");}
+	else{
+		var mid=len/2;
+		for(var i=0;i<mid;i++){
+			var ch=str.charAt(i);
+			s1=s1+ch;
+		}
+		for(var i=mid;i<len;i++){
+			var ch=str.charAt(i);
+			s2=s2+ch;
+		}
+		if(s1==s2){console.log("Yes");}
+		else{console.log("No");}
+	}
+</script>
+</head>
+</html>

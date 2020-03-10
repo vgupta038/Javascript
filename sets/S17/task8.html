@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var x=81;
+	var y=81;
+	var z=81;
+	var smaller=x;
+	if(y<x && y<z)
+		smaller=y;
+	else if(z<x&& z<y)
+		smaller=z;
+	var hcf=1;
+	var s1="";
+	for(var i=1;i<=smaller;i++){
+		if(x%i==0 && y%i==0 && z%i==0)
+			s1=s1+i+",";
+	}
+	console.log("Common Factors= ",s1);
+		
+</script>
+</head>
+</html>
