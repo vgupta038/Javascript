@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	//splice(position,0-insert(array size increase)/1-replace(array size same),element))
+	var array=[2,6,8,11,15];
+	console.log(array);
+	array.splice(2,0,7);	// 0 in the middle means insert element 7 at position 2
+	console.log(array);	// [2,6,7,8,11,15]
+	
+	array.splice(3,0,9);	// 0 in the middle means insert element 9 at position 3
+	console.log(array);		//[2,6,7,9,8,11,15]
+	
+	array.splice(2,1,89);	// 1 in the middle means remove and insert at 2nd postion with element 89 
+	console.log(array);		//[2,6,89,9,8,11,15]
+	
+	// splice(from sarting index,no of element to remove);
+	// splice will return array of removed element
+	var n1=array.splice(3,3);	// remove 3 elements from index 3
+	console.log("Removed Elements:: "+n1);	//	[9,8,11]
+	console.log(array);		//[2,6,89,15]
+			
+	
+</script>
+</head>
+</html>

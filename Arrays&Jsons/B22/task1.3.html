@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles03.css">
+<body>
+</body>
+<script>
+	var products=["Pepsi","Coke","5Star","Maggi","Gems"];
+	var productCode=["P235","C159","S341","M055","G732"];
+	var price=[15,18,12,10,8];
+	var quantity=[30,27,10,40,12];
+	var len=products.length;
+	var str="";
+	var h11="<div class='header35'>Product</div>";
+	var h12="<div class='header35'>Code</div>";
+	var h13="<div class='header13'>Price</div>";
+	var h14="<div class='header13'>Quantity</div>";
+	str="<div>"+h11+h12+h13+h14+"</div>";
+	for(var i=0;i<len;i++){
+		if(i%2==1){
+			var product1="<div class='cellOdd35'>"+products[i]+"</div>";
+			var productcode1="<div class='cellOdd35'>"+productCode[i]+"</div>";
+			var price1="<div class='cellOdd13'>"+price[i]+"</div>";
+			var quantity1="<div class='cellOdd13'>"+quantity[i]+"</div>";
+		}
+		else {
+			var product1="<div class='cellEven35'>"+products[i]+"</div>";
+			var productcode1="<div class='cellEven35'>"+productCode[i]+"</div>";
+			var price1="<div class='cellEven13'>"+price[i]+"</div>";
+			var quantity1="<div class='cellEven13'>"+quantity[i]+"</div>";
+		}
+		var row="<div>"+product1+productcode1+price1+quantity1+"</div>";
+		str=str+row;
+	}
+	console.log(str);
+	var element=document.createElement("div");
+	element.innerHTML=str;
+	document.body.appendChild(element);
+</script>
+</head>
+</html>

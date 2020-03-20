@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var p1={"name":"Mary","marks":[72,65,55,71]};
+	var p2={"name":"Anita","marks":[66,70,75,53]};
+	var p3={"name":"Edward","marks":[44,54,64,58]};
+	var p4={"name":"Thomas","marks":[62,55,65,81]};
+	var p5={"name":"Robin","marks":[41,44,47,49]};
+	var p6={"name":"Sophia","marks":[71,73,67,77]};
+	var p7={"name":"Bruce","marks":[52,57,61,64]};
+	var array=[p1,p2,p3,p4,p5,p6,p7];
+	console.log("Original array::",array);
+	
+	var num1=70;
+	var array1=array.filter(n=>filterTotalMarks(n,num1));
+	console.log("New array Total Marks::",array1);
+	
+	
+	function filterTotalMarks(p,n1){
+		var len=p.marks.length;
+		var count=0;
+		for(var i=0;i<len;i++){
+			if(p.marks[i]>n1) count=1;
+		}
+		if(count==1) return true;
+		return false;
+	}
+	
+	
+	
+</script>
+</head>
+</html>

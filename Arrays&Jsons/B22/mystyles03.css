@@ -1,0 +1,49 @@
+.cellOdd35{
+	display:inline-block;
+	width: 35%;
+	text-align: center;
+	background-color:#446688;
+	color: white;
+	margin:1px;
+}
+.cellOdd13{
+	display:inline-block;
+	width: 13%;
+	text-align: center;
+	background-color:#446688;
+	color: white;
+	margin:1px;
+}
+.cellEven35{
+	display:inline-block;
+	width: 35%;
+	text-align: center;
+	background-color:#6688AA;
+	color: white;
+	margin:1px;
+}
+.cellEven13{
+	display:inline-block;
+	width: 13%;
+	text-align: center;
+	background-color:#6688AA;
+	color: white;
+	margin:1px;
+}
+.header35{
+	display:inline-block;
+	width: 35%;
+	text-align: center;
+	background-color:black;
+	color: white;
+	margin:1px;
+}
+.header13{
+	display:inline-block;
+	width: 13%;
+	text-align: center;
+	background-color:black;
+	color: white;
+	margin:1px;
+}
+

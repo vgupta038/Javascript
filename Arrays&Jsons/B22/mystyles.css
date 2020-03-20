@@ -1,0 +1,17 @@
+.cell40{
+	display:inline-block;
+	width: 40%;
+	text-align: center;
+	background-color:grey;
+	color: white;
+	margin:1px;
+}
+.cell15{
+	display:inline-block;
+	width: 15%;
+	text-align: center;
+	background-color:grey;
+	color: white;
+	margin:1px;
+}
+

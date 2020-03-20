@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	StartYear:<input type="text" id="syear"></br>
+	EndYear:  <input type="text" id="eyear"></br>
+	<button onclick="year()">Years</button>
+</body>
+<script>
+	var years=[];
+	function year(){
+		var startyear=document.getElementById("syear").value;
+		var endyear=document.getElementById("eyear").value;
+		if(isNaN(startyear)|| isNaN(endyear)){ alert("Please enter valid range");}
+		else if(startyear>endyear){alert("entered range is wrong");}
+		var s=+startyear;
+		var e=+endyear;
+		for(var i=s;i<=e;i++){
+			years.push(i);
+		}
+		console.log(years);
+	}
+</script>
+</head>
+</html>

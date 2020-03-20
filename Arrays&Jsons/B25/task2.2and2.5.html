@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles02.css">
+<body>
+</body>
+<script>
+	var marks1={"name":"Mark","Maths":80,"English":75,"Science":63};
+	var marks2={"name":"Bob","Maths":90,"English":81,"Science":88};
+	var marks3={"name":"Julia","Maths":88,"English":87,"Science":89};
+	var marks4={"name":"Anthony","Maths":60,"English":64,"Science":61};
+	
+	var marks=[marks1,marks2,marks3,marks4];
+	console.log(marks);
+	var len=marks.length;
+	var str="";
+	for(var i=0;i<len;i++){
+		var mark=marks[i];
+		if(mark.Maths+mark.English+mark.Science>=225){
+			marks[i].name=mark.name+"*";
+		}
+		mark=marks[i];
+		var name1="<div class='cell18'>"+mark.name+"</div>";
+		var math1="<div class='cell13'>"+mark.Maths+"</div>";
+		var english1="<div class='cell18'>"+mark.English+"</div>";
+		var science1="<div class='cell18'>"+mark.Science+"</div>";
+		var totalMarks="<div class='cell18'>"+(mark.Maths+mark.English+mark.Science)+"</div>";
+		var row="<div>"+name1+math1+english1+science1+totalMarks+"</div>";
+		str=str+row;
+	}
+	console.log(str);
+	var element=document.createElement("div");
+	element.innerHTML=str;
+	document.body.appendChild(element);
+</script>
+</head>
+</html>

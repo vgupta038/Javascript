@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Name:<input type="text" id="name"></br>
+	Price:<input type="text" id="price"></br>
+	<button onclick="addProduct()">Add Products</button></br>
+	<div id="print"></div>
+</body>
+<script>
+	var p1={"prodname":"Poppins","price":8};
+	var p2={"prodname":"Pepsi","price":15};
+	var p3={"prodname":"Minute Maid","price":25};
+	var p4={"prodname":"Red Bull","price":90};
+	var products=[p1,p2,p3,p4];
+	console.log(products);
+	function addProduct(){
+		var name=document.getElementById("name").value;
+		var price=document.getElementById("price").value;
+		var newprice=+price;
+		var p={"prodname":name,"price":newprice};
+		var len=products.length;
+		var count=0;
+		for(var i=0;i<len;i++){
+			var product=products[i];
+			var price1=product.price;
+			if(newprice<=price1){
+				count=1;
+				products.splice(i,0,p);
+				break;
+			}
+		}
+		if(count==0) 
+			products.push(p);
+		console.log(products);
+		var ele=document.getElementById("print");
+		ele.innerHTML=JSON.stringify(products);
+		document.body.appendChild(ele);
+	}
+</script>
+</head>
+</html>

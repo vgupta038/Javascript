@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var arr=[12,13,14,15,16,17,65];
+	var len=arr.length;
+	var count=0;
+	for(var i=0;i<len-1;i++){
+		if(arr[i]==arr[i+1]-1)
+			count++;
+	}
+	if(count==len-1)
+		console.log("Consecutive");
+	else
+		console.log("Not Consecutive");
+	
+</script>
+</head>
+</html>

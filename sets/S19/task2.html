@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>	
+	var arr=["bear","bell","cab","hello"];
+	//var arr=["q","w1","c2","cat","abcd","e34","a"];
+	//var arr=["aa","car","is","going"];
+	console.log(JSON.stringify(arr));
+	arr.sort(compareFunction);
+	console.log(JSON.stringify(arr));
+	
+	function compareFunction(s1,s2){
+		var len1=s1.length;
+		var count1=0;
+		for(var i=0;i<len1;i++){
+			var ch=s1.charAt(i);
+			if(ch=='a'||ch=='b'||ch=='c')
+				count1++;
+		}
+		var len2=s2.length;
+		var count2=0;
+		for(var i=0;i<len2;i++){
+			var ch=s2.charAt(i);
+			if(ch=='a'||ch=='b'||ch=='c')
+				count2++;
+		}
+		if(count1>count2) return 1;
+		if(count1<count2) return -1;
+		if(len1>len2) return 1;
+		if(len1<len2) return -1;
+		return 0;
+	}
+</script>
+</head>
+</html>

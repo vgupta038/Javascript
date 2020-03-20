@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Course Name:<input type="text" id="name"></br>
+	<button onclick="removeAdd()">Remove</button>
+</body>
+<script>
+	var courses=["Java","Javascript","Python","C","C++"];
+	console.log(courses);
+	function removeAdd(){
+		var val=document.getElementById("name").value;
+		var len=courses.length;
+		var count=0;
+		for(var i=0;i<len;i++){
+			var ele=courses[i];
+			if(ele==val){
+				courses.splice(i,1);
+				count=1;
+				break;
+			}
+		}
+		if(count==0)
+			courses.push(val);
+		console.log(courses);
+	}
+</script>
+</head>
+</html>

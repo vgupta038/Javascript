@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>	
+	//var arr=[4,8,12,20,6];
+	var arr=[30,40,30];
+	console.log(JSON.stringify(arr));
+	arr.sort(compareFunction);
+	console.log(JSON.stringify(arr));
+	
+	function compareFunction(a,b){
+		if(a>b) return -1;
+		if(a<b) return 1;
+		return 0;
+	}
+</script>
+</head>
+</html>

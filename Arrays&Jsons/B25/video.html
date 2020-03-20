@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+<body>
+</body>
+<script>
+	var p1={"name":"Jack","age":28,"cities":"London"};
+	var p2={"name":"Mary","age":32,"cities":"Paris"};
+	var p3={"name":"Bob","age":35,"cities":"New York"};
+	var p4={"name":"Steve","age":26,"cities":"Delhi"};
+	var persons=[p1,p2,p3,p4];
+	console.log(persons);
+	var len=persons.length;
+	var str="";
+	for(var i=0;i<len;i++){
+		var person=persons[i];
+		var name1="<div class='cell40'>"+person.name+"</div>";
+		var age1="<div class='cell15'>"+person.age+"</div>";
+		var city1="<div class='cell40'>"+person.cities+"</div>";
+		var row="<div>"+name1+age1+city1+"</div>";
+		str=str+row;
+	}
+	console.log(str);
+	var element=document.createElement("div");
+	element.innerHTML=str;
+	document.body.appendChild(element);
+</script>
+</head>
+</html>

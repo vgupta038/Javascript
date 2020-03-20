@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var p1={"name":"Jack","marks":88};
+	var p2={"name":"Mary","marks":93};
+	var p3={"name":"Ed","marks":58};
+	var p4={"name":"Tim","marks":63};
+	
+	var arr=[p1,p2,p3,p4];
+	console.log(JSON.stringify(arr));
+	arr.sort(compareFunction);
+	console.log(JSON.stringify(arr));
+	
+	function compareFunction(p1,p2){
+		if(p1.marks>p2.marks) return -1;
+		if(p1.marks<p2.marks) return 1;
+		return 0;
+	}
+</script>
+</head>
+</html>

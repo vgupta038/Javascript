@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Name:<input type="text" id="name"></br>
+	EmpId:<input type="text" id="empid"></br>
+	Email:<input type="text" id="email"></br>
+	Department:<input type="text" id="dept"></br>
+	<button onclick="add()">Add</button>
+</body>
+<script>
+	var array1=[];
+	var array2=[];
+	function add(){
+		var name=document.getElementById("name").value;
+		var empid=document.getElementById("empid").value;
+		var email=document.getElementById("email").value;
+		var dept=document.getElementById("dept").value;
+		var details={"name":name,"empid":empid,"email":email,"dept":dept};
+		if(dept=="IT"|| dept=="Tech"){
+			array1.push(details);
+		}
+		else{
+			array2.push(details);
+		}
+		console.log(array1);
+		console.log(array2);
+	}
+</script>
+</head>
+</html>

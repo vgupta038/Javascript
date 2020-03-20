@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var arr=[3,5,7,21,55];
+	var len=arr.length;
+	var count2=0;
+	var count3=0;
+	var count5=0;
+	var count7=0;
+	for(var i=0;i<len;i++){
+		var ele=arr[i];
+		if(ele%2==0)
+			count2=1;
+		if(ele%3==0)
+			count3=1;
+		if(ele%5==0)
+			count5=1;
+		if(ele%7==0)
+			count7=1;
+	}
+	if(count2==1&& count3==1&& count5==1&& count7==1)
+		console.log("Multiples");
+	else
+		console.log("Not");
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,17 @@
+.cell18{
+	display:inline-block;
+	width: 18%;
+	text-align: center;
+	background-color:grey;
+	color: white;
+	margin:1px;
+}
+.cell13{
+	display:inline-block;
+	width: 13%;
+	text-align: center;
+	background-color:grey;
+	color: white;
+	margin:1px;
+}
+

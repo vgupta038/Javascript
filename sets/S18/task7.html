@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var arr=[1,2,3,4,5];
+	var len=arr.length;
+	var sum=0;
+	for(var i=0;i<len;i++){
+		sum=sum+arr[i];
+	}
+	if(sum%20==0)
+		console.log(sum+"#"+"C20");
+	else if(sum%4==0)
+		console.log(sum+"#"+"A4");
+	else if(sum%5==0)
+		console.log(sum+"#"+"B5");
+	else
+		console.log(sum+"#"+"D1");
+	
+</script>
+</head>
+</html>

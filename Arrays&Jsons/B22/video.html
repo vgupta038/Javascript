@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+<body>
+</body>
+<script>
+	var names=["Jack","Mary","Bob","Steve"];
+	var ages=[28,32,35,26];
+	var cities=["London","Paris","new York","Delhi"];
+	var len=names.length;
+	var str="";
+	for(var i=0;i<len;i++){
+		var name1="<div class='cell40'>"+names[i]+"</div>";
+		var age1="<div class='cell15'>"+ages[i]+"</div>";
+		var city1="<div class='cell40'>"+cities[i]+"</div>";
+		var row="<div>"+name1+age1+city1+"</div>";
+		str=str+row;
+	}
+	console.log(str);
+	var element=document.createElement("div");
+	element.innerHTML=str;
+	document.body.appendChild(element);
+</script>
+</head>
+</html>

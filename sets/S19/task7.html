@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	//var arr=["c101","mB24x","a4b6n7","zzz2z"];
+	//var arr=["8","9","10","aX2"];
+	var arr=["b1b2b3a","a125","a80zz"];
+	console.log(JSON.stringify(arr));
+	arr.sort(compareFunction);
+	console.log(JSON.stringify(arr));
+	
+	function compareFunction(s1,s2){
+		var len1=s1.length;
+		var sum1=0;
+		var rem=1;
+		for(var i=len1-1;i>=0;i--){
+			var ch=s1.charAt(i);
+			if(ch>='0'&& ch<='9'){
+				var num=ch-'0';
+				sum1=sum1+(num*rem);
+				rem=rem*10;
+			}
+		}
+		var len2=s2.length;
+		var sum2=0;
+		rem=1;
+		for(var i=len2-1;i>=0;i--){
+			var ch=s2.charAt(i);
+			if(ch>='0'&& ch<='9'){
+				var num=ch-'0';
+				sum2=sum2+(num*rem);
+				rem=rem*10;
+			}
+		}
+		if(sum1>sum2) return 1;
+		if(sum1<sum2) return -1;
+		return 0;
+	}
+</script>
+</head>
+</html>

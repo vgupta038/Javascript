@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+</head>
+<body>
+	Name:<input type="text" id="name1"><br>
+	Age:<input type="text" id="age1"><br>
+	City:<input type="text" id="city1"><br>
+	Technology:<input type="text" id="tech1"><br>
+	<button id="btn1" onclick="addPerson()">Add Person</button>
+	<div id="persons"></div>
+</body>
+<script>
+	var prson1={"name":"Jack","age":28,"city":"London","technology":"Android"};
+	var prson2={"name":"Mary","age":32,"city":"Paris","technology":"React"};
+	var prson3={"name":"Bob","age":35,"city":"New York","technology":"Angular"};
+	var prson4={"name":"Steve","age":26,"city":"Delhi","technology":"Spring"};
+	var persons=[prson1,prson2,prson3,prson4];
+	showPersons();
+	
+	
+	
+	function showPersons(){
+		var len=persons.length;
+		var str="";
+		for(var i=0;i<len;i++){
+			var pr=persons[i];
+			var name1="<div class='cell22'>"+pr.name+"</div>";
+			var age1="<div class='cell22'>"+pr.age+"</div>";
+			var city1="<div class='cell22'>"+pr.city+"</div>";
+			var tech1="<div class='cell22'>"+pr.technology+"</div>";
+			var row="<div>"+name1+age1+city1+tech1+"</div>";
+			str=str+row;
+		}
+		var table=document.getElementById("persons");
+		table.innerHTML=str;
+	}
+	
+	function addPerson(){
+		var name1=document.getElementById("name1");
+		var age1=document.getElementById("age1");
+		var city1=document.getElementById("city1");
+		var tech1=document.getElementById("tech1");
+		
+		var prson={"name":name1.value,"age":age1.value,"city":city1.value,"technology":tech1.value};
+		name1.value="";
+		age1.value="";	
+		city1.value="";
+		tech1.value="";
+		persons.push(prson);
+		showPersons();
+	}
+</script>
+</head>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<button onclick="sale101()">Sale-PX101</button>
+	<button onclick="sale102()">Sale-PX102</button>
+	<button onclick="sale103()">Sale-PX103</button></br>
+</body>
+<script>
+	var product1={"code":"PX101","stock":15,"price":30};
+	console.log("Product1: "+JSON.stringify(product1));
+	var product2={"code":"PX102","stock":24,"price":20};
+	console.log("Product2: "+JSON.stringify(product2));
+	var product3={"code":"PX103","stock":33,"price":10};
+	console.log("Product3: "+JSON.stringify(product3));
+	var totalStock=product1.stock+product2.stock+product3.stock;
+	var totalValue=(product1.stock*product1.price)+(product2.stock*product2.price)+(product3.stock*product3.price)
+	var totalStock={"totalStock":totalStock,"totalValue":totalValue};
+	
+	console.log(JSON.stringify(totalStock));
+	function sale101(){
+		product1.stock=product1.stock-1;
+		console.log(JSON.stringify(product1));
+		totalStock.totalStock=totalStock.totalStock-1;
+		var totalValue=(product1.stock*product1.price)
+		+(product2.stock*product2.price)+(product3.stock*product3.price);
+		totalStock.totalValue=totalValue;
+		console.log(JSON.stringify(totalStock));
+	}
+	function sale102(){
+		product2.stock=product2.stock-1;
+		console.log(JSON.stringify(product2));
+		totalStock.totalStock=totalStock.totalStock-1;
+		var totalValue=(product1.stock*product1.price)
+		+(product2.stock*product2.price)+(product3.stock*product3.price);
+		totalStock.totalValue=totalValue;
+		console.log(JSON.stringify(totalStock));
+	}
+	function sale103(){
+		product3.stock=product3.stock-1;
+		console.log(JSON.stringify(product3));
+		totalStock.totalStock=totalStock.totalStock-1;
+		var totalValue=(product1.stock*product1.price)
+		+(product2.stock*product2.price)+(product3.stock*product3.price);
+		totalStock.totalValue=totalValue;
+		console.log(JSON.stringify(totalStock));
+	}
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Name:<input type="text" id="name"></br>
+	<button onclick="add()">New Name</button>
+</body>
+<script>
+	var names=[];
+	function add(){
+		var ele=document.getElementById("name");
+		var value=ele.value;
+		names.push(value);
+		console.log(names);
+	}
+</script>
+</head>
+</html>

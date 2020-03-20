@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+</head>
+<body>
+	Name:<input type="text" id="name1"><br>
+	Age:<input type="text" id="age1"><br>
+	City:<input type="text" id="city1"><br>
+	Technology:<input type="text" id="tech1"><br>
+	<button id="btn1" onclick="addPerson()">Add Person</button>
+	<div id="persons"></div>
+</body>
+<script>
+	var prson1={"name":"Jack","age":28,"city":"London","technology":"Android"};
+	var prson2={"name":"Mary","age":32,"city":"Paris","technology":"React"};
+	var prson3={"name":"Bob","age":35,"city":"New York","technology":"Angular"};
+	var prson4={"name":"Steve","age":26,"city":"Delhi","technology":"Spring"};
+	var persons=[prson1,prson2,prson3,prson4];
+	showPersons();
+	
+	
+	
+	function showPersons(){
+		var len=persons.length;
+		var str="";
+		for(var i=0;i<len;i++){
+			var pr=persons[i];
+			var name1="<div class='cell22'>"+pr.name+"</div>";
+			var age1="<div class='cell11'>"+pr.age+"</div>";
+			var city1="<div class='cell22'>"+pr.city+"</div>";
+			var tech1="<div class='cell11'>"+pr.technology+"</div>";
+			var btn1="<div class='cell11'><button onclick=remove("+i+")>Remove</button></div>";
+			var btn2="<div class='cell11'><button onclick=edit("+i+")>Edit</button></div>";
+			var row="<div>"+name1+age1+city1+tech1+btn1+btn2+"</div>";
+			str=str+row;
+		}
+		var table=document.getElementById("persons");
+		table.innerHTML=str;
+	}
+	
+	function remove(index){
+		console.log("remove index",index);
+		persons.splice(index,1);
+		showPersons();
+	}
+	
+	function edit(index){
+		console.log("edit index",index);
+		var prsn=persons[index];
+		var name1=document.getElementById("name1");
+		var age1=document.getElementById("age1");
+		var city1=document.getElementById("city1");
+		var tech1=document.getElementById("tech1");
+		name1.value=prsn.name;		// appear on screen
+		age1.value=prsn.age;	// appear on screen
+		city1.value=prsn.city;
+		tech1.value=prsn.technology;
+		var btn1=document.getElementById("btn1");
+		btn1.innerText="Update";	// name of button change to update from add
+		btn1.setAttribute("onclick","editPersons("+index+")");
+	}
+	
+	function editPersons(index){
+		var name1=document.getElementById("name1");
+		var age1=document.getElementById("age1");
+		var city1=document.getElementById("city1");
+		var tech1=document.getElementById("tech1");
+		
+		var prson={"name":name1.value,"age":age1.value,"city":city1.value,"technology":tech1.value};
+		name1.value="";
+		age1.value="";	
+		city1.value="";
+		tech1.value="";
+		
+		persons[index]=prson;
+		var btn1=document.getElementById("btn1");
+		btn1.innerText="Add";	// name of button change to update from add
+		btn1.setAttribute("onclick","add()");
+		showPersons();	// updating our products array
+		
+	}
+	
+	function getIndex(name1){
+		var len=persons.length;
+		var index=-1;
+		for(var i=0;i<len;i++){
+		
+			if(persons[i].name==name1){index=i;console.log(name1);}
+				
+		}
+		return index;
+	}
+	
+	function addPerson(){
+		var name1=document.getElementById("name1");
+		var age1=document.getElementById("age1");
+		var city1=document.getElementById("city1");
+		var tech1=document.getElementById("tech1");
+		
+		var prson={"name":name1.value,"age":age1.value,"city":city1.value,"technology":tech1.value};
+		console.log("avc",getIndex(name1.value));
+		if(getIndex(name1.value)<0){
+			persons.push(prson);
+			showPersons();	// updating our products array
+		}
+		else{
+			alert("Persons already exists");
+		}
+		name1.value="";
+		age1.value="";	
+		city1.value="";
+		tech1.value="";
+	}
+</script>
+</head>
+</html>

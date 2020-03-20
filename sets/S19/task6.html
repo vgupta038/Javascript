@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var p1={"fname":"Jack","lname":"Smith","city":"London"};
+	var p2={"fname":"Mary","lname":"Markle","city":"Amsterdam"};
+	var p3={"fname":"Ed","lname":"May","city":"Paris"};
+	var p4={"fname":"Tim","lname":"Gates","city":"Rome"};
+	
+	var arr=[p1,p2,p3,p4];
+	console.log(JSON.stringify(arr));
+	arr.sort(compareFunction);
+	console.log(JSON.stringify(arr));
+	
+	function compareFunction(p1,p2){
+		var len1=p1.fname.length+p1.lname.length+p1.city.length;
+		var len2=p2.fname.length+p2.lname.length+p2.city.length;
+		if(len1>len2) return 1;
+		if(len1<len2) return -1;
+		return 0;
+	}
+</script>
+</head>
+</html>

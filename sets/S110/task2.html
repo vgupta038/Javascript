@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var array=["q","w1","c2","cat","abcd","e34","a"];
+	console.log("Original array::",array);
+	
+	var array1=array.filter(n=>filterUpperCase(n));
+	console.log("New array::",array1);
+	
+	
+	function filterUpperCase(str){
+		var len=str.length;
+		for(var i=0;i<len;i++){
+			var ch=str.charAt(i);
+			if(ch=='a'|| ch=='b'|| ch=='c')
+				return true;
+		}
+		return false;
+	}
+	
+	
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	//var array=["Edufect","Java","Master","tech"];
+	var array=["12","abc","##"];
+	console.log("Original array::",array);
+	
+	var array1=array.filter(n=>filterUpperCase(n));
+	console.log("New array::",array1);
+	
+	
+	function filterUpperCase(str){
+		var len=str.length;
+		for(var i=0;i<len;i++){
+			var ch=str.charAt(i);
+			if(ch>='A'&&ch<='Z')
+				return true;
+		}
+		return false;
+	}
+	
+	
+	
+</script>
+</head>
+</html>

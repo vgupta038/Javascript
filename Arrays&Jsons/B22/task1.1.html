@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles01.css">
+<body>
+</body>
+<script>
+	var products=["Pepsi","Coke","5Star","Maggi","Gmes"];
+	var productCode=["P235","C159","S341","M055","G732"];
+	var price=[15,18,12,10,8];
+	var quantity=[30,27,10,40,12];
+	var len=products.length;
+	var str="";
+	for(var i=0;i<len;i++){
+		var product1="<div class='cell35'>"+products[i]+"</div>";
+		var productcode1="<div class='cell35'>"+productCode[i]+"</div>";
+		var price1="<div class='cell13'>"+price[i]+"</div>";
+		var quantity1="<div class='cell13'>"+quantity[i]+"</div>";
+		var row="<div>"+product1+productcode1+price1+quantity1+"</div>";
+		str=str+row;
+	}
+	console.log(str);
+	var element=document.createElement("div");
+	element.innerHTML=str;
+	document.body.appendChild(element);
+</script>
+</head>
+</html>

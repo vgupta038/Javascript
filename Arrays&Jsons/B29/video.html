@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+</head>
+<body>
+	Name:<input type="text" id="name1"><br>
+	Quantity:<input type="text" id="qty1"><br>
+	<button id="btn1" onclick="add()">Add Product</button>
+	<div id="products"></div>
+</body>
+<script>
+	var prod1={"name":"Maggi","quantity":28};
+	var prod2={"name":"Perk","quantity":7};
+	var prod3={"name":"Gems","quantity":11};
+	var prod4={"name":"Lindt","quantity":4};
+	var prod5={"name":"Nutties","quantity":20};
+	var products=[prod1,prod2,prod3,prod4,prod5];
+	showProducts();
+	
+	
+	function getIndex(name1){
+		var len=products.length;
+		var index=-1;
+		for(var i=0;i<len;i++){
+			if(products[i].name==name1)
+				index=i;
+		}
+		return index;
+	}
+	
+	function edit(index){
+		console.log("edit index",index);
+		var prod=products[index];
+		var name1=document.getElementById("name1");
+		var qty1=document.getElementById("qty1");
+		var btn1=document.getElementById("btn1");
+		name1.value=prod.name;		// appear on screen
+		qty1.value=prod.quantity;	// appear on screen
+		btn1.innerText="Update";	// name of button change to update from add
+		btn1.setAttribute("onclick","editProduct("+index+")");
+	}
+	function editProduct(index){
+		var name1=document.getElementById("name1");
+		var quantity1=document.getElementById("qty1");
+		var prod={"name":name1.value,"quantity":quantity1.value};
+		name1.value="";
+		quantity1.value="";
+		products[index]=prod;
+		var btn1=document.getElementById("btn1");
+		btn1.innerText="Add";	// name of button change to update from add
+		btn1.setAttribute("onclick","add()");
+		showProducts();	// updating our products array
+		
+	}
+	function remove(index){
+		console.log("remove index",index);
+		products.splice(index,1);
+		showProducts();
+	}
+	function add(){
+		var name1=document.getElementById("name1");
+		var quantity1=document.getElementById("qty1");
+		var prod={"name":name1.value,"quantity":quantity1.value};
+		if(getIndex(name1.value)<0){
+			products.push(prod);
+			showProducts();	// updating our products array
+		}
+		else{alert("Productsalready exists");}
+		name1.value="";
+		quantity1.value="";	
+	}
+	
+	function showProducts(){
+		var len=products.length;
+		var str="";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			
+			var name1="<div class='cell22'>"+pr.name+"</div>";
+			var quantity1="<div class='cell11'>"+pr.quantity+"</div>";
+			var btn1="<div class='cell11'><button onclick=remove("+i+")>Remove</button></div>";
+			var btn2="<div class='cell11'><button onclick=edit("+i+")>Edit</button></div>";
+			var row="<div>"+name1+quantity1+btn1+btn2+"</div>";
+			str=str+row;
+		}
+		var table=document.getElementById("products");
+		table.innerHTML=str;
+	}
+</script>
+</head>
+</html>

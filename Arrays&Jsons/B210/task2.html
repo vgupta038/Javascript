@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles02.css">
+</head>
+<body>
+	<h2>Product Details</h2>
+	<div id="products" class="prstyle"></div>
+</body>
+<script>
+	var prod1={"name":"Maggi","price":25,"offers":["Citi Credit Cards","ICICI Card"]};
+	var prod2={"name":"Perk","price":10,"offers":["Axis Credit Cards","PayTM"]};
+	var prod3={"name":"Gems","price":15,"offers":["SBI Card","PhonePe","PayTM"]};
+	var prod4={"name":"Lindt","price":90,"offers":[]};
+	var prod5={"name":"Nutties","price":12,"offers":["Citi Credit Cards"]};
+	var prod6={"name":"Pepsi","price":15,"offers":["PhonePe","PayTM"]};
+	var prod7={"name":"Coca Cola","price":10,"offers":["SBI Card"]};
+	var prod8={"name":"Dairy Milk","price":10,"offers":[]};
+	var products=[prod1,prod2,prod3,prod4,prod5,prod6,prod7,prod8];
+	
+	var detailsIndex=-1;
+	show();
+	
+	function show(){	// display products
+		var len=products.length;
+		var str="";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			
+			if(detailsIndex===i)
+			{	
+				console.log("index",detailsIndex);
+				var prDisplay="<div class='cell'>";
+				prDisplay+="Name : "+pr.name+"</br>";
+				prDisplay+="Price : "+pr.price+"</br>";
+				prDisplay+=pr.offers.length+" offers from "+"</br>";
+				
+				var arr=pr.offers;
+				var len1=arr.length;
+				for(var j=0;j<len1;j++){
+					prDisplay+=""+arr[j]+"</br>";
+				}
+				
+				prDisplay+="<button onclick=hideOffers("+i+")>Hide Offer</button>";
+				prDisplay+="</div>";
+			}
+			else{
+				console.log("index",detailsIndex);
+				var prDisplay="<div class='cell'>";
+				prDisplay+="Name : "+pr.name+"</br>";
+				prDisplay+="Price : "+pr.price+"</br>";
+				prDisplay+="<button onclick=showOffers("+i+")>Show Offers</button>";
+				prDisplay+="</div>";
+			}
+			
+			str=str+prDisplay;
+		}
+		var element=document.getElementById("products");
+		element.innerHTML=str;
+	}
+	
+	function showOffers(index){
+		detailsIndex=index;
+		show();
+	}
+	
+	function hideOffers(index){
+		detailsIndex=-1;
+		show();
+	}
+</script>
+</head>
+</html>

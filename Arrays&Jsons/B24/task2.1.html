@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var product1={"code":"PX101","stock":15,"price":30};
+	var product2={"code":"PX102","stock":24,"price":20};
+	var product3={"code":"PX103","stock":33,"price":10};
+	var totalStock=product1.stock+product2.stock+product3.stock;
+	var totalValue=(product1.stock*product1.price)+(product2.stock*product2.price)+(product3.stock*product3.price)
+	var totalStock={"totalStock":totalStock,"totalValue":totalValue};
+	
+	console.log(JSON.stringify(totalStock));
+</script>
+</head>
+</html>

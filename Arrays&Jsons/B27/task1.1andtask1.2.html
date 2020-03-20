@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Course Name:<input type="text" id="name"></br>
+	<button onclick="addTop()">Add at Top</button>
+	<button onclick="addEnd()">Add at End</button></br>
+	<button onclick="removeTop()">Remove at Top</button>
+	<button onclick="removeEnd()">Remove at End</button>
+</body>
+<script>
+	var courses=["Java","Javasccript","Python","C","C++"];
+	console.log(courses);
+	function addTop(){
+		var val=document.getElementById("name").value;
+		courses.unshift(val);
+		document.getElementById("name").value="";
+		console.log(courses);
+	}
+	function addEnd(){
+		var val=document.getElementById("name").value;
+		courses.push(val);
+		document.getElementById("name").value="";
+		console.log(courses);
+	}
+	function removeTop(){
+		var ele=courses.shift();
+		console.log("Removed course from top: "+ele);
+		console.log(courses);
+	}
+	function removeEnd(){
+		var ele=courses.pop();
+		console.log("Removed course from end: "+ele);
+		console.log(courses);
+	}
+</script>
+</head>
+</html>

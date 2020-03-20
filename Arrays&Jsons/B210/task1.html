@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles01.css">
+</head>
+<body>
+	<h2>Product Details</h2>
+	<div id="products" class="prstyle"></div>
+</body>
+<script>
+	var prod1={"name":"Maggi","price":25,"desc":"Maggi is a popular among children and youth. It is produced by Nestle."};
+	var prod2={"name":"Perk","price":10,"desc":"Perk is a popular chocolate bar which is reasonably priced."};
+	var prod3={"name":"Gems","price":15,"desc":"An old favorite of children. the mutli colored gems are not only attractive but also very tasty."};
+	var prod4={"name":"Lindt","price":90,"desc":"A very expensive and upmarket chocolate, Lindt is popular among the urban rich and elites."};
+	var prod5={"name":"Nutties","price":12,"desc":"Another kid favorites, Nutiies is similar to Gems, though is crunchier. Like more in youth."};
+	var prod6={"name":"Pepsi","price":15,"desc":"One of the most popular cola drinks which advertises with film stars and cricketers."};
+	var prod7={"name":"Coca Cola","price":10,"desc":"Pepsi and Coca Cola are competitors. They are the leading cola drinks. Coca Cola is the global market leader in carbonated drinks."};
+	var prod8={"name":"Dairy Milk","price":10,"desc":"One of the most popular chocolate bars for Cadburys whose advertising is new and refreshing."};
+	var products=[prod1,prod2,prod3,prod4,prod5,prod6,prod7,prod8];
+	
+	var detailsIndex=-1;
+	show();
+	
+	function show(){	// display products
+		var len=products.length;
+		var str="";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			if(detailsIndex===i){
+				var prDisplay="<div class='cellChanged'>";
+				prDisplay+="Name : "+pr.name+"</br>";
+				prDisplay+="Price : "+pr.price+"</br>";
+				prDisplay+="<button onclick=unSelect("+i+")>UnSelect</button>";
+			}
+			else{
+				var prDisplay="<div class='cell'>";
+				prDisplay+="Name : "+pr.name+"</br>";
+				prDisplay+="Price : "+pr.price+"</br>";
+				prDisplay+="<button onclick=select("+i+")>Select</button>";
+			}
+			prDisplay+="</div>";
+			str=str+prDisplay;
+		}
+		var element=document.getElementById("products");
+		element.innerHTML=str;
+	}
+	
+	function select(index){
+		detailsIndex=index;
+		show();
+	}
+	
+	function unSelect(index){
+		detailsIndex=-1;
+		show();
+	}
+</script>
+</head>
+</html>

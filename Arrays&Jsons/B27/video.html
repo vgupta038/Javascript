@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<button onclick="addTop()">Add Top</button>
+	<button onclick="addEnd()">Add End</button></br>
+	<button onclick="removeTop()">Remove Top</button>
+	<button onclick="removeEnd()">Remove End</button>
+</body>
+<script>
+	var array=[2,3,4,5,6,7,9];
+	console.log(array);
+	function addTop(){
+		array.unshift(15);
+		console.log(array);
+	}
+	function addEnd(){
+		array.push(12);
+		console.log(array);
+	}
+	function removeTop(){
+		var ele=array.shift();
+		console.log(array);
+	}
+	function removeEnd(){
+		var ele=array.pop();
+		console.log(array);
+	}
+</script>
+</head>
+</html>
