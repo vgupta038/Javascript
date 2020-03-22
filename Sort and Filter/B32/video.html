@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var names=[40,100,1,5,25,10];
+	console.log("Names:",names);
+	var sortednames=[...names];
+	sortednames.sort(function(a,b){return a-b;});	// sort in ascending order
+	console.log("Sorted Names:",sortednames);
+	sortednames.sort(function(a,b){return b-a;});	// sort in descending order
+	console.log("Sorted Names:",sortednames);
+	
+	var absolute=[-25,-8,-6,4,5,10,-100];
+	absolute.sort(function(a,b){ 
+					if(a<0) a=a*-1;
+					if(b<0) b=b*-1;
+					return a-b;
+				});	// sort in ascending order
+	console.log("Sorted Absolute number:",absolute);
+</script>
+</head>
+</html>

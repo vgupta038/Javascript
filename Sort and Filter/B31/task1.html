@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Name:<input type="text" id="name"></br>
+	<button onclick="add()">Add</button>
+</body>
+<script>
+	var names=[];
+	var sortednames=[];
+	function add(){
+		var val=document.getElementById("name").value;
+		names.push(val);
+		sortednames=[...names];
+		sortednames.sort();
+		console.log("Original array",names);
+		console.log("Sorted array",sortednames);
+	}
+</script>
+</head>
+</html>

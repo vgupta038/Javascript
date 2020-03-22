@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+
+		var courses=["Hello","React","Java","Python","Hibernate","JavaScript"];
+		console.log(courses);
+		
+		// task 2.1
+		var allCourse=courses.reduce((acc,curr)=>acc+"#"+curr); 
+		console.log("All Courses concatenated",allCourse);
+				//or 
+				
+		allCourse=courses.reduce((acc,curr)=>fnConcat(acc,curr)); 
+		console.log("All Courses concatenated",allCourse);
+		function fnConcat(acc,curr){
+			return acc+"#"+curr;
+		}
+		
+		//	task 2.2
+		var countA=courses.reduce((acc,curr)=>fnCountA(acc,curr),0); 
+		console.log("no of A",countA);
+		function fnCountA(acc,curr){
+			var count=0;
+			for(var i=0;i<curr.length;i++){
+				var ch=curr.charAt(i);
+				if(ch==='a')
+					count++;
+			}
+			return acc+count;
+		}
+		
+		// Task 2.3				
+		var longest=courses.reduce((acc,curr)=>fnLong(acc,curr)); 
+		console.log("Longest String is",longest);
+		function fnLong(acc,curr){
+			if(acc.length>curr.length) return acc;
+			return curr;
+		}
+		
+		// Task 2.4
+		var ch='R';
+		var countch=courses.reduce((acc,curr)=>fnCountch(acc,curr,ch),0); 
+		console.log("no of string starts with given ch",countch);
+		function fnCountch(acc,curr,ch){
+			if(curr.charAt(0)===ch) return acc+1;
+			return acc;
+		}
+</script>
+</head>
+</html>

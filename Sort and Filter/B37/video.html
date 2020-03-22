@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+		var numbers=[25,8,15,4,50,10,9,100];
+		console.log(numbers);
+		var x1=numbers.find(fn1);	// find first no that follows condition in function fn1
+		console.log("no",x1);
+		
+		var i1=numbers.findIndex(fn1);	// find first no index that follows condition in function fn1
+		console.log("index",i1);
+		
+		function fn1(n){
+			return n===10;
+		}
+		
+		//---------------------------------
+		var people=["James","Martha","Steve","Patrick","Kathy"];
+		console.log(people);
+		var x2=people.find(fn2);	// find first no that follows condition in function fn1
+		console.log("no",x2);
+		
+		var i2=people.findIndex(fn2);	// find first no index that follows condition in function fn1
+		console.log("index",i2);
+		
+		function fn2(p){
+				return p.charAt(0)==='S';
+		}
+		
+		//------------------------------------
+		
+		var x3=people.find(p1=>fn3(p1,'S'));		// passing value to the function
+		console.log("No",x3);
+		var i3=people.findIndex(p1=>fn3(p1,'S'));	// passing value to the function
+		console.log("index",i3);
+		
+		function fn3(p,ch){
+				return p.charAt(0)===ch;
+		}
+		
+		//---------------------------------------
+		var emps=[{"name":"James","age":40,"dept":"Finance"},
+				  {"name":"Martha","age":37,"dept":"Tech"},
+				  {"name":"David","age":42,"dept":"Finance"},
+				  {"name":"Wilson","age":31,"dept":"Ops"},
+				  {"name":"William","age":28,"dept":"Tech"}
+				 ];
+		console.log(emps);
+		var x4=emps.find(fn4);
+		console.log("no",x4);
+		var i4=emps.findIndex(fn4);
+		console.log("index",i4);
+		
+		function fn4(p){
+			return p.age<35;
+		}
+		
+		//---------------------------------------
+		var x5=emps.find(e=>fn5(e,'D'));		// passing value to the function
+		console.log("no",x5);
+		var i5=emps.findIndex(e=>fn5(e,'D'));	// passing value to the function
+		console.log("index",i5);
+		
+		function fn5(e,ch){
+			return e.name.charAt(0)===ch;
+		}
+		
+</script>
+</head>
+</html>

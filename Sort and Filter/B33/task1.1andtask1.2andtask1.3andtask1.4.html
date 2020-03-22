@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var n1={"name":"Jack","maths":55,"english":60,"science":62};
+	var n2={"name":"Anita","maths":62,"english":65,"science":56};
+	var n3={"name":"Thomas","maths":68,"english":58,"science":54};
+	var n4={"name":"Steve","maths":51,"english":56,"science":68};
+	var n5={"name":"Julia","maths":47,"english":77,"science":72};
+	var n6={"name":"Mary","maths":72,"english":55,"science":60};
+	var array=[n1,n2,n3,n4,n5,n6];
+	console.log(JSON.stringify(array));
+	array.sort(compareName);	// task1.1
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareEnglish);	// task1.2
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareTotal);	// task1.3
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareMathScience);	// task1.4
+	console.log(JSON.stringify(array));
+	
+	function compareMathScience(n1,n2){
+		var v1=n1.maths+n1.science;
+		var v2=n2.maths+n2.science;
+		if(v1>v2) return 1;
+		if(v1<v2) return -1;
+		return 0;
+	}
+	
+	function compareTotal(n1,n2){
+		var v1=n1.maths+n1.english+n1.science;
+		var v2=n2.maths+n2.english+n2.science;
+		if(v1>v2) return -1;
+		if(v1<v2) return 1;
+		return 0;
+	}
+	function compareEnglish(n1,n2){
+		if(n1.english>n2.english) return -1;
+		if(n1.english<n2.english) return 1;
+		return 0;
+	}
+	function compareName(n1,n2){
+		if(n1.name>n2.name) return 1;
+		if(n1.name<n2.name) return -1;
+		return 0;
+	}
+	
+</script>
+</head>
+</html>

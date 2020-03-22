@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var p1={"name":"Mary","marks":[72,65,55,71]};
+	var p2={"name":"Anita","marks":[66,70,75,53]};
+	var p3={"name":"Edward","marks":[44,54,64,58]};
+	var p4={"name":"Thomas","marks":[62,55,65,81]};
+	var p5={"name":"Robin","marks":[41,44,47,49]};
+	var p6={"name":"Sophia","marks":[71,73,67,77]};
+	var p7={"name":"Bruce","marks":[52,57,61,64]};
+	var array=[p1,p2,p3,p4,p5,p6,p7];
+	console.log("Original array::",array);
+	
+	var array1=array.filter(n=>filterTotalMarks(n));	//task 3.1
+	console.log("New array Total Marks::",array1);
+	
+	var array2=array.filter(n=>filterMarks70(n));	//task 3.2
+	console.log("New array Total Marks::",array2);
+	
+	var array3=array.filter(n=>filterMarks70orMore(n));	//task 3.2
+	console.log("New array Total Marks::",array3);
+	
+	function filterMarks70orMore(p){
+		var len=p.marks.length;
+		var count=0;
+		for(var i=0;i<len;i++){
+			if(p.marks[i]>70) count++;
+		}
+		if(count>=2) return true;
+		return false;
+	}
+	function filterMarks70(p){
+		var len=p.marks.length;
+		var count=0;
+		for(var i=0;i<len;i++){
+			if(p.marks[i]>70) count=1;
+		}
+		if(count==1) return true;
+		return false;
+	}
+	
+	function filterTotalMarks(p){
+		var len=p.marks.length;
+		var sum=0;
+		for(var i=0;i<len;i++){
+			sum=sum+p.marks[i];
+		}
+		console.log(sum);
+		if(sum<250) return true;
+		return false;
+	}
+	
+	
+	
+</script>
+</head>
+</html>

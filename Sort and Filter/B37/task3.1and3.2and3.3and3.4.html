@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+		var emps=[{"name":"Jack","maths":55,"english":60,"science":62},
+				  {"name":"Anita","maths":62,"english":65,"science":56},
+				  {"name":"Thomas","maths":68,"english":72,"science":75},
+				  {"name":"Steve","maths":51,"english":56,"science":68},
+				  {"name":"Julia","maths":47,"english":77,"science":72},
+				  {"name":"Mary","maths":72,"english":55,"science":81}
+				 ];
+		console.log(emps);
+		
+		// task 3.1
+		var x1=emps.find(fn1);
+		console.log("no",x1);
+		var i1=emps.findIndex(fn1);
+		console.log("index",i1);
+		
+		function fn1(p){
+			return p.maths<50;
+		}
+		
+		// task 3.2
+		var x2=emps.find(fn2);
+		console.log("no",x2);
+		var i2=emps.findIndex(fn2);
+		console.log("index",i2);
+		
+		function fn2(p){
+			return (p.maths+p.english+p.science)>200;
+		}
+		
+		// task 3.3
+		var x3=emps.find(fn3);
+		console.log("no",x3);
+		var i3=emps.findIndex(fn3);
+		console.log("index",i3);
+		
+		function fn3(p){
+			return p.maths>p.english;
+		}
+		
+		// task 3.4
+		var n=60;
+		var x4=emps.find(e=>fn4(e,n));
+		console.log("no",x4);
+		var i4=emps.findIndex(e=>fn4(e,n));
+		console.log("index",i4);
+		
+		function fn4(e,n){
+			if(e.maths>n&&e.english>n&&e.science>n)
+				return true;
+			return false;
+		}
+		
+</script>
+</head>
+</html>

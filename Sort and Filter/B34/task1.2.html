@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var p1={"name":"Jack","maths":55,"english":60,"science":62};
+	var p2={"name":"Anita","maths":62,"english":65,"science":56};
+	var p3={"name":"Thomas","maths":68,"english":58,"science":54};
+	var p4={"name":"Steve","maths":51,"english":56,"science":68};
+	var p5={"name":"Julia","maths":47,"english":77,"science":72};
+	var p6={"name":"Mary","maths":72,"english":55,"science":60};
+	var array=[p1,p2,p3,p4,p5,p6];
+	console.log("Original array::",array);
+	var newArray=array.filter(n=>filterTotalMarks(n));
+	console.log("New array::",newArray);
+	
+	function filterTotalMarks(p){
+		if(p.maths+p.english+p.science>180) return true;
+		return false;
+	}
+	
+	
+</script>
+</head>
+</html>

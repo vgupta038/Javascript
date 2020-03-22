@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var p1={"name":"Jack","country":"USA","age":35};
+	var p2={"name":"Amit","country":"India","age":38};
+	var p3={"name":"Edward","country":"USA","age":41};
+	var p4={"name":"Vishal","country":"India","age":30};
+	var p5={"name":"Annie","country":"USA","age":27};
+	var p6={"name":"Nick","country":"France","age":32};
+	var p7={"name":"Francis","country":"France","age":44};
+	var p8={"name":"Preeti","country":"India","age":25};
+	var p9={"name":"Sophie","country":"France","age":29};
+	var p10={"name":"Harpreet","country":"India","age":48};
+	var p11={"name":"Bob","country":"USA","age":21};
+	var array=[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11];
+	console.log("Original array::",array);
+	
+	var str="India";
+	var array1=array.filter(n=>filterCountry(n,str));
+	console.log("Country Specified array::",array1);
+	
+	
+	function filterCountry(n,str){
+		if(n.country==str) return true;
+		return false;
+	}
+</script>
+</head>
+</html>

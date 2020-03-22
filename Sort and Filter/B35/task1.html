@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var s1={"name":"Jack","maths":55,"english":60,"science":62};
+	var s2={"name":"Anita","maths":62,"english":65,"science":56};
+	var s3={"name":"Thomas","maths":68,"english":58,"science":54};
+	var s4={"name":"Steve","maths":51,"english":56,"science":68};
+	var s5={"name":"Julia","maths":47,"english":77,"science":72};
+	var s6={"name":"Mary","maths":72,"english":55,"science":72};
+	
+	var array=[s1,s2,s3,s4,s5,s6];
+	console.log("Original array::",array);
+	var n1=50;
+	var n2=60;
+	var array1=array.filter(n=>filterMarks(n,n1,n2));
+	console.log("Filtered Number are::",array1);
+	
+	
+	function filterMarks(n,n1,n2){
+		if(n.maths>n1&&n.science>n2) return true;
+		return false;
+	}
+</script>
+</head>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+		var arr=["Hello","React","Java","Python","Hibernate","Javascript"];
+		console.log(arr);
+		
+		//	task 2.1
+		
+		var x1=arr.find(fn1);
+		console.log("first String",x1);
+		var i1=arr.findIndex(fn1);	
+		console.log("index",i1);
+		
+		function fn1(n){
+			return n.charAt(n.length-1)==='t';
+		}
+	
+	
+		//	task2.2
+		
+		var ch='b';
+		var x2=arr.find(n=>fn1(n,ch));
+		console.log("first String",x2);
+		var i2=arr.findIndex(n=>fn1(n,ch));	
+		console.log("index",i2);
+		
+		function fn1(n,ch){
+			return n.charAt(n.length-1)===ch;
+		}
+	
+		
+		// task2.3
+		
+		var ch='y';
+		var x3=arr.find(n=>fn1(n,ch));
+		console.log("first String",x3);
+		var i3=arr.findIndex(n=>fn1(n,ch));	
+		console.log("index",i3);
+		
+		function fn1(n,ch){
+			for(var i=0;i<n.length;i++){
+				var ch1=n.charAt(i);
+				if(ch1==ch)
+					return true;
+			}
+			return false;
+		}
+	
+	
+</script>
+</head>
+</html>

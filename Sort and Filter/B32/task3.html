@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var names=["JavaScript","Hello","React","Java","Python","Hibernate"];
+	console.log("Names:",names);
+	names.sort(functionss);	// sort in ascending order
+	console.log("Sorted a's names:",names);
+	
+	function functionss(a,b){ 
+		var len1=a.length;
+		var count1=0;
+		for(var i=0;i<len1;i++){
+			if(a.charAt(i)=='a')
+				count1++;
+		}
+		var len2=b.length;
+		var count2=0;
+		for(var i=0;i<len2;i++){
+			if(b.charAt(i)=='a')
+				count2++;
+		}
+		return count1-count2;
+	}
+</script>
+</head>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var names=["Mark","James","Bob","Ed","Steve","Mary"];
+	console.log(names);
+	names.sort();	// sort the array of string in ascending order based on dictionary order.
+	console.log("Sorted array: ",names);
+	
+	var namescopy=[...names];	// create exact copy of array
+	console.log("Copied array",namescopy);	
+	
+	namescopy.sort();
+	console.log("Sorted Array: ",namescopy);
+	
+	namescopy.reverse();	// sort the array of string in descending order on dictionary order 
+	console.log("Sorted descending order: ",namescopy);
+</script>
+</head>
+</html>

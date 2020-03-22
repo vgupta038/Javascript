@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+		var people=["James","Martha","Steve","Patrick","Kathy"];
+		console.log(people);
+		
+		
+		var allNames=people.reduce((acc,curr)=>acc+"::"+curr); 	// concatenate all string with ::
+		console.log("All Names concatenated",allNames);
+				//or 
+				
+		allNames=people.reduce((acc,curr)=>fnConcat(acc,curr)); 
+		console.log("All Names concatenated",allNames);
+		function fnConcat(acc,curr){
+			return acc+"::"+curr;
+		}
+		
+		var allLength=people.reduce((acc,curr)=>acc+curr.length,0); 	// count of all length of strings	
+		console.log("All count of length",allLength);
+				//or 
+		allLength=people.reduce((acc,curr)=>fnLength(acc,curr),0); 	
+		console.log("All count of length",allLength);
+		function fnLength(acc,curr){
+			return (acc+curr.length);
+		}
+		
+		var firstCharString=people.reduce((acc,curr)=>acc+curr.charAt(0),"");	// concatenate first character of each string
+		console.log("First Character String",firstCharString);
+				// or
+		firstCharString=people.reduce((acc,curr)=>fnFirstChar(acc,curr),"");
+		console.log("First Character String",firstCharString);
+		function fnFirstChar(acc,curr){
+			return acc+curr.charAt(0);
+		}
+		
+		
+		
+</script>
+</head>
+</html>

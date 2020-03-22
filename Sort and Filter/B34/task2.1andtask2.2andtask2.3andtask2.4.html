@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var p1={"name":"Jack","country":"USA","age":35};
+	var p2={"name":"Amit","country":"India","age":38};
+	var p3={"name":"Edward","country":"USA","age":41};
+	var p4={"name":"Vishal","country":"India","age":30};
+	var p5={"name":"Annie","country":"USA","age":27};
+	var p6={"name":"Nick","country":"France","age":32};
+	var p7={"name":"Francis","country":"France","age":44};
+	var p8={"name":"Preeti","country":"India","age":25};
+	var p9={"name":"Sophie","country":"France","age":29};
+	var p10={"name":"Harpreet","country":"India","age":48};
+	var p11={"name":"Bob","country":"USA","age":21};
+	var array=[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11];
+	console.log("Original array::",array);
+	
+	var array1=array.filter(n=>filterCountry(n));	//task 2.1
+	console.log("New array Country::",array1);
+	
+	function filterCountry(p){
+		if(p.country=='India') return true;
+		return false;
+	}
+	
+	var array2=array.filter(n=>filterCountryAge(n));	//task 2.2
+	console.log("New array Country+Age::",array2);
+	
+	function filterCountryAge(p){
+		if(p.country=='India' && p.age<35) return true;
+		return false;
+	}
+	
+	var array3=array.filter(n=>filterName(n));	//task 2.3
+	console.log("New array Name::",array3);
+	
+	function filterName(p){
+		var len=p.name.length;
+		if(len<6) return true;
+		return false;
+	}
+	
+	var array4=array.filter(n=>filterNameCountry(n));	//task 2.4
+	console.log("New array Name Country::",array4);
+	
+	function filterNameCountry(p){
+		if(p.country=='India'||p.country=='USA') return true;
+		return false;
+	}
+	
+	
+</script>
+</head>
+</html>

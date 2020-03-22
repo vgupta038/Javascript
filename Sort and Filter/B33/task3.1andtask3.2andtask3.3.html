@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var c1={"name":"Mary","marks":[72,65,55,71]};
+	var c2={"name":"Anita","marks":[66,70,75,53]};
+	var c3={"name":"Edward","marks":[44,54,64,58]};
+	var c4={"name":"Thomas","marks":[62,55,65,81]};
+	var c5={"name":"Robin","marks":[41,44,47,49]};
+	var c6={"name":"Sophia","marks":[71,73,67,77]};
+	var c7={"name":"Bruce","marks":[52,57,61,64]};
+	var array=[c1,c2,c3,c4,c5,c6,c7];
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareTotalMarks);	// task 3.1
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareMaxMarks);	// task 3.2
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareMinMarks);	// task 3.3
+	console.log(JSON.stringify(array));
+	
+	function compareMinMarks(c1,c2){
+		var arr1=c1.marks;
+		var len1=arr1.length;
+		var min1=arr1[0];
+		for(var i=0;i<len1;i++){
+			if(arr1[i]<min1)
+				min1=arr1[i];
+		}
+		var arr2=c2.marks;
+		var len2=arr2.length;
+		var min2=arr2[0];
+		for(var i=0;i<len2;i++){
+			if(arr2[i]<min2)
+				min2=arr2[i];
+		}
+		if(min1>min2) return 1;
+		if(min1<min2) return -1;
+		return 0;
+	}
+	
+	function compareMaxMarks(c1,c2){
+		var arr1=c1.marks;
+		var len1=arr1.length;
+		var max1=arr1[0];
+		for(var i=0;i<len1;i++){
+			if(arr1[i]>max1)
+				max1=arr1[i];
+		}
+		var arr2=c2.marks;
+		var len2=arr2.length;
+		var max2=arr2[0];
+		for(var i=0;i<len2;i++){
+			if(arr2[i]>max2)
+				max2=arr2[i];
+		}
+		if(max1>max2) return 1;
+		if(max1<max2) return -1;
+		return 0;
+	}
+	
+	function compareTotalMarks(c1,c2){
+		var arr1=c1.marks;
+		var len1=arr1.length;
+		var sum1=0;
+		for(var i=0;i<len1;i++){
+			sum1=sum1+arr1[i];
+		}
+		var arr2=c2.marks;
+		var len2=arr2.length;
+		var sum2=0;
+		for(var i=0;i<len2;i++){
+			sum2=sum2+arr2[i];
+		}
+		if(sum1>sum2) return 1;
+		if(sum1<sum2) return -1;
+		return 0;
+	}
+	
+</script>
+</head>
+</html>

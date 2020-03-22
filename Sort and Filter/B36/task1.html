@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+</head>
+<body>
+	String:<input type="text" id="name1"></br>
+	<button onclick="byName(name1)">Filter By Name</button>
+	<button onclick="byTech(name1)">Filter By Technology</button></br>
+	<div id="products"></div>
+</body>
+<script>
+	var p1={"name":"Jack","tech":"Android"};
+	var p2={"name":"Mary","tech":"React"};
+	var p3={"name":"Bob","tech":"Angular"};
+	var p4={"name":"Steve","tech":"Spring"};
+	var p5={"name":"James","tech":"Android"};
+	var p6={"name":"Juila","tech":"Android"};
+	var p7={"name":"Michael","tech":"React"};
+	var p8={"name":"Bill","tech":"Angular"};
+	var p9={"name":"Sonny","tech":"Spring"};
+	var p10={"name":"Martins","tech":"React"};
+	var p11={"name":"Bruce","tech":"angular"};
+	var p12={"name":"Sam","tech":"Spring"};
+	
+	var products=[p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12];
+	show();
+	var productsChangedArray=products;
+	function show(){
+		var len=products.length;
+		var str="";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			var name1="<div class='cell'>"+pr.name+"</div>";
+			var tech1="<div class='cell'>"+pr.tech+"</div>";
+			var row="<div>"+name1+tech1+"</div>";
+			str=str+row;
+		}
+		var element=document.getElementById("products");
+		element.innerHTML=str;
+	}
+	
+	function byName(name1){
+		console.log("Name",name1.value);
+		products=productsChangedArray.filter(p=>filterName(p,name1.value)); 
+		show();
+	}
+	function filterName(p,name){
+		console.log("fn",name);
+		var len1=name.length;
+		var len2=p.name.length;
+		var len=len1;
+		if(len1>len2){len=len2;}
+		else if(len1<len2){len=len1;}
+		
+		for(var i=0;i<len;i++){
+			var ch=name.charAt(i);
+			if(ch!=p.name.charAt(i))
+				return false;
+		}
+		return true;
+	}
+	
+	function byTech(name1){
+		console.log("Name",name1.value);
+		products=productsChangedArray.filter(p=>filterTech(p,name1.value)); 
+		show();
+	}
+	
+	function filterTech(p,name){
+		console.log("fn",name);
+		var len1=name.length;
+		var len2=p.tech.length;
+		var len=len1;
+		if(len1>len2){len=len2;}
+		else if(len1<len2){len=len1;}
+		
+		for(var i=0;i<len;i++){
+			var ch=name.charAt(i);
+			if(ch!=p.tech.charAt(i))
+				return false;
+		}
+		return true;
+	}
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles01.css">
+</head>
+<body>
+	New Weight Between:<input type="text" id="before1"><input type="text" id="after1"></br>
+	<button onclick="byFilter(before1,after1)">Filter By Name</button>
+	<div id="products"></div>
+</body>
+<script>
+	var p1={"name":"Jack","oldwt":65,"newwt":68};
+	var p2={"name":"Mary","oldwt":55,"newwt":53};
+	var p3={"name":"Bob","oldwt":71,"newwt":66};
+	var p4={"name":"Steve","oldwt":62,"newwt":68};
+	var p5={"name":"James","oldwt":81,"newwt":77};
+	var p6={"name":"Juila","oldwt":52,"newwt":52};
+	var p7={"name":"Michael","oldwt":68,"newwt":68};
+	var p8={"name":"Bill","oldwt":60,"newwt":61};
+	var p9={"name":"Sonny","oldwt":51,"newwt":60};
+	
+	var products=[p1,p2,p3,p4,p5,p6,p7,p8,p9];
+	show();
+	var productChange=products;
+	
+	
+	let str="<div><div class='header' onclick=clicked(0)>Name</div>";
+		str=str+"<div class='header' onclick=clicked(1)>Maths</div>";
+		str=str+"<div class='header' onclick=clicked(2)>English</div>";
+		str=str+"<div class='header' onclick=clicked(3)>Science</div>";
+		
+	function show(){
+		var len=products.length;
+		var str="";
+		str+="<div><div class='header' onclick=clicked(0)>Name</div>";
+		str+="<div class='header' onclick=clicked(1)>OldWeight</div>";
+		str+="<div class='header' onclick=clicked(2)>NewWeight</div></div>";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			if(pr.oldwt==pr.newwt){
+				var name1="<div class='cellgrey'>"+pr.name+"</div>";
+				var oldwt1="<div class='cellgrey'>"+pr.oldwt+"</div>";
+				var newwt1="<div class='cellgrey'>"+pr.newwt+"</div>";
+				var row="<div>"+name1+oldwt1+newwt1+"</div>";
+				str=str+row;
+			}
+			else if(pr.newwt>pr.oldwt){
+				var name1="<div class='cellred'>"+pr.name+"</div>";
+				var oldwt1="<div class='cellred'>"+pr.oldwt+"</div>";
+				var newwt1="<div class='cellred'>"+pr.newwt+"</div>";
+				var row="<div>"+name1+oldwt1+newwt1+"</div>";
+				str=str+row;
+			}
+			else{
+				var name1="<div class='cellgreen'>"+pr.name+"</div>";
+				var oldwt1="<div class='cellgreen'>"+pr.oldwt+"</div>";
+				var newwt1="<div class='cellgreen'>"+pr.newwt+"</div>";
+				var row="<div>"+name1+oldwt1+newwt1+"</div>";
+				str=str+row;
+			}
+		}
+		var element=document.getElementById("products");
+		element.innerHTML=str;
+	}
+	function byFilter(before1,after1){
+		console.log("before",before1.value);
+		console.log("after",after1.value);
+		products=productChange.filter(p=>filterDiff(p,before1.value,after1.value));
+		show();
+	}
+	function filterDiff(p,n1,n2){
+		if(p.newwt>n1 && p.newwt<n2)
+			return true;
+		return false;
+	}
+	
+	function clicked(headerId){
+		switch(headerId){
+			case 0:{
+					products.sort(compareNameAsc);
+					show();
+					break;
+			}
+			case 1:{
+					products.sort(compareOldwtAsc);
+					show();
+					break;
+			}
+			case 2:{
+					products.sort(compareNewwtAsc);
+					show();
+					break;
+			}
+		}
+	}
+	function compareNameAsc(p1,p2){
+		if(p1.name>p2.name) return 1;
+		else if(p1.name<p2.name) return -1;
+		return 0;
+	}
+	
+	function compareOldwtAsc(p1,p2){
+		if(p1.oldwt>p2.oldwt) return 1;
+		else if(p1.oldwt<p2.oldwt) return -1;
+		return 0;
+	}
+	
+	function compareNewwtAsc(p1,p2){
+		if(p1.newwt>p2.newwt) return 1;
+		else if(p1.newwt<p2.newwt) return -1;
+		return 0;
+	}
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var c1={"name":"Jack","country":"USA","age":35};
+	var c2={"name":"Amit","country":"India","age":38};
+	var c3={"name":"Edward","country":"USA","age":41};
+	var c4={"name":"Vishal","country":"India","age":30};
+	var c5={"name":"Annie","country":"USA","age":27};
+	var c6={"name":"Nick","country":"France","age":32};
+	var c7={"name":"Francis","country":"France","age":44};
+	var c8={"name":"Preeti","country":"India","age":25};
+	var c9={"name":"Sophie","country":"France","age":29};
+	var c10={"name":"Harpreet","country":"India","age":48};
+	var c11={"name":"Bob","country":"USA","age":21};
+	var array=[c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11];
+	console.log(JSON.stringify(array));
+	array.sort(compareCountry);		// task2.1
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareCountryThenName);		// task2.2
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareCountryThenAgeDescending);		// task2.3
+	console.log(JSON.stringify(array));
+	
+	array.sort(compareAge);		// task2.4
+	console.log(JSON.stringify(array));
+	
+	function compareAge(c1,c2){
+		if(c1.age>c2.age) return -1;
+		if(c1.age<c2.age) return 1;
+		return 0;
+	}
+	
+	function compareCountryThenAgeDescending(c1,c2){
+		if(c1.country>c2.country) return 1;
+		if(c1.country<c2.country) return -1;
+		if(c1.age>c2.age) return -1;
+		if(c1.age<c2.age) return 1;
+		return 0;
+	}
+	
+	function compareCountryThenName(c1,c2){
+		if(c1.country>c2.country) return 1;
+		if(c1.country<c2.country) return -1;
+		if(c1.name>c2.name) return 1;
+		if(c1.name<c2.name) return -1;
+		return 0;
+	}
+	
+	function compareCountry(c1,c2){
+		if(c1.country>c2.country) return 1;
+		if(c1.country<c2.country) return -1;
+		return 0;
+	}
+	
+</script>
+</head>
+</html>

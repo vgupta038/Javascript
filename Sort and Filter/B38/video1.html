@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+
+		var numbers=[5,2,3,8,4];
+		console.log(numbers);
+		var sum=numbers.reduce((acc,curr)=>acc+curr);  //without using external function 
+		console.log("Sum of numbers",sum);
+			// or
+		sum=numbers.reduce((acc,curr)=>fnSum(acc,curr));	// using external function
+		console.log("Sum of numbers",sum);
+		function fnSum(acc,curr){
+			return acc+curr;
+		}
+		
+		var prod=numbers.reduce((acc,curr)=>acc*curr); 	// without using external function
+		console.log("Product of numbers",prod);
+				// or
+		prod=numbers.reduce((acc,curr)=>fnMul(acc,curr));	// using external function
+		console.log("Product of numbers",prod);
+		function fnMul(acc,curr){
+			return acc*curr;
+		}
+		
+		var max=numbers.reduce((acc,curr)=>fnMax(acc,curr));	// max in array
+		console.log("Maximum Number in array",max);
+		
+		function fnMax(acc,curr){
+			if(curr>acc)
+				return curr;
+			return acc;
+		}
+		
+		var min=numbers.reduce((acc,curr)=>fnMin(acc,curr));	// min in array	
+		console.log("Minimum Number in array",min);
+		
+		function fnMin(acc,curr){
+			if(curr>acc)
+				return acc;
+			return curr;
+		}
+
+</script>
+</head>
+</html>

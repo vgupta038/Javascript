@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+		var emps=[{"name":"Jack","maths":55,"english":60,"science":62},
+				  {"name":"Anita","maths":62,"english":65,"science":56},
+				  {"name":"Thomas","maths":68,"english":72,"science":75},
+				  {"name":"Steve","maths":51,"english":56,"science":68},
+				  {"name":"Julia","maths":47,"english":77,"science":72},
+				  {"name":"Mary","maths":72,"english":55,"science":81}
+				 ];
+		console.log(emps);
+		
+		//	 task 3.1
+		var totalMarks=emps.reduce((acc,curr)=>acc+curr.maths,0);
+		console.log("Total Marks ",totalMarks);
+				// or
+		totalMarks=emps.reduce((acc,curr)=>fnTotalMarks(acc,curr),0);
+		console.log("Total Marks ",totalMarks);
+		function fnTotalMarks(acc,curr){
+			return acc+curr.maths;
+		}
+		
+		// task 3.2
+		var student60=emps.reduce((acc,curr)=>fnStudent60(acc,curr),0);
+		console.log("Total student score more than 60 ",student60);
+		function fnStudent60(acc,curr){
+			if(curr.science>60)
+				return acc+1;
+			return acc;
+		}
+		
+		// task 3.3
+		var studenteng=emps.reduce((acc,curr)=>fnStudentEnglish(acc,curr));
+		console.log("Total student score more than 60 ",studenteng);
+		function fnStudentEnglish(acc,curr){
+			if(acc.english>curr.english)
+				return acc;
+			return curr;
+		}
+		
+		// task 3.4
+		var studentMore=emps.reduce((acc,curr)=>fnMorethan60(acc,curr),[]);
+		console.log("Array of student score more than 60 in maths ",studentMore);
+		function fnMorethan60(acc,curr){
+			if(curr.maths>60){
+					acc.push(curr);
+					return acc;
+			}
+			return acc;
+		}
+		
+		// task 3.5
+		var studentArray=emps.reduce((acc,curr)=>fnTotal(acc,curr),[]);
+		console.log("Array of student score more than 60 in total ",studentArray);
+		function fnTotal(acc,curr){
+			if(curr.maths+curr.english+curr.science<200){
+					acc.push(curr);
+					return acc;
+			}
+			return acc;
+		}
+		
+</script>
+</head>
+</html>
