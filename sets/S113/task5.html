@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[2,3,-5,-6];
+	console.log("Original array",arr);
+	
+	var sumSquare=arr.reduce((acc,curr)=>fn1(acc,curr),0);
+	console.log("Sum of Square=",sumSquare);
+	
+	function fn1(acc,curr){
+		var sq=curr*curr;
+		return acc+sq;
+	}
+	
+</script>
+</head>
+</html>

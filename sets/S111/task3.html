@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[{"name":"Mary"},{"name":"Anita"},{"name":"Edward"},{"name":"Thomas"},{"name":"Robin"},{"name":"Sophia"},{"name":"Mary"},{"name":"Bruce"}];
+	var name="Rahul";
+	console.log(arr);
+	
+	var i=arr.findIndex(n=>fn1(n,name));
+	if(i!=-1)
+		console.log("",name," is at index ",i);
+	else
+		console.log("NOT FOUND");
+	
+	function fn1(n,name){
+		return n.name===name;
+	}
+</script>
+</head>
+</html>

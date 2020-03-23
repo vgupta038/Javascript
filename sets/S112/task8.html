@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=["Mark","James","Martha"];
+	console.log(arr);
+	
+	var newarr=arr.map(n=>fn1(n));
+	newarr[0]="<ul>"+newarr[0];
+	newarr[newarr.length-1]=newarr[newarr.length-1]+"</ul>";
+	var strarr=newarr.join("");
+	console.log(strarr);
+	
+	function fn1(n){
+		return "<li>"+n+"</li>";
+	}
+	
+	
+</script>
+</head>
+</html>

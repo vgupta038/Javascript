@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[{"name":"Mary","city":"London"},
+			 {"name":"Anita","city":"London"},
+			 {"name":"Edward","city":"Paris"},
+			 {"name":"Thomas","city":"New Delhi"},
+			 {"name":"Robin","city":"Paris"},
+			 {"name":"Sophia","city":"New Delhi"},
+			];
+	var city="New Delhi";
+	console.log(arr);
+	
+	
+	var x=arr.find(n=>fn1(n,city));
+	if(x ===undefined)
+		console.log("NOT FOUND");
+	else
+		console.log("First JSON Array ",x);
+	
+	
+	function fn1(curr,city){
+		if(curr.city===city)
+			return true;
+		return false;
+	}
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	//var arr=["Hi","hello","Bye"];
+	var arr=["A","B","C","X","Y"];
+	console.log("Original array",arr);
+	
+	var str=arr.reduce((acc,curr)=>fn1(acc,curr),"");
+	console.log("First character strings=",str);
+	
+	function fn1(acc,curr){
+		return acc+curr.charAt(0);
+	}
+	
+</script>
+</head>
+</html>

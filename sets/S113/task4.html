@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[10,8,6];
+	console.log("Original array",arr);
+	
+	var prod=arr.reduce((acc,curr)=>fn1(acc,curr),1);
+	console.log("product=",prod);
+	
+	function fn1(acc,curr){
+		return acc*curr;
+	}
+	
+	// or
+	var prod1=arr.reduce((acc,curr)=>acc*curr);
+	console.log("product1=",prod1);
+	
+</script>
+</head>
+</html>

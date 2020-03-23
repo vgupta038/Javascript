@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[2,3,-5,-6,12,10,15];
+	console.log("Original array=",arr);
+	
+	var no=arr.reduce((acc,curr)=>fn1(acc,curr));
+	console.log("Largset number=",no);
+	
+	function fn1(acc,curr){
+		console.log(acc," ",curr);
+		if(acc>curr)
+			return acc;
+		return curr;
+	}
+	
+</script>
+</head>
+</html>

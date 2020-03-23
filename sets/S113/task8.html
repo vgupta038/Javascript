@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=["aBCDE","bMM","cDD","xPP","Y","z"];
+	console.log("Original array=",arr);
+	
+	var str=arr.reduce((acc,curr)=>fn1(acc,curr));
+	console.log("Largset length String=",str);
+	
+	function fn1(acc,curr){
+		console.log(acc," ",curr);
+		if(acc.length>curr.length)
+			return acc;
+		return curr;
+	}
+	
+</script>
+</head>
+</html>

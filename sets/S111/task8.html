@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var p1={"name":"Mary","city":"London"};
+	var p2={"name":"Anita","city":"Paris"};
+	var p3={"name":"Edward","city":"New York"};
+	var p4={"name":"Thomas","city":"Rome"};
+	var p5={"name":"Robin","city":"Seattle"};
+	var p6={"name":"Sophia","city":"Los Angeles"};
+	var p7={"name":"Bruce","city":"Delhi"};
+	var array1=[p1,p2,p3,p4,p5,p6,p7];
+	console.log("Original array1::",array1);
+	
+	var s1={"city":"London","continent":"Europe"};
+	var s2={"city":"Delhi","continent":"Asia"};
+	var s3={"city":"Seattle","continent":"North America"};
+	var s4={"city":"Paris","continent":"Europe"};
+	var s5={"city":"New York","continent":"North America"};
+	var s6={"city":"Rome","continent":"Europe"};
+	var s7={"city":"Bengaluru","continent":"Asia"};
+	var s8={"city":"Los Angeles","continent":"North America"};
+	var array2=[s1,s2,s3,s4,s5,s6,s7,s8];
+	console.log("Original array2::",array2);
+	
+	var continent="";
+	var array3=array1.filter(n=>filterContinent(n,continent));	// filter the first array based on continent as input
+	console.log("New array ::",array3);
+	
+	
+	function filterContinent(p,continent){
+		var x=array2.find(s=>fn1(s,p,continent));
+		if(x!=undefined)
+			return true;
+		return false;
+	}
+	
+	function fn1(s,p,continent){
+		if(s.city===p.city&&s.continent===continent)
+			return true;
+		return false;
+	}
+</script>
+</head>
+</html>

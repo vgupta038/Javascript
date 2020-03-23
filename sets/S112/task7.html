@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[{"name":"Mark","age":23},
+			 {"name":"Steve","age":28},
+			 {"name":"Mary","age":25},
+			 {"name":"Bill","age":34}
+			];
+	console.log(arr);
+	
+	var newarr=arr.map(n=>fn1(n));
+	console.log("New Array",newarr);
+	
+	function fn1(n){
+		return n.name+" is "+n.age+" years old";
+	}
+	
+	
+</script>
+</head>
+</html>
