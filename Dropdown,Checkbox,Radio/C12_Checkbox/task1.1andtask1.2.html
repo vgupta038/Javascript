@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	What do you know</br>
+	<input type="checkbox" id="ch1" checked>Mathematics</br>
+	<input type="checkbox" id="ch2">Physics</br>
+	<input type="checkbox" id="ch3">Chemistry</br>
+	<input type="checkbox" id="ch4" checked>English</br>
+	<button onclick="showChecked()">Show Checked</button></br>
+</body>
+<script>
+	function showChecked(){
+		var tech1=document.getElementById("ch1").checked;
+		console.log(tech1);
+		var tech2=document.getElementById("ch2").checked;
+		console.log(tech2);
+		var tech3=document.getElementById("ch3").checked;
+		console.log(tech3);
+		var tech4=document.getElementById("ch4").checked;
+		console.log(tech4);
+	}
+</script>
+</head>
+</html>

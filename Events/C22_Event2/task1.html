@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	Payment Option
+	<select id="payopts" onchange="payChange(this)">
+		<option disabled selected> Select Payment Option</option>
+		<option value="CC">Credit Card</option>
+		<option value="NET">Net Banking</option>
+		<option value="WLT">Wallet</option>
+	</select>
+</body>
+<script>
+	var array=[{"type":"CC","providers":["ICICI Bank","HDFC Bank","Citibank","SBI","Amex"]},
+			   {"type":"NET","providers":["SBI","BOL","HDFC Bank","Axis Bank","Kotak Bank"]},
+			   {"type":"WLT","providers":["Paytm","Amazon Pay","Phonepe"]}];
+
+	function payChange(ele){
+		var payoption=ele.value;
+		var myDD=document.getElementById("mydd01");
+		if(myDD!=null){
+			document.body.removeChild(myDD);
+		}
+		
+		myDD=document.createElement("select");
+		myDD.setAttribute("id","mydd01");
+		myDD.setAttribute("onchange","payChange2()");
+		
+		var option1="<option>Select Payment Provide</option>";
+		var str=str+option1;
+		if(ele.value=="CC"){
+			console.log("If");
+			var arr=array[0].providers;
+			for(var i=0;i<arr.length;i++){
+				var option="<option>"+arr[i]+"</option>";
+				str=str+option;
+			}
+			myDD.innerHTML=str;
+		}
+		else if(ele.value=="NET"){
+			console.log("In else if");
+			var arr=array[1].providers;
+			for(var i=0;i<arr.length;i++){
+				var option="<option>"+arr[i]+"</option>";
+				str=str+option;
+			}
+			myDD.innerHTML=str;
+		}
+		else{
+			console.log("else");
+			var arr=array[2].providers;
+			for(var i=0;i<arr.length;i++){
+				var option="<option>"+arr[i]+"</option>";
+				str=str+option;
+			}
+			myDD.innerHTML=str;
+		}
+		document.body.appendChild(myDD);
+	}
+	
+	function payChange2(){
+		var ele=document.getElementById("mydd01");
+		console.log("ELement::",ele.value);
+	}
+</script>
+</head>
+</html>

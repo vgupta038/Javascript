@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var urlNum="https://api.myjson.com/bins/1c3wng";
+	getArray();
+	function getArray(){
+		getData(urlNum,showArrayNum);
+	}
+	
+	function showArrayNum(data){
+		console.log("Array of Num : ",data);
+		var sum=data.reduce((acc,curr)=>acc+curr);
+		console.log("Sum=",sum);
+	}
+	function getData(url,fnResponse){
+		fetch(url)
+		.then(response=>{
+			return response.json();
+		})
+		.then(fnResponse)
+		.catch(err=> console.log(err));
+	}
+	
+	
+</script>
+</head>
+</html>

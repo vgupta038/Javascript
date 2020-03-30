@@ -1,0 +1,12 @@
+.txtin{
+	background-color:lightgrey;
+	font-weight:bold;
+}
+.txtout{
+	background-color:white;
+	font-weight:normal;
+}
+.badtxt{
+	background-color:lightpink;
+	font-weight:normal;
+}

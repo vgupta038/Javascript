@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<input type="text" id="txt1" onchange="change(this)">+<input type="text" id="txt2" onchange="change(this)">=<input type="text" id="txt3"></br>
+</body>
+<script>
+
+	function change(ele){
+		console.log("onchange");
+		var t1=document.getElementById("txt1").value;
+		var t2=document.getElementById("txt2").value;
+		var n1=+t1; var n2=+t2;
+		document.getElementById("txt3").value=n1+n2;
+	}
+</script>
+</head>
+</html>

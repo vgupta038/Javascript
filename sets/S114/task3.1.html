@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[{"name":"Mary","marks":[72,65,55,71]},	//263
+			 {"name":"Anita","marks":[66,70,75,53]},	//264
+			 {"name":"Edward","marks":[44,54,64,58]},	//220
+			 {"name":"Thomas","marks":[62,55,65,81]},	//263
+			 {"name":"Robin","marks":[41,44,47,49]},	//181
+			 {"name":"Sophia","marks":[71,73,67,77]},	//288
+			 {"name":"Bruce","marks":[52,57,61,64]}		//234
+			];
+			
+	console.log(arr);
+	var sortTotalmarks=arr.sort(compareMarksAsc);
+	console.log(sortTotalmarks);
+	
+	function compareMarksAsc(n1,n2){
+		var marks1=n1.marks.reduce((acc,curr)=>acc+curr);
+		var marks2=n2.marks.reduce((acc,curr)=>acc+curr);
+		console.log("marks1",marks1,"marks2",marks2);
+		if(marks1>marks2) return 1;
+		else if(marks1<marks2) return -1;
+		else return 0;
+	}
+</script>
+</head>
+</html>

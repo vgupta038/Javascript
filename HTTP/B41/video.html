@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<button onclick="getDetails()">Get Course Details</button></br>
+</body>
+<script>
+	var urlDetails="https://api.myjson.com/bins/16r07g";
+	function getDetails(){
+		getData(urlDetails,showDetails);
+	}
+	
+	function showDetails(data){
+		console.log("Courses : ",data);
+	}
+	function getData(url,fnResponse){
+		fetch(url)
+		.then(response=>{
+			return response.json();
+		})
+		.then(fnResponse)
+		.catch(err=> console.log(err));
+	}
+	
+	
+</script>
+</head>
+</html>

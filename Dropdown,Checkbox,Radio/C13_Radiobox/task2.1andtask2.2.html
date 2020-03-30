@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<button onclick="showRadio()">Show Radio</button></br>
+</body>
+<script>
+	addRadio();
+	function addRadio(){
+		var arr=["India","Australia","England"];
+		for(var i=0;i<arr.length;i++){
+			var myRadio=document.createElement("input");
+			myRadio.type="radio";
+			myRadio.setAttribute("id","myradio"+(i+1));
+			myRadio.setAttribute("name","country");
+			myRadio.value=arr[i];
+			document.body.appendChild(myRadio);
+			
+			var txt=document.createTextNode(arr[i]);
+			document.body.appendChild(txt);
+		
+			var br=document.createElement("br");
+			document.body.appendChild(br);	
+		}
+	}
+	function showRadio(){
+		var rvalue="";
+		var t1=document.getElementById("myradio1").checked;
+		if(t1)
+			rvalue=document.getElementById("myradio1").value;
+		var t2=document.getElementById("myradio2").checked;
+		if(t2)
+			rvalue=document.getElementById("myradio2").value;
+		var t3=document.getElementById("myradio3").checked;
+		if(t3)
+			rvalue=document.getElementById("myradio3").value;
+		console.log(t1,t2,t3,rvalue);
+	}
+</script>
+</head>
+</html>

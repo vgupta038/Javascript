@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Select the Years:<select id="dd01">
+						<option disabled>Select</option>
+						<option>2015</option>
+						<option>2016</option>
+						<option>2017</option>
+						<option>2018</option>
+						<option>2019</option>
+					</select></br>
+	<button onclick="addSelect()">Show Value</button>
+</body>
+<script>
+	var mydd1=document.getElementById("dd01");
+	mydd1.value="2018";
+	function addSelect(){
+		var mydd=document.getElementById("dd01").value;
+		console.log(mydd);
+	}
+</script>
+</head>
+</html>

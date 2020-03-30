@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<button onclick="showValue()">Show Selected</button></br>
+</body>
+<script>
+	// create dropdown and add dropdown in DOM object to display in browser 
+	addDropdown();
+	function addDropdown(){
+		var myDD=document.createElement("select");
+		myDD.setAttribute("id","mydd");
+		var option1="<option>London</option>";
+		var option2="<option>Paris</option>";
+		var option3="<option>Delhi</option>";
+		var option4="<option>NewYork</option>";
+		var option5="<option>Tokyo</option>";
+		var options=option1+option2+option3+option4+option5;
+		myDD.innerHTML=options;
+		document.body.appendChild(myDD);
+	}
+	function showValue(){
+		var mydd2=document.getElementById("mydd").value;
+		console.log(mydd2);
+	}
+</script>
+</head>
+</html>

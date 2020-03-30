@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+</head>
+<body>
+	<div id="displayTable"></div>
+	<div id="displayInfo"></div>
+</body>
+<script>
+	var arr=[{"name":"Mary","marks":72},
+			 {"name":"Anita","marks":75},
+			 {"name":"Thomas","marks":81},
+			 {"name":"Bruce","marks":64}];
+	console.log(arr);
+	var str="";
+	var len=arr.length;
+	for(var i=0;i<len;i++){
+		var st=arr[i];
+		var name1="<div class='cell01'>"+st.name+"</div>";
+		var marks1="<div class='cell01'>"+st.marks+"</div>";
+		var button1="<div class='cell01'><div class='cell02' onclick=clicked("+i+")>Show Below</div></div>";
+		var row="<div>"+name1+marks1+button1+"</div>";
+		str=str+row;
+	}
+	console.log(str);
+	var element=document.getElementById("displayTable");
+	element.innerHTML=str;
+	
+	function clicked(index){
+		console.log("Index Position=",index);
+		var st1=arr[index];
+		console.log("St1",st1);
+		var str=st1.name+" scored "+st1.marks+" marks";
+		var element1=document.getElementById("displayInfo");
+		element1.innerHTML=str;
+	
+	}
+</script>
+</head>
+</html>

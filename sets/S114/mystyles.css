@@ -1,0 +1,16 @@
+.cell01{
+	border: solid black;
+	display:inline-block;
+	width: 30%;
+	text-align: center;
+	background-color:white;
+	color: black;
+	margin:1px;
+}
+.cell02 {
+  
+  background-color: #4CAF50;;
+  cursor: pointer;
+  display: inline-block;
+}
+

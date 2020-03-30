@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles.css">
+</head>
+<body>
+	Text1: <input type="text" id="txt1" onchange="change(this)" onkeydown="keydown(this)" onfocusin="fin(this)"  onfocusout="fout(this)" onkeyup="keyup(this)"></br>
+	Text2: <input type="text" id="txt1" onchange="change(this)" onkeydown="keydown(this)" onfocusin="fin(this)"  onfocusout="fout(this)" onkeyup="keyup(this)"></br>
+</body>
+<script>
+	var eventNo=0;
+	function change(ele){
+		eventNo++;
+		console.log("onchange",eventNo,ele.value);
+	}
+	function keydown(ele){
+		eventNo++;
+		console.log("onKeydown",eventNo);
+	}
+	function fin(ele){
+		eventNo++;
+		console.log("onfocusin",eventNo);
+		ele.className="txtin";
+	}
+	function keyup(ele){
+		eventNo++;
+		console.log("onkeyup",eventNo);
+	}
+	function fout(ele){
+		eventNo++;
+		console.log("onfocusout",eventNo);
+		ele.className="txtout";
+		var value=ele.value;
+		if(value.length<5){
+			ele.className="badtxt";
+		}
+	}
+</script>
+</head>
+</html>

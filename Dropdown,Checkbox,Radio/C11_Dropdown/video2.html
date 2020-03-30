@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	// create dropdown and add dropdown in DOM object to display in browser 
+	addDropdown();
+	function addDropdown(){
+		var myDD=document.createElement("select");
+		myDD.setAttribute("id","myddd");
+		var option1="<option>IOS</option>";
+		var option2="<option>Android</option>";
+		var options=option1+option2;
+		myDD.innerHTML=options;
+		document.body.appendChild(myDD);
+	}
+</script>
+</head>
+</html>

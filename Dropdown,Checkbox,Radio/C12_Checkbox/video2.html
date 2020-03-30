@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	addCheckBox();
+	function addCheckBox(){
+		var myCB=document.createElement("input");
+		myCB.type="checkbox";
+		myCB.setAttribute("id","mycb");
+		document.body.appendChild(myCB);
+		//------------------------------
+		var txtNode=document.createTextNode("Do you Know Javscript");
+		document.body.appendChild(txtNode);
+		//-------------------------------
+		var br=document.createElement("br");
+		document.body.appendChild(br);
+		
+	}
+</script>
+</head>
+</html>

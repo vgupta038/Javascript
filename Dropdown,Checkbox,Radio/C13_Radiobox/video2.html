@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	addRadio();
+	function addRadio(){
+		var myRadio1=document.createElement("input");
+		myRadio1.type="radio";
+		myRadio1.setAttribute("id","myradio1");
+		myRadio1.setAttribute("name","gender");
+		myRadio1.value="Male";
+		document.body.appendChild(myRadio1);
+		
+		var txt1=document.createTextNode("Male");
+		document.body.appendChild(txt1);
+		
+		var br=document.createElement("br");
+		document.body.appendChild(br);
+		
+		var myRadio2=document.createElement("input");
+		myRadio2.type="radio";
+		myRadio2.setAttribute("id","myradio2");
+		myRadio2.setAttribute("name","gender");
+		myRadio2.value="Female";
+		document.body.appendChild(myRadio2);
+		
+		var txt2=document.createTextNode("Female");
+		document.body.appendChild(txt2);
+	}
+</script>
+</head>
+</html>

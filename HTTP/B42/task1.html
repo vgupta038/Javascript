@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Name:<input type="text" id="name"></input><br>
+	Email:<input type="text" id="email"></input><br>
+	<button onclick="testPost()">Post</button></br>
+</body>
+<script>
+	var postURL="https://api.myjson.com/bins/";
+	function testPost(){
+		var obj={"name":document.getElementById("name").value,"email":document.getElementById("email").value};
+		postData(postURL,obj,postFn);
+	}
+	function postFn(data){
+		console.log(data);
+		console.log("URI is: ",data.uri);
+	}
+	
+	function postData(url,obj,handleResponse){
+		fetch(url,{
+			headers: new Headers({
+				"Content-Type": "application/json"
+			}),
+			method:"POST",
+			body: JSON.stringify(obj)
+		})
+		.then(response=>{
+			return response.json();
+		})
+		.then(handleResponse)
+		.catch(err=> console.log(err));
+	}
+	
+	
+</script>
+</head>
+</html>

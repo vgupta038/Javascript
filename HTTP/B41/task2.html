@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+</body>
+<script>
+	var urlNum="https://api.myjson.com/bins/18py7w";
+	getArray();
+	function getArray(){
+		getData(urlNum,showArrayNum);
+	}
+	
+	function showArrayNum(data){
+		console.log("Array of Num : ",data);
+		showData1(data);	// display array in tabular form
+	}
+	function getData(url,fnResponse){
+		fetch(url)
+		.then(response=>{
+			return response.json();
+		})
+		.then(fnResponse)
+		.catch(err=> console.log(err));
+	}
+	
+	function showData1(data){
+		var len=data.length;
+		var str="";
+		str+="<div class='header'>Courses</div>";
+		str+="<div class='header'>Description</div>";
+		str+="<div class='header'>Lessons</div>";
+		for(var i=0;i<len;i++){
+			var val=data[i];
+			var course1="<div class='cell'>"+val.course+"</div>";
+			var desc1="<div class='cell'>"+val.desc+"</div>";
+			var lesson1="<div class='cell'>"+val.lessons+"</div>";
+			var row="<div>"+course1+desc1+lesson1+"</div>";
+			str=str+row;
+		}
+		var ele=document.createElement('div');
+		ele.innerHTML=str;
+		document.body.appendChild(ele);
+		
+	}
+	
+	
+	
+
+	
+</script>
+</head>
+</html>

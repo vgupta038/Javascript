@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles02.css">
+</head>
+<body>
+	Text1: <input type="text" id="txt1" onkeyup="keyup(this)"></input></br>
+	<div id="txt2"></div>
+</body>
+<script>
+	function keyup(ele){
+		console.log("onkeyup");
+		var ele1=document.getElementById("txt2");
+		console.log("ele1",ele1);
+		var value=ele.value;
+		ele1.innerHTML=value;
+		if(value.length<4){
+			ele1.className="pinktxt";
+		}
+		else if(value.length>4&&value.length<8)
+			ele1.className="greytxt";
+		else
+			ele1.className="lightgreentxt";
+	}
+</script>
+</head>
+</html>

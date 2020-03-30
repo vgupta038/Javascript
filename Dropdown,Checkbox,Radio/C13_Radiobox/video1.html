@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	What do you Know best</br>
+	<input type="radio" name="tech" id="r1" value="JS">Javascript</br>
+	<input type="radio" name="tech" id="r2" value="NG">Angular</br>
+	<input type="radio" name="tech" id="r3" value="RT">React</br>
+	<button onclick="showRadio()">Show Radio</button></br>
+</body>
+<script>
+	var t=document.getElementById("r1");
+	t.checked=true;
+	function showRadio(){
+		var rvalue="";
+		var t1=document.getElementById("r1").checked;
+		if(t1)
+			rvalue=document.getElementById("r1").value;
+		var t2=document.getElementById("r2").checked;
+		if(t2)
+			rvalue=document.getElementById("r2").value;
+		var t3=document.getElementById("r3").checked;
+		if(t3)
+			rvalue=document.getElementById("r3").value;
+		console.log(t1,t2,t3,rvalue);
+	}
+</script>
+</head>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+		<input type="checkbox" id="ch1" onchange="showChange()">Use a different email Id</br>
+</body>
+<script>
+	
+	function showChange(){
+		var tech1=document.getElementById("ch1").checked;
+		console.log(tech1);	// true or false
+		if(tech1){
+			var ele=document.createElement("input");
+			ele.type="text";
+			ele.setAttribute("id","dd01");
+			ele.setAttribute("placeholder","Enter the other email id");
+			document.body.appendChild(ele);
+		}
+		else{
+			var ele=document.getElementById("dd01");
+			if(ele!=null){
+				document.body.removeChild(ele);
+			}
+		}
+		
+	}
+</script>
+</head>
+</html>

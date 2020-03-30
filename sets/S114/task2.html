@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[{"fname":"Jack","lname":"Smith","city":"London"},
+			 {"fname":"Mary","lname":"Markle","city":"London"},
+			 {"fname":"Ed","lname":"May","city":"Paris"},
+			 {"fname":"Tim","lname":"Gates","city":"Rome"}
+			];
+			
+	console.log(arr);
+	var cityName=arr.reduce((acc,curr)=>fn1(acc,curr,"Ed"),"");
+	console.log(cityName);
+	
+	function fn1(acc,curr,str){
+		if(curr.fname===str)
+			return curr.city;
+		return acc;
+	}
+</script>
+</head>
+</html>

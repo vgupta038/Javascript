@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Select the technology<br/>
+	<select id="dd01">
+		<option disabled>Select</option>
+		<option value="JS">Javascript</option>
+		<option value="Ang">Angular</option>
+		<option>React</option>
+	</select>
+	</br>
+	<button onclick="showSelected()">Show Selected</button>
+</body>
+<script>
+	
+	var dd1=document.getElementById("dd01");
+	dd1.value="Select";	// disable this to make select disabled property working
+		
+	function showSelected(){
+		var dd=document.getElementById("dd01").value;
+		console.log(dd);
+	}
+</script>
+</head>
+</html>

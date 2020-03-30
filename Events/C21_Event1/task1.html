@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyles01.css">
+</head>
+<body>
+	Text1: <input type="text" id="txt1" onchange="change(this)" onfocusin="fin(this)"></br>
+</body>
+<script>
+	function fin(ele){
+		ele.className="normaltxt";
+	}
+	function change(ele){
+		console.log("onchange",ele.value);
+		var value=ele.value;
+		if(value<2000){
+			ele.className="badtxt";
+		}
+	}
+</script>
+</head>
+</html>

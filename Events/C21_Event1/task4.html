@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	Text1: <input type="text" id="txt1" onkeyup="keyup(this)"></br>
+	<div id="txt2"></div>
+	<div id="txt3"></div>
+</body>
+<script>
+	var arr=["Age","Again","Agree","About","Ace","Adamant","After","Afraid","Bat","Ball","Balloon","Bear","Became","Best","Bike","Bill","Bicycle"];
+	
+	function keyup(ele){
+		console.log("onkeyup");
+		
+		var val=ele.value;
+		var newarr=arr.filter(curr=>filterfn1(curr,val));
+		
+		
+		var ele=document.getElementById("txt2");
+		var str="Number of words starting with "+val+" is "+newarr.length;
+		ele.innerHTML=str;
+		
+		var str="";
+		var ele1=document.getElementById("txt3");
+		for(var i=0;i<newarr.length;i++){
+			str=str+newarr[i]+"<br>";
+		}
+		ele1.innerHTML=str;
+	}
+	
+	function filterfn1(curr,val){
+		var len=0;
+		if(curr.length>=val.length)
+			len=val.length;
+		else 
+			return true;
+		for(var i=0;i<len;i++){
+			if(curr.charAt(i)!=val.charAt(i))
+				return false;
+		}
+		return true;
+	}
+</script>
+</head>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<input type="radio" name="tech" id="r1" value="JS" onchange="showRadio()">Angular
+	<input type="radio" name="tech" id="r2" value="NG" onchange="showRadio()">React
+	<input type="radio" name="tech" id="r3" value="RT" onchange="showRadio()">Javascript</br>
+</body>
+<script>
+	function showRadio(){
+		var t1=document.getElementById("r1").checked;
+		var t2=document.getElementById("r2").checked;
+		var t3=document.getElementById("r3").checked;
+		if(t1){
+			var z=document.getElementById("myradio");
+			if(z!=null)
+				document.body.removeChild(z);	//or z.innerHTML="";
+				
+			var y=document.getElementById("mycb");
+			if(y!=null)
+				document.body.removeChild(y);	//or y.innerHTML="";
+				
+			var ele=document.createElement("div");
+			ele.setAttribute("id","mydd");
+			ele.innerHTML="";
+				
+			var myDD=document.createElement("select");
+			var option0="<option>Select the Angular Version</option>";
+			var option1="<option>Angular1</option>";
+			var option2="<option>Angular2</option>";
+			var option3="<option>Angular3</option>";
+			var option4="<option>Angular4</option>";
+			var option5="<option>Angular5</option>";
+			var option6="<option>Angular6</option>";
+			var options=option0+option1+option2+option3+option4+option5+option6;
+			myDD.innerHTML=options;
+			ele.appendChild(myDD);
+			document.body.appendChild(ele);
+		}
+		if(t2){
+			var ele=document.createElement("div");
+			ele.setAttribute("id","mycb");
+			ele.innerHTML="";
+			
+			var x=document.getElementById("mydd");
+			if(x!=null)
+				document.body.removeChild(x);	//or x.innerHTML="";
+			
+			var z=document.getElementById("myradio");
+			if(z!=null)
+				document.body.removeChild(z);	//or z.innerHTML="";
+			
+			
+			var myCB=document.createElement("input");
+			myCB.type="checkbox";
+			ele.appendChild(myCB);
+		//------------------------------
+			var txtNode=document.createTextNode("Do you Know Javscript");
+			ele.appendChild(txtNode);
+			document.body.appendChild(ele);
+		}
+		if(t3){
+			var ele=document.createElement("div");
+			ele.setAttribute("id","myradio");
+			ele.innerHTML="";
+			
+			var x=document.getElementById("mydd");
+			if(x!=null)
+				document.body.removeChild(x);	//or x.innerHTML="";
+			
+			var y=document.getElementById("mycb");
+			if(y!=null)
+				document.body.removeChild(y);	//or y.innerHTML="";
+			
+			
+			
+			var myRadio1=document.createElement("input");
+			myRadio1.type="radio";
+			myRadio1.setAttribute("name","course");
+			ele.appendChild(myRadio1);
+			
+		
+			var txt1=document.createTextNode("Bootstrap3");
+			ele.appendChild(txt1);
+		
+		
+			var myRadio2=document.createElement("input");
+			myRadio2.type="radio";
+			myRadio2.setAttribute("name","course");
+			ele.appendChild(myRadio2);
+		
+			var txt2=document.createTextNode("Bootstrap4");
+			ele.appendChild(txt2);
+			document.body.appendChild(ele);
+		}
+	}
+</script>
+</head>
+</html>

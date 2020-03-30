@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<button onclick="showChecked()">Show Checked</button></br>
+</body>
+<script>
+	addCheckBox();
+	function addCheckBox(){
+		var array=["Superman","Spiderman","Batman"];
+		for(var i=0;i<array.length;i++){
+			var myCB=document.createElement("input");
+			myCB.type="checkbox";
+			myCB.setAttribute("id","cb"+(i+1));
+			document.body.appendChild(myCB);
+			//------------------------------
+			var txtNode=document.createTextNode(array[i]);
+			document.body.appendChild(txtNode);
+			//-------------------------------
+			var br=document.createElement("br");
+			document.body.appendChild(br);
+		}
+	}
+	
+	function showChecked(){
+		var tech1=document.getElementById("cb1").checked;
+		console.log(tech1);
+		var tech2=document.getElementById("cb2").checked;
+		console.log(tech2);
+		var tech3=document.getElementById("cb3").checked;
+		console.log(tech3);
+	}
+</script>
+</head>
+</html>

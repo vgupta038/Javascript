@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+	<button onclick="getStudent()">Get Student Performance</button>
+	<button onclick="getPerson()">GetPerson Details</button>
+	<div id='print'></div>
+</body>
+<script>
+	var urlStudent="https://api.myjson.com/bins/dk67q";
+	var urlPerson="https://api.myjson.com/bins/19pkvq";
+	function getStudent(){
+		getData(urlStudent,showStudent);
+	}
+	function getPerson(){
+		getData(urlPerson,showPerson);
+	}
+	function showPerson(data){
+		console.log("Person Details : ",data);
+		showData2(data);	// display array in tabular form
+	}
+	function showStudent(data){
+		console.log("Student Performances : ",data);
+		showData(data);	// display array in tabular form
+	}
+	function getData(url,fnResponse){
+		fetch(url)
+		.then(response=>{
+			return response.json();
+		})
+		.then(fnResponse)
+		.catch(err=> console.log(err));
+	}
+	
+	function showData(data){
+		var len=data.length;
+		var str="";
+		str+="<div class='header'>Name</div>";
+		str+="<div class='header'>Maths</div>";
+		str+="<div class='header'>English</div>";
+		str+="<div class='header'>Science</div>";
+		for(var i=0;i<len;i++){
+			var val=data[i];
+			var name1="<div class='cell'>"+val.name+"</div>";
+			var math1="<div class='cell'>"+val.maths+"</div>";
+			var english1="<div class='cell'>"+val.english+"</div>";
+			var science1="<div class='cell'>"+val.science+"</div>";
+			var row="<div>"+name1+math1+english1+science1+"</div>";
+			str=str+row;
+		}
+		var ele=document.getElementById("print");
+		ele.innerHTML=str;
+	}
+	
+	function showData2(data){
+		var len=data.length;
+		var str="";
+		str+="<div class='header'>Name</div>";
+		str+="<div class='header'>Country</div>";
+		str+="<div class='header'>Age</div>";
+		for(var i=0;i<len;i++){
+			var val=data[i];
+			var name1="<div class='cell'>"+val.name+"</div>";
+			var country1="<div class='cell'>"+val.country+"</div>";
+			var age1="<div class='cell'>"+val.age+"</div>";
+			var row="<div>"+name1+country1+age1+"</div>";
+			str=str+row;
+		}
+		var ele=document.getElementById("print");
+		ele.innerHTML=str;
+	}
+	
+</script>
+</head>
+</html>

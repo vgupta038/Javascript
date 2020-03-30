@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	Payment Option
+	<select id="payopts" onchange="payChange(this)">
+		<option disabled selected> Select</option>
+		<option value="CC">Credit Card</option>
+		<option value="NET">Net Banking</option>
+		<option value="WLT">Wallet</option>
+	</select>
+	</br>
+	<input type="checkbox" id="cbox1" onchange="address(this)">Delivery address same as billing address</br>
+	Delivery Time</br>
+	<input type="radio" name="deltime" value="Morning Slot" id="dt1" onchange="timeslot(this)">10AM-3PM
+	<input type="radio" name="deltime" value="Evening Slot" id="dt2" onchange="timeslot(this)">3PM-7PM</br>
+</body>
+<script>
+	function payChange(ele){
+		var payoption=ele.value;
+		console.log("Payment Option :",payoption);
+	}
+	function address(ele){
+		var deladd=ele.checked;
+		console.log("Delivery Address :",deladd);
+	}
+	
+	function timeslot(radio){
+		var slot=radio.value;
+		console.log("TIme Slot is: ",slot);
+	}
+</script>
+</head>
+</html>

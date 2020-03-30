@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	ProductID:<input type="text" id="productid"></input><br>
+	Brand:<input type="text" id="brand"></input><br>
+	Quantity:<input type="text" id="quantity"></input><br>
+	<button onclick="testPost()">Post</button></br>
+</body>
+<script>
+	var postURL="https://api.myjson.com/bins/";
+	function testPost(){
+		var obj={"productid":document.getElementById("productid").value,"brand":document.getElementById("brand").value,"quantity":document.getElementById("quantity").value};
+		postData(postURL,obj,postFn);
+	}
+	function postFn(data){
+		console.log(data);
+		console.log("URI is: ",data.uri);
+	}
+	
+	function postData(url,obj,handleResponse){
+		fetch(url,{
+			headers: new Headers({
+				"Content-Type": "application/json"
+			}),
+			method:"POST",
+			body: JSON.stringify(obj)
+		})
+		.then(response=>{
+			return response.json();
+		})
+		.then(handleResponse)
+		.catch(err=> console.log(err));
+	}
+	
+	
+</script>
+</head>
+</html>

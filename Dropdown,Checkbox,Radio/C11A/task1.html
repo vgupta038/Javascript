@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	<button onclick="showValue()">Show Selected</button></br>
+</body>
+<script>
+	var array=[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020]; 
+	addDropdown();
+	function addDropdown(){
+		var myDD=document.createElement("select");
+		myDD.setAttribute("id","mydd");
+		var len=array.length;
+		var options="";
+		for(var i=0;i<len;i++){
+			var option="<option>"+array[i]+"</option>";
+			options+=option;
+		}
+		myDD.innerHTML=options;
+		document.body.appendChild(myDD);
+	}
+	function showValue(){
+		var mydd2=document.getElementById("mydd").value;
+		console.log(mydd2);
+	}
+</script>
+</head>
+</html>

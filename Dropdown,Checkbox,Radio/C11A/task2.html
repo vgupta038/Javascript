@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<button onclick="showValue()">Show Selected</button></br>
+</body>
+<script>
+	var array=[{"name":"Jack","accno":"J2341"},{"name":"Martha","accno":"M44311"},{"name":"William","accno":"W0021"},{"name":"Tim","accno":"T4331"},{"name":"Donald","accno":"D8815"}]; 
+	addDropdown();
+	function addDropdown(){
+		var myDD=document.createElement("select");
+		myDD.setAttribute("id","mydd");
+		var len=array.length;
+		var options="";
+		for(var i=0;i<len;i++){
+			var option="<option value="+array[i].accno+">"+array[i].name+"</option>";
+			options+=option;
+		}
+		myDD.innerHTML=options;
+		document.body.appendChild(myDD);
+	}
+	function showValue(){
+		var mydd2=document.getElementById("mydd").value;
+		console.log(mydd2);
+	}
+</script>
+</head>
+</html>

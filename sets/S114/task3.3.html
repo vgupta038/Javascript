@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[{"name":"Mary","marks":[72,65,55,71]},	//263
+			 {"name":"Anita","marks":[66,70,75,53]},	//264
+			 {"name":"Edward","marks":[44,54,64,58]},	//220
+			 {"name":"Thomas","marks":[62,55,65,81]},	//263
+			 {"name":"Robin","marks":[41,44,47,49]},	//181
+			 {"name":"Sophia","marks":[71,73,67,77]},	//288
+			 {"name":"Bruce","marks":[52,57,61,64]}		//234
+			];
+			
+	console.log(arr);
+	var st=arr.reduce((acc,curr)=>fn1(acc,curr));
+	console.log("Student: ",st);
+	
+	function fn1(acc,curr){		
+		var marks1=curr.marks.reduce((acc1,curr1)=>acc1+curr1);
+		var marks2=acc.marks.reduce((acc2,curr2)=>acc2+curr2);
+		if(marks1>marks2){
+				return curr;
+		}
+		else{
+			return acc;
+		}
+	}
+</script>
+</head>
+</html>
