@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<button onclick="myStartFunction()">START</button>
+	<button onclick="myStopFunction()">STOP</button></br>
+	<div id="timer"></div>	
+</body>
+<script>
+	document.getElementById("timer").innerHTML ="Time: 0.000";
+	var s1=0;var s2=0; var idVar=0;
+	function myStartFunction(){
+		idVar = setInterval(timer, 0);
+	}
+	function myStopFunction() {
+		clearInterval(idVar);
+		var str1=document.getElementById("timer").innerHTML;
+		var str=str1.substring(5,str1.length);
+		console.log("str1",str1);
+		console.log("str",str);
+		var val = parseFloat(str);
+		console.log("Decimal Value",val);
+		if(0.95<=val&& val<=1.05)
+			alert("Excellent. This was awesome");
+		else if(0.9<=val&& val<=1.1)
+			alert("Very Good. Take a shot at excellent");
+		else if(0.8<=val&& val<=1.2)
+			alert("Its Ok. You can do better");
+		else
+			alert("Not a great attempt. Try again");
+		
+	}
+
+function timer() {
+	s2++;
+	if(s2>=0&& s2<=9)
+		str=s1+"."+"00"+s2;
+	else if(s2>=10&&s2<=99)
+		str=s1+"."+"0"+s2;
+	else if(s2>=100&&s2<=999)
+		str=s1+"."+s2;
+	else if(s2%1000==0){
+		s1++;s2=0;
+		str=s1+"."+"00"+s2;
+	}
+	if(s1>0)
+		str=str+"s";
+	 document.getElementById("timer").innerHTML ="Time: "+str;
+}
+ 
+</script>
+</head>
+</html>

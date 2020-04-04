@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mycss.css">
+</head>
+<body>
+	<div id="crosszero" class="prstyle"></div>
+</body>
+<script>
+	var arr=[-1,-1,-1,-1,-1,-1,-1,-1,-1];
+	var move=0;
+	game();
+	function game(){
+		
+		var len=arr.length;
+		var str="";
+		for(var i=0;i<len;i++){
+			var prDisplay="<div class='cell' onclick=clicked("+i+",this)>";
+			if(arr[i]==-1){
+				prDisplay+="&nbsp"+"</br>";
+			}	
+			else if(arr[i]==1){
+				prDisplay="<div class='cellyellow'>";
+				prDisplay+="X"+"</br>";
+			}
+			else{
+				prDisplay="<div class='cellpink'>";
+				prDisplay+="0"+"</br>";
+			}
+			prDisplay+="</div>";
+			str=str+prDisplay;
+		}
+		var element=document.getElementById("crosszero");
+		if(move==9)
+			str=str+"Game Over";
+		else if(move%2==1)
+			str=str+"Move:0";
+		else
+			str=str+"Move:X";
+		element.innerHTML=str;
+	}
+	
+	function clicked(arrayIndex,ele){
+		move++;
+		if(move%2==1)
+			arr.splice(arrayIndex,1,1);	// 0 means 0
+		else
+			arr.splice(arrayIndex,1,0);	// 0 means cross
+		
+		console.log(arrayIndex);
+		game();
+	}
+	
+</script>
+</head>
+</html>

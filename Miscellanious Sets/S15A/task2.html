@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	Check your typing</br>
+	<input type="radio" name="tech" id="r1" value="Bg" onchange="onch(this)">Beginner
+	<input type="radio" name="tech" id="r2" value="Nv" onchange="onch(this)">Novice
+	<input type="radio" name="tech" id="r3" value="Exp" onchange="onch(this)">Expert</br>
+	Type the following text:</br>
+	<div id="sentence1"></div>
+	<input type="text" name="text1" id="txt12"></input></br>
+	<div  id="timer" style="padding: 0px; display: inline-block;"></div>
+	<button style="padding: 0px;" onclick="myStartFunction()">START</button>
+	<button style="padding: 0px;" onclick="myStopFunction()">DONE</button></br>
+	<div id="timer"></div>	
+</body>
+<script>
+
+	document.getElementById("timer").innerHTML ="Time: 0.000";
+	var s1=0;var s2=0; var idVar=0;
+	function myStartFunction(){
+		idVar = setInterval(timer, 0);
+	}
+	function myStopFunction() {
+		clearInterval(idVar);
+		var str1=document.getElementById("timer").innerHTML;
+		var str=str1.substring(5,str1.length);
+		console.log("str1",str1);
+		console.log("str",str);
+		var val = parseFloat(str);
+		console.log("Decimal Value",val);
+		console.log("value=",document.getElementById("txt12").value);
+		var text=document.getElementById("txt12").value;
+		if(text===document.getElementById("sentence1").innerHTML)
+			alert("Your typing was correct.You took"+val+" seconds.");
+		else
+			alert("Error in typing....Try again!");
+		
+	}
+
+function timer() {
+	s2++;
+	if(s2>=0&& s2<=9)
+		str=s1+"."+"00"+s2;
+	else if(s2>=10&&s2<=99)
+		str=s1+"."+"0"+s2;
+	else if(s2>=100&&s2<=999)
+		str=s1+"."+s2;
+	else if(s2%1000==0){
+		s1++;s2=0;
+		str=s1+"."+"00"+s2;
+	}
+	if(s1>0)
+		str=str+"s";
+	 document.getElementById("timer").innerHTML ="Time: "+str;
+}
+	function onch(ele){
+		var t1=ele.checked;
+		if(ele.value=="Bg" && ele.checked==true){
+			document.getElementById("sentence1").innerHTML="My first sentence";
+		}
+		if(ele.value=="Nv" && ele.checked==true){
+			document.getElementById("sentence1").innerHTML="My typing is becoming better.";
+		}
+		if(ele.value=="Exp" && ele.checked==true){
+			document.getElementById("sentence1").innerHTML="I can type fast now.I am very happy!";
+		}
+		
+	}
+		
+ 
+</script>
+</head>
+</html>
