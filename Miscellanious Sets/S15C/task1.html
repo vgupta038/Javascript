@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mycss.css">
+</head>
+<body>
+	Collect X</br>
+	Collect as many X as you can in 10 seconds</br>
+	<button onclick="fn()">Start</button>
+	<div id="timer" class="timerclass"></div><div id="score"  class="timerclass"></div>
+	<div id="crosszero" class="prstyle"></div>
+</body>
+<script>
+		document.getElementById("score").innerHTML="Score:"+0;
+		document.getElementById("timer").innerHTML="Time:"+0;
+	game();
+	var timer=0;
+	var score=0;
+	function game(){
+		var str="";
+		for(var i=1;i<=40;i++){
+			var button1="<button class='cell' onmousedown=onclicked(this) onmouseup=onclickedafter(this)>0</button>";
+			str=str+button1;
+		}
+		var element=document.getElementById("crosszero");
+		element.innerHTML=str;
+	}
+	function onclicked(ele){
+		console.log("ele",ele);
+		var x=Math.floor(Math.random() * 10);
+		console.log("random number",x);
+		if(x==2||x==1||x==5||x==6||x==0){
+			ele.className='b1';
+			ele.innerHTML="X";
+			score++;
+		}
+		else{
+			score--;
+		}
+		document.getElementById("score").innerHTML="Score:"+score;
+	}
+	function onclickedafter(ele){
+		game();
+	}
+	var id="";
+	function fn(){
+		id=setInterval(showTime, 1000);
+	}
+	
+	function showTime() {
+		if(timer==10){
+			clearInterval(id);
+			
+			alert("Game Over,your score is "+score);
+		}
+		else{
+			timer++;
+		}
+		
+		document.getElementById("timer").innerHTML="Time:"+timer;
+	}
+	
+	
+	
+</script>
+</head>
+</html>

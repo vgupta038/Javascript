@@ -1,0 +1,30 @@
+
+.prstyle{
+	background-color:lightgrey;
+	width:256px;
+}
+.cell{
+	display:inline-block;
+	width:30px;
+	text-align:center;
+	color: white;
+	padding:10px;
+	margin: 1px;
+	border: solid 1px;
+	vertical-align:middle;
+}
+.b1{
+	background-color:lightgreen;
+	display:inline-block;
+	width:30px;
+	text-align:black;
+	color: white;
+	padding:10px;
+	margin: 1px;
+	border: solid 1px;
+	vertical-align:middle;
+}
+.timerclass{
+	float:right;
+	width:240px;
+}

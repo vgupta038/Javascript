@@ -1,9 +1,10 @@
 .prstyle{
 	background-color:lightgrey;
+	width:250px;
 }
 .cell{
 	display:inline-block;
-	width:30%;
+	width:50px;
 	text-align:center;
 	color: white;
 	padding:10px;
@@ -16,7 +17,7 @@ div.cell:hover {
 }
 .cellyellow{
 	display:inline-block;
-	width:30%;
+	width:50px;
 	text-align:center;
 	color: black;
 	padding:10px;
@@ -28,7 +29,7 @@ div.cell:hover {
 }
 .cellpink{
 	display:inline-block;
-	width:30%;
+	width:50px;
 	text-align:center;
 	color: black;
 	padding:10px;
