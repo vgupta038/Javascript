@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mycss.css">
+</head>
+<body>
+	<div id="div4" class="prstyle"></div>
+	<div id="div3" class="prstyle"></div>
+	<div id="div1" class="prstyle"></div>
+	<div id="div2" class="prstyle"></div>
+</body>
+<script>
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	var d=new Date("May 2019");
+	var str1=months[d.getMonth()]+" "+d.getFullYear();
+	
+
+	function valueOfX(day){	// find starting day of the month
+		var x=0;	 
+		switch(day){
+			case "Sunday": { x=1;break;}
+			case "Monday": { x=2;break;}
+			case "Tuesday": { x=3;break;}
+			case "Wednesday": { x=4;break;}
+			case "Thursday": { x=5;break;}
+			case "Friday": { x=6;break;}
+			case "Saturday": { x=7;break;}
+		}
+		return x;
+	}
+
+	function daysCount(month){
+		var x=1;
+		switch(month){
+			case "January": { x=1;break;}
+			case "February": { x=2;break;}
+			case "March": { x=3;break;}
+			case "April": { x=4;break;}
+			case "May": { x=5;break;}
+			case "June": { x=6;break;}
+			case "July": { x=7;break;}
+			case "August": { x=8;break;}
+			case "September": { x=9;break;}
+			case "October": { x=10;break;}
+			case "November": { x=11;break;}
+			case "Decemeber": { x=12;break;}
+		}
+		var ele=document.getElementById("cal4").innerHTML;
+		var d2=new Date(ele);
+		var year=d2.getFullYear();
+		var leapyear=leapYear(year);
+		if(x==1||x==3||x==5||x==7||x==8||x==10||x==12){ dc=31;}
+		else if(x==4||x==6||x==9||x==11){ dc=30;}
+		else if(leapyear){dc=29;}
+		else{dc=28;}
+		return dc;
+		
+	}
+		
+		function leapYear(year){
+			if(year%400==0)
+				return true;
+			else if(year%4==0&&year%100!=0)
+				return true;
+			return false;
+		}
+		//------------------
+	 var j=1;
+	calendar4();
+	function calendar1(index){
+		j=1;
+		var str="";
+		for(var i=1;i<=7;i++){
+			var prDisplay="<div class='cell' onclick=clicked(this)>";
+			if(index<=i){
+				prDisplay+=""+j+"</br>";j++;
+				prDisplay+="</div>";
+			}
+			else{
+				prDisplay+="&nbsp"+"</br>";	
+				prDisplay+="</div>";
+			}
+			str=str+prDisplay;
+		}
+		var element=document.getElementById("div1");
+		element.innerHTML=str;
+		calendar2();
+	}
+	function calendar2(){
+		var ele=document.getElementById("cal4").innerHTML;
+		var d2=new Date(ele);
+		month=months[d2.getMonth()]; 
+		var str="";
+		for(var i=1;i<=35;i++){
+			if(j<=daysCount(month)){
+				var prDisplay="<div class='cell' onclick=clicked(this)>";
+				prDisplay+=""+j+"</br>";j++
+				prDisplay+="</div>";
+				str=str+prDisplay;
+			}
+			else{
+				var prDisplay="<div class='cell' onclick=clicked(this)>";
+				prDisplay+="&nbsp"+"</br>";
+				prDisplay+="</div>";
+				str=str+prDisplay;
+			}
+		}
+		var element=document.getElementById("div2");
+		element.innerHTML=str;
+	}
+	
+	function calendar3(){
+			
+			//--------------------
+			var str="";
+			var prDisplay="<div class='cell'>Sun</div>";
+			str=str+prDisplay;
+			var prDisplay="<div class='cell'>Mon</div>";
+			str=str+prDisplay;
+			var prDisplay="<div class='cell'>Tue</div>";
+			str=str+prDisplay;
+			var prDisplay="<div class='cell'>Wed</div>";
+			str=str+prDisplay;
+			var prDisplay="<div class='cell'>Thur</div>";
+			str=str+prDisplay;
+			var prDisplay="<div class='cell'>Fri</div>";
+			str=str+prDisplay;
+			var prDisplay="<div class='cell'>Sat</div>";
+			str=str+prDisplay;	
+		
+			var element=document.getElementById("div3");
+			element.innerHTML=str;
+			//----------------------------------------
+			var ele=document.getElementById("cal4").innerHTML;
+			var d2=new Date(ele); 
+			var day=days[d2.getDay()]; 
+			//------------- find the value of x(day) in integer--------
+			x=valueOfX(day);			
+			calendar1(x);	// pass no of days to print in calendar
+	}
+	
+	function calendar4(){
+			var str="";
+			j=1;
+			var prDisplay="<div class='cell' onclick=fn1(this)><<</div>";
+			str=str+prDisplay;
+			
+			var prDisplay="<div class='cell2' id='cal4'>"+str1+"</div>";
+			str=str+prDisplay;
+			
+			var prDisplay="<div class='cell' onclick=fn2(this)>>></div>";
+			str=str+prDisplay;
+			
+			var element=document.getElementById("div4");
+			element.innerHTML=str;
+			console.log(str);
+			calendar3();
+	}
+	
+	function fn1(before){
+		var str1=document.getElementById("cal4").innerHTML;
+		//-------------
+		var d1=new Date(str1);
+		
+		var year=d1.getFullYear();
+		var month=months[d1.getMonth()];
+		
+		//---------------
+		if(month==="January")
+			document.getElementById("cal4").innerHTML="December "+(year-1);
+		else
+			document.getElementById("cal4").innerHTML=months[d1.getMonth()-1]+" "+year;
+		calendar3();
+		
+	}
+	function fn2(after){
+		var str1=document.getElementById("cal4").innerHTML;
+		console.log("str",str1);
+		//-------------
+		var d1=new Date(str1);
+		var year=d1.getFullYear();
+		var month=months[d1.getMonth()];
+		//---------------
+		if(month==="December")
+			document.getElementById("cal4").innerHTML="January "+(year+1);
+		else
+			document.getElementById("cal4").innerHTML=months[d1.getMonth()+1]+" "+year;
+		calendar3();
+	}
+				
+</script>
+</head>
+</html>
