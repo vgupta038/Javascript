@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<input type="text" id="text1"></br>
+	<button onclick="details()">Details</button><button onclick="nextDate()">Next Date</button><button onclick="previousDate()">Previous Date</button>
+</body>
+<script>
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+	function details(){
+		var ele=document.getElementById("text1").value;
+		var d = new Date(ele);
+		console.log("Sunday:", days[d.getDay()]);
+		console.log("Date:",d.getDate());
+		console.log("Month:",months[d.getMonth()]);
+		console.log("Year:",d.getFullYear());
+	}
+	function nextDate(){
+		var ele=document.getElementById("text1").value;	 //	10 Jun 2018
+		var d = new Date(ele);
+		var todaydate=d.getDate();	//10
+		var month=d.getMonth()+1; //2
+		var year=d.getFullYear(); //2018
+		
+		if(todaydate==31 && month==12){
+			document.getElementById("text1").value="1 Jan "+(year+1);
+		}
+		else if(month==2){
+			if(leapYear(year)&& todaydate==29){
+				var str=months[month];
+				document.getElementById("text1").value=1+" "+str+" "+year;
+			}
+			else if(leapYear(year)&& todaydate!=29){
+				var str=months[month-1];
+				document.getElementById("text1").value=(todaydate+1)+" "+str+" "+year;
+			}
+			else if(!leapYear(year)&& todaydate==28){
+				var str=months[month-1];
+				document.getElementById("text1").value=(todaydate+1)+" "+str+" "+year;
+			}
+			else{
+				var str=months[month];
+				document.getElementById("text1").value=1+" "+str+" "+year;
+			}
+			
+		}
+		else if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+			if(todaydate==31){
+				var str=months[month];
+				document.getElementById("text1").value="1 "+str+" "+year;
+			}
+			else{
+				var str=months[month-1];
+				document.getElementById("text1").value=(todaydate+1)+str+" "+year;
+			}
+		}
+		else if(month==4||month==6||month==9||month==11){
+			if(todaydate==30){
+				var str=months[month];
+				document.getElementById("text1").value="1 "+str+" "+year;
+			}
+			else{
+				var str=months[month-1];
+				document.getElementById("text1").value=(todaydate+1)+str+" "+year;
+			}
+		}
+		else{
+			var str=months[month-1];
+			document.getElementById("text1").value=(todaydate+1)+" "+str+" "+year;
+		}
+	}
+	function leapYear(year){
+			if(year%400==0)
+				return true;
+			else if(year%4==0&&year%100!=0)
+				return true;
+			return false;
+	}
+	function previousDate(){
+		var ele=document.getElementById("text1").value;	 //	10 Jun 2018
+		var d = new Date(ele);
+		var todaydate=d.getDate();	//10
+		var month=d.getMonth()+1; //2
+		var year=d.getFullYear(); //2018
+		
+		if(todaydate==1 && month==1){
+			document.getElementById("text1").value="31 Dec "+(year-1);
+		}
+		else if(todaydate==1&&month==3){
+			if(leapYear(year)){
+				var str=months[month-2];
+				document.getElementById("text1").value=29+" "+str+" "+year;
+			}
+			else{
+				var str=months[month-2];
+				document.getElementById("text1").value=28+" "+str+" "+year;
+			}
+		}
+		
+		else if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+			if(todaydate==1 && month==8){
+				var str=months[month-2];
+				document.getElementById("text1").value=31+" "+str+" "+year;
+			}
+			else if(todaydate==1){
+				var str=months[month-2];
+				document.getElementById("text1").value=30+" "+str+" "+year;
+			}
+			else{
+				var str=months[month-1];
+				document.getElementById("text1").value=(todaydate-1)+" "+str+" "+year;
+			}
+		}
+		else if(month==4||month==6||month==9||month==11||month==2){
+			if(todaydate==1){
+				var str=months[month-2];
+				document.getElementById("text1").value=31+" "+str+" "+year;
+			}
+			else{
+				var str=months[month-1];
+				document.getElementById("text1").value=(todaydate-1)+" "+str+" "+year;
+			}
+		}		
+	}
+	
+</script>
+</head>
+</html>
