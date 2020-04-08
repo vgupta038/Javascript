@@ -4,13 +4,23 @@
 	<link rel="stylesheet" href="mycss.css">
 </head>
 <body>
+	Name:<input type="text" id="text1" placeholder=" Enter the Name"></input></br>
+	Date of Travel:<input type="text" id="text2" onfocusin="fin()"></input></br>
+	City:<input type="text" id="text3" placeholder=" Enter the City"></input></br>
+	<button onclick="submit()">Submit</button></br>
+<div class="total">
 	<div id="div4" class="prstyle"></div>
 	<div id="div3" class="prstyle"></div>
 	<div id="div1" class="prstyle"></div>
 	<div id="div2" class="prstyle"></div>
+</div>
 </body>
 <script>
-	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	function fin(){
+		console.log("abcd");	calendar4();
+	}
+	
+	var months = ["Januaary", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	var d=new Date("May 2019");
 	var str1=months[d.getMonth()]+" "+d.getFullYear();
@@ -67,7 +77,7 @@
 		}
 		//------------------
 	 var j=1;
-	calendar4();
+
 	function calendar1(index){
 		j=1;
 		var str="";
@@ -93,6 +103,15 @@
 	function clicked(i,ele){
 		var ele=document.getElementById("cal4").innerHTML;
 		console.log("consoled date",i+" "+ele);
+		var e=document.getElementById("text2");
+		e.value=i+" "+ele;
+		
+		//-----------------
+		document.getElementById("div4").innerHTML="";
+		document.getElementById("div3").innerHTML="";
+		document.getElementById("div1").innerHTML="";
+		document.getElementById("div2").innerHTML="";
+		
 	}
 	function calendar2(){
 		var ele=document.getElementById("cal4").innerHTML;

@@ -1,0 +1,39 @@
+.prstyle{
+	background-color:lightgrey;
+	width:380px;
+}
+.cell{
+	display:inline-block;
+	width:30px;
+	text-align:center;
+	color: black;
+	padding:10px;
+	margin: 1px;
+	border: solid 1px;
+	vertical-align:middle;
+}
+.cell2{
+	display:inline-block;
+	width:247px;
+	text-align:center;
+	color: black;
+	padding:10px;
+	margin: 1px;
+	border: solid 1px;
+	vertical-align:middle;
+}
+div.cell:hover { 
+	background-color: blue; 
+}
+div.cell2:hover { 
+	background-color: blue; 
+}
+.pointer {
+	cursor: pointer;
+}
+.total{
+  position: absolute; 
+  left: 90px; 
+  top: 90px; 
+  z-index: -1; 
+}
