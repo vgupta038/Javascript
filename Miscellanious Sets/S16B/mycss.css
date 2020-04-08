@@ -22,3 +22,10 @@
 	border: solid 1px;
 	vertical-align:middle;
 }
+div.cell:hover { 
+	background-color: blue; 
+}
+div.cell2:hover { 
+	background-color: blue; 
+}
+.pointer {cursor: pointer;}

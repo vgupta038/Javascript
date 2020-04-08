@@ -72,7 +72,7 @@
 		j=1;
 		var str="";
 		for(var i=1;i<=7;i++){
-			var prDisplay="<div class='cell' onclick=clicked(this)>";
+			var prDisplay="<div class='cell' onclick=clicked("+j+",this)>";
 			if(index<=i){
 				prDisplay+=""+j+"</br>";j++;
 				prDisplay+="</div>";
@@ -87,6 +87,11 @@
 		element.innerHTML=str;
 		calendar2();
 	}
+	
+	function clicked(i,ele){
+		var ele=document.getElementById("cal4").innerHTML;
+		console.log("consoled date",i+" "+ele);
+	}
 	function calendar2(){
 		var ele=document.getElementById("cal4").innerHTML;
 		var d2=new Date(ele);
@@ -94,8 +99,8 @@
 		var str="";
 		for(var i=1;i<=35;i++){
 			if(j<=daysCount(month)){
-				var prDisplay="<div class='cell' onclick=clicked(this)>";
-				prDisplay+=""+j+"</br>";j++
+				var prDisplay="<div class='cell' onclick=clicked("+j+",this)>";
+				prDisplay+=""+j+"</br>";j++;
 				prDisplay+="</div>";
 				str=str+prDisplay;
 			}
@@ -176,7 +181,6 @@
 	}
 	function fn2(after){
 		var str1=document.getElementById("cal4").innerHTML;
-		console.log("str",str1);
 		//-------------
 		var d1=new Date(str1);
 		var year=d1.getFullYear();
