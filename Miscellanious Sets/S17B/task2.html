@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mycss01.css">
+</head>
+<body>
+	<center><h1>Tech Hangman</h1></center>
+	<center><h2>Guess the word commonly used in Technology<h2></center>
+
+	<h1><div id="timer" class="timerclass"></div></h1>
+	<h1><div id="lives" class="livesclass"></div></h1><br><br><br>
+
+	<center><div id="div1"></div></center>
+	</br></br>
+	<center><div id="alphabet" class="prstyle"></div></center>
+</body>
+<script>
+	var lives=9;
+	document.getElementById("timer").innerHTML="Time:"+1;
+	document.getElementById("lives").innerHTML="Lives:"+lives;
+	var words=["PYTHON","ANDROID","REACT","SOFTWARE","ANGULAR","SCRIPT","KEYBOARD","SERVER","BROWSER",
+				"NETWORK","ROUTER","LINUX","WINDOWS","JAVASCRIPT","MYSQL","DATABASE","MEMORY","INSTALL",
+				"DOWNLOAD","VERSION","GITHUB","HADOOP","PROTOCOL","ALGORITHM","OBJECT","CLASS","FUNCTION"
+			  ];
+	 var len=words.length;
+	 var randomNum=Math.floor(Math.random() * (len-1));  // Generated random from 0 to (len-1)
+	 var randomWord=words[randomNum];
+	 console.log("word",randomWord);
+	//-------------------------------------------------
+	var s="";
+	for(var i=0;i<randomWord.length;i++){
+		var disp="<input type='text' id=name"+i+" class=text1 maxlength=1>";
+		s=s+disp;
+	}
+	document.getElementById("div1").innerHTML=s;	
+	
+	var arr=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+	var str="";
+	for(var i=0;i<arr.length;i++){
+		var btn1="<button id="+arr[i]+" class='btn1' onclick=fn(this)>"+arr[i]+"</button>";
+		str=str+btn1;
+	}
+	var ele=document.getElementById("alphabet");
+	ele.innerHTML=str;
+	
+	function fn(ele){
+		console.log(ele);
+		var value=ele.innerHTML;
+		var index=checkChar(randomWord,value); // index is an array
+		//------------
+		var count=0;
+		for(var i=0;i<index.length;i++){
+			document.getElementById("name"+index[i]).value=value;
+			ele.className="btnPink"; count=1; 
+		}
+		if(count==0){
+			ele.className="btnGreen";lives--;document.getElementById("lives").innerHTML="Lives:"+lives;
+		}
+		else{lives++;document.getElementById("lives").innerHTML="Lives:"+lives;}
+				
+		ele.disabled=true;
+	}
+	//------------------------------------------------
+	function checkChar(str,ch){
+		var a1=[]; var j=0;
+		for(var i=0;i<str.length;i++){
+			if(str.charAt(i)===ch){
+				a1[j]=i; j++;
+			}
+		}
+		return a1;
+	}
+
+	
+	
+</script>
+</head>
+</html>

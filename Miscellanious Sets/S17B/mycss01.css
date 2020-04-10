@@ -1,0 +1,32 @@
+.prstyle{
+	width:680px;
+}
+.text1{
+	width:15px;
+	height:20px;
+	padding:5px;
+	background-color: lightgreen;
+}
+.btn1 {
+	width:40px;
+	padding:10px;
+	background-color: yellow;}
+.btn1:hover{
+	background-color: lightblue;
+}
+.btnPink{
+	width:40px;
+	padding:10px;
+	background-color: lightpink;
+}
+.btnGreen{
+	width:40px;
+	padding:10px;
+	background-color: lightgreen;
+}
+.timerclass{
+	float:left;
+}
+.livesclass{
+	float:right;
+}
