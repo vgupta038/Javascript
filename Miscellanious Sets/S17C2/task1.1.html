@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+	<button onclick="randomlyDisplay()">Arrange Randomly</button></br>
+	<div id="image1" class="prstyle"></div>
+</body>
+<script>
+	var numbersArray=[{name:"Black Panther",image:"https://i.ibb.co/M98B0Pg/blackpanther.jpg"},
+				   {name:"Captain America",image:"https://i.ibb.co/tD3XYST/captainamerica.jpg"},
+				   {name:"Fantastic Beasts",image:"https://i.ibb.co/3fFJ2BX/fantastic.jpg"},
+				   {name:"Frozen",image:"https://i.ibb.co/WzhdMrf/frozen.jpg"},
+				   {name:"GI Joe",image:"https://i.ibb.co/s2MzrKQ/gijoe.jpg"},
+				   {name:"Harry Potter",image:"https://i.ibb.co/m8stVHL/harrypotter.jpg"},
+				   {name:"Hulk",image:"https://i.ibb.co/09X24qh/hulk.jpg"},
+				   {name:"Inception",image:"https://i.ibb.co/chb6MyP/inception.jpg"},
+				   {name:"Interstellar",image:"https://i.ibb.co/CsQ9KH3/interstellar.jpg"},
+				   {name:"Iron Man",image:"https://i.ibb.co/5Lr8kxH/ironman.jpg"},
+				   {name:"John Carter",image:"https://i.ibb.co/ph5FTwr/johncarter.jpg"},
+				   {name:"Logan",image:"https://i.ibb.co/XXLnRB1/logan.jpg"}
+				  ];		
+	
+	function randomlyDisplay(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			console.log("random",ransome);
+			shuffledNumbers.push(tempNumbers[ransome].image);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var str="";
+		for(var i=0;i<shuffledNumbers.length;i++){
+			var disp="<img width=90 height=90 src="+shuffledNumbers[i]+">";
+			str=str+disp;
+		}
+		var ele=document.getElementById("image1");
+		ele.innerHTML=str;
+	}
+	
+	
+</script>
+</head>
+</html>

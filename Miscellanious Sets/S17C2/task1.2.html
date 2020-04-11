@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle01.css">
+</head>
+<style>
+	.myImgStyle{
+		width:100px;
+		height:100px;
+		background-color:lightpink;
+		padding:1px;
+		margin:1px;
+	}
+</style>
+<body>
+	<button onclick="randomlyDisplay()">Arrange Randomly</button></br>
+	<div id="image1" class="prstyle">
+		<div id="ddsample"></div>
+	</div>
+</body>
+<script>
+	var numbersArray=[{name:"Black Panther",image:"https://i.ibb.co/M98B0Pg/blackpanther.jpg"},
+				   {name:"Captain America",image:"https://i.ibb.co/tD3XYST/captainamerica.jpg"},
+				   {name:"Fantastic Beasts",image:"https://i.ibb.co/3fFJ2BX/fantastic.jpg"},
+				   {name:"Frozen",image:"https://i.ibb.co/WzhdMrf/frozen.jpg"},
+				   {name:"GI Joe",image:"https://i.ibb.co/s2MzrKQ/gijoe.jpg"},
+				   {name:"Harry Potter",image:"https://i.ibb.co/m8stVHL/harrypotter.jpg"},
+				   {name:"Hulk",image:"https://i.ibb.co/09X24qh/hulk.jpg"},
+				   {name:"Inception",image:"https://i.ibb.co/chb6MyP/inception.jpg"},
+				   {name:"Interstellar",image:"https://i.ibb.co/CsQ9KH3/interstellar.jpg"},
+				   {name:"Iron Man",image:"https://i.ibb.co/5Lr8kxH/ironman.jpg"},
+				   {name:"John Carter",image:"https://i.ibb.co/ph5FTwr/johncarter.jpg"},
+				   {name:"Logan",image:"https://i.ibb.co/XXLnRB1/logan.jpg"}
+				  ];		
+	var block1=[];
+	function randomlyDisplay(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		block1=[];				// created empty array
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			console.log("random",ransome);
+			block1.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		show();
+	}
+	//------------------------------------
+	
+	let block2=[{name:"No Favourite",image:"https://i.ibb.co/XW3TtDS/blank.jpg"},
+				{name:"No Favourite",image:"https://i.ibb.co/XW3TtDS/blank.jpg"},
+				{name:"No Favourite",image:"https://i.ibb.co/XW3TtDS/blank.jpg"},
+				{name:"No Favourite",image:"https://i.ibb.co/XW3TtDS/blank.jpg"}
+			   ];
+	let dragImageIndex=-1;
+	
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	function drag(ev,dragIndex){
+		dragImageIndex=dragIndex;
+	}
+	function drop(ev,dropIndex){
+		ev.preventDefault();
+		block2[dropIndex].image=block1[dragImageIndex].image;
+		block2[dropIndex].name=block1[dragImageIndex].name;
+		block1.splice(dragImageIndex,1);	// remove index from block1 array after droped its image into block2
+		dragImageIndex=-1;
+		show();
+	}
+	
+	function showDragImage(myIndex,img){
+		return "<img class='myImgStyle' src='" + img + "'"+
+				" draggable='true'" +
+				" ondragstart='drag(event," + myIndex + ")'/>";
+	}
+	function showDropImage(myIndex,img){
+		return "<img class='myImgStyle' src='" + img + "'"+
+				" ondrop='drop(event," +myIndex + ")'" + 
+				" ondragover='allowDrop(event)'/>";
+	}
+		
+	function show(){
+		let str="";
+		for(let i=0;i<block1.length;i++)
+			str=str+showDragImage(i,block1[i].image);
+		
+		str=str+"</br>";
+		str=str+"<h1>My Favourites</h1>";
+		
+		for(let i=0;i<block2.length;i++)
+			str=str+showDropImage(i,block2[i].image);
+		
+		str=str+"<ul>";
+		for(let i=0;i<block2.length;i++){
+			str=str+"<li>"+block2[i].name+"</li>";
+		}
+		str=str+"</ul>";
+	
+			
+		let div1=document.getElementById("ddsample");
+		div1.innerHTML=str;
+	}
+</script>
+</head>
+</html>
