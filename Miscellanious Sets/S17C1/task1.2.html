@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+	<button onclick="randomlyDisplay()">Arrange Randomly</button></br>
+	<div id="image1" class="prstyle"></div>
+</body>
+<script>
+	var numbersArray=["https://i.ibb.co/gjW4SNt/1.png",
+					  "https://i.ibb.co/db7zRQw/2.png",
+					  "https://i.ibb.co/9wjGNxz/3.png",
+					  "https://i.ibb.co/bbM4vwt/4.png",
+					  "https://i.ibb.co/TbGXhk9/5.png",
+					  "https://i.ibb.co/GH1pQHb/6.png",
+					  "https://i.ibb.co/cv7GR1r/7.png",
+					  "https://i.ibb.co/gwhYdxb/8.png",
+					  "https://i.ibb.co/Lhjx85r/9.png",
+					  "https://i.ibb.co/PmGH8Vf/10.png",
+					  "https://i.ibb.co/1Xs03ds/11.png",
+					  "https://i.ibb.co/12b2XyN/12.png"
+					];
+		
+	
+	function randomlyDisplay(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			console.log("random",ransome);
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var str="";
+		for(var i=0;i<shuffledNumbers.length;i++){
+			var disp="<img width=50 src="+shuffledNumbers[i]+">";
+			str=str+disp;
+		}
+		var ele=document.getElementById("image1");
+		ele.innerHTML=str;
+	}
+	
+	
+</script>
+</head>
+</html>

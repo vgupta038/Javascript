@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle.css">
+</head>
+<style>
+	.myImgStyle{
+		width:50px;
+		height:100px;
+		background-color:lightpink;
+	}
+</style>
+<body>
+	<button onclick="randomlyDisplay()">Arrange Randomly</button></br>
+	<div id="image1" class="prstyle">
+		<div id="ddsample"></div>
+	</div>
+</body>
+<script>
+	var numbersArray=["https://i.ibb.co/gjW4SNt/1.png",
+					  "https://i.ibb.co/db7zRQw/2.png",
+					  "https://i.ibb.co/9wjGNxz/3.png",
+					  "https://i.ibb.co/bbM4vwt/4.png",
+					  "https://i.ibb.co/TbGXhk9/5.png",
+					  "https://i.ibb.co/GH1pQHb/6.png",
+					  "https://i.ibb.co/cv7GR1r/7.png",
+					  "https://i.ibb.co/gwhYdxb/8.png",
+					  "https://i.ibb.co/Lhjx85r/9.png",
+					  "https://i.ibb.co/PmGH8Vf/10.png",
+					  "https://i.ibb.co/1Xs03ds/11.png",
+					  "https://i.ibb.co/12b2XyN/12.png"
+					];
+		
+	var block1=[];
+	function randomlyDisplay(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		block1=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			block1.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}	
+		show();
+	}
+	
+	
+	
+	let block2=[""];
+	let dragImageIndex=-1;
+	
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	function drag(ev,dragIndex){
+		dragImageIndex=dragIndex;
+	}
+	function drop(ev,dropIndex){
+		ev.preventDefault();
+		block2[dropIndex]=block1[dragImageIndex];
+		block1[dragImageIndex]="";
+		dragImageIndex=-1;
+		show();
+	}
+	
+	function showDragImage(myIndex,img){
+		return "<img class='myImgStyle' src='" + img + "'"+
+				" draggable='true'" +
+				" ondragstart='drag(event," + myIndex + ")'/>";
+	}
+	function showDropImage(myIndex,img){
+		return "<img class='myImgStyle' src='" + img + "'"+
+				" ondrop='drop(event," +myIndex + ")'" + 
+				" ondragover='allowDrop(event)'/>";
+	}
+		
+	function show(){
+		let str="";
+		for(let i=0;i<block1.length;i++)
+			str=str+showDragImage(i,block1[i]);
+		
+		str=str+"</br>";
+		
+		for(let i=0;i<block2.length;i++)
+			str=str+showDropImage(i,block2[i]);
+			
+		let div1=document.getElementById("ddsample");
+		div1.innerHTML=str;
+	}
+</script>
+</head>
+</html>
