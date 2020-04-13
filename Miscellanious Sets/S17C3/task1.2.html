@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle01.css">
+</head>
+<body>
+	<button onclick="horizontally()">Horizontal</button><button onclick="vertically()">Vertical</button><button onclick="diagonally()">Diagonal</button></br>
+	<div id="show"></div>
+</body>
+<script>
+	var numbersArray=["https://i.ibb.co/1bPyBNx/1-blue.jpg",
+					  "https://i.ibb.co/5k4cDYm/1-green.jpg",
+					  "https://i.ibb.co/ZGJDKmt/1-red.jpg",
+					  "https://i.ibb.co/S5bRz8n/2-blue.jpg",
+					  "https://i.ibb.co/gm12HXN/2-green.jpg",
+					  "https://i.ibb.co/VWnvwqM/2-red.jpg",
+					  "https://i.ibb.co/ssCTJkr/3-blue.jpg",
+					  "https://i.ibb.co/5hGS3bx/3-green.jpg",
+					  "https://i.ibb.co/cwwg3X4/3-red.jpg",
+					  "https://i.ibb.co/3W5YvMg/4-blue.jpg",
+					  "https://i.ibb.co/W0mTkdc/4-green.jpg",
+					  "https://i.ibb.co/1Kphcg9/4-red.jpg"
+					];
+		
+	
+	function horizontally(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			console.log("random",ransome);
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		
+		var block1=["","","","","",""];
+		for(var i=0;i<6;i++){
+			block1[i]=shuffledNumbers[i];
+		}
+		var str="";
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block1.length;i++){
+			let styles="left:"+i*30+"px";
+			str=str+"<img class='imagesize overlay' src='"+block1[i]+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+	}
+	
+	//------------
+	function vertically(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			console.log("random",ransome);
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		
+		var block1=["","","","","",""];
+		for(var i=0;i<6;i++){
+			block1[i]=shuffledNumbers[i];
+		}
+		var str="";
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block1.length;i++){
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+block1[i]+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+	}
+	//--------------------
+	function diagonally(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			console.log("random",ransome);
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		
+		var block1=["","","","","",""];
+		for(var i=0;i<6;i++){
+			block1[i]=shuffledNumbers[i];
+		}
+		var str="";
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block1.length;i++){
+			let styles="top:"+i*40+"px;left:"+i*30+"px";
+			str=str+"<img class='imagesize overlay' src='"+block1[i]+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+	}
+	
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle01.css">
+</head>
+<body>
+	<button onclick="start()">Start Again</button></br>
+	<div id="show"></div>
+</body>
+<script>
+	var numbersArray=["https://i.ibb.co/1bPyBNx/1-blue.jpg",
+					  "https://i.ibb.co/5k4cDYm/1-green.jpg",
+					  "https://i.ibb.co/ZGJDKmt/1-red.jpg",
+					  "https://i.ibb.co/S5bRz8n/2-blue.jpg",
+					  "https://i.ibb.co/gm12HXN/2-green.jpg",
+					  "https://i.ibb.co/VWnvwqM/2-red.jpg",
+					  "https://i.ibb.co/ssCTJkr/3-blue.jpg",
+					  "https://i.ibb.co/5hGS3bx/3-green.jpg",
+					  "https://i.ibb.co/cwwg3X4/3-red.jpg",
+					  "https://i.ibb.co/3W5YvMg/4-blue.jpg",
+					  "https://i.ibb.co/W0mTkdc/4-green.jpg",
+					  "https://i.ibb.co/1Kphcg9/4-red.jpg"
+					];
+		
+	
+	function start(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		
+		var block1=["","","",""];
+		var block2=["","","",""];
+		var block3=["","","",""];
+		var j=0;
+		var i=0;
+		for(;i<shuffledNumbers.length;i++){
+			if(i<block1.length)
+				block1[i]=shuffledNumbers[i];
+			else
+				break;
+		}
+		
+		for(;i<shuffledNumbers.length;i++){
+			if(j<block2.length)
+				block2[j]=shuffledNumbers[i];
+			else
+				break;
+			j++;
+		}
+		
+		j=0;
+		for(;i<shuffledNumbers.length;i++){
+			if(j<block3.length)
+				block3[j]=shuffledNumbers[i];
+			else 
+				break;
+			j++;
+		}
+		// now printing vertically
+		var str="<div class='outer'>";
+		for(let i=0;i<block1.length;i++){
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+block1[i]+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+	
+		// printing vertically
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block2.length;i++){
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+block2[i]+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+	
+		// vertical overlap images	
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block3.length;i++){
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+block3[i]+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+	}
+	
+</script>
+</head>
+</html>

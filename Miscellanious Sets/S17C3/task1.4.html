@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle01.css">
+</head>
+<style>
+</style>
+<body>
+	<button onclick="start()">Start Again</button></br>
+	<div id="ddsample"></div>
+</body>
+<script>
+	var numbersArray=["https://i.ibb.co/1bPyBNx/1-blue.jpg",
+					  "https://i.ibb.co/5k4cDYm/1-green.jpg",
+					  "https://i.ibb.co/ZGJDKmt/1-red.jpg",
+					  "https://i.ibb.co/S5bRz8n/2-blue.jpg",
+					  "https://i.ibb.co/gm12HXN/2-green.jpg",
+					  "https://i.ibb.co/VWnvwqM/2-red.jpg",
+					  "https://i.ibb.co/ssCTJkr/3-blue.jpg",
+					  "https://i.ibb.co/5hGS3bx/3-green.jpg",
+					  "https://i.ibb.co/cwwg3X4/3-red.jpg",
+					  "https://i.ibb.co/3W5YvMg/4-blue.jpg",
+					  "https://i.ibb.co/W0mTkdc/4-green.jpg",
+					  "https://i.ibb.co/1Kphcg9/4-red.jpg"
+					];
+		
+	var block1=[];
+	var block2=[];
+	var block3=[];
+	function start(){
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operstor
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		
+		block1=new Array(4);
+		block2=new Array(4);
+		block3=new Array(4);
+		var j=0;
+		var i=0;
+		for(;i<shuffledNumbers.length;i++){
+			if(i<block1.length)
+				block1[i]=shuffledNumbers[i];
+			else
+				break;
+		}
+		
+		for(;i<shuffledNumbers.length;i++){
+			if(j<block2.length)
+				block2[j]=shuffledNumbers[i];
+			else
+				break;
+			j++;
+		}
+		
+		j=0;
+		for(;i<shuffledNumbers.length;i++){
+			if(j<block3.length)
+				block3[j]=shuffledNumbers[i];
+			else 
+				break;
+			j++;
+		}
+		show();
+	}
+	
+	//------------------------
+	
+	let dragImageIndex=-1;
+	
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	function drag1(ev,dragIndex){
+		dragImageIndex=dragIndex;
+	}
+	function drag2(ev,dragIndex){
+		dragImageIndex=dragIndex;
+	}
+	function drag3(ev,dragIndex){
+		dragImageIndex=dragIndex;
+	}
+	function drop2(ev,dropIndex){
+		ev.preventDefault();
+		block2.push(block1[dragImageIndex]);
+		block1.splice(dragImageIndex,1);
+		dragImageIndex=-1;
+		show();
+	}
+	
+	function showDropDragImage(myIndex,img,blocks){
+		let styles="top:"+myIndex*40+"px";
+		if(blocks==="block1"){
+			return "<img class='imagesize overlay' src='" + img + "'"+ " style='"+styles+"'"+
+				" ondrop='drop2(event," +myIndex + ")'" + " draggable='true'" + " ondragstart='drag1(event," + myIndex + ")'"+ 
+				" ondragover='allowDrop(event)'/>";
+		}
+		else if(blocks==="block2"){
+			return "<img class='imagesize overlay' src='" + img + "'"+ " style='"+styles+"'"+
+				" ondrop='drop(event," +myIndex + ")'" + " draggable='true'" + " ondragstart='drag1(event," + myIndex + ")'"+ 
+				" ondragover='allowDrop(event)'/>";
+		}
+		else{
+			return "<img class='imagesize overlay' src='" + img + "'"+ " style='"+styles+"'"+
+				" ondrop='drop(event," +myIndex + ")'" + " draggable='true'" + " ondragstart='drag3(event," + myIndex + ")'"+ 
+				" ondragover='allowDrop(event)'/>";
+		}
+		
+	}	
+	// printing all cards in vertical manner 
+	function show(){
+		let str="";
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block1.length;i++)
+			str=str+showDropDragImage(i,block1[i],"block1");
+		str=str+"</div>";
+		//----------------------------
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block2.length;i++)
+			str=str+showDropDragImage(i,block2[i],"block2");
+		str=str+"</div>";
+		//----------------------------
+		str=str+"<div class='outer'>";
+		for(let i=0;i<block3.length;i++)
+			str=str+showDropDragImage(i,block3[i],"block3");
+		str=str+"</div>";
+		
+		let div1=document.getElementById("ddsample");
+		div1.innerHTML=str;
+	}
+</script>
+</head>
+</html>

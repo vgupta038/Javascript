@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="mystyle01.css">
+</head>
+<body>
+	<div id="show"></div>
+</body>
+<script>
+	let images=["https://i.ibb.co/cLV4RvX/google-pixel-3.jpg",
+			    "https://i.ibb.co/160YSpk/mi-redmi-5.jpg"
+			   ];
+	
+	let div1=document.getElementById("show");
+	let str="Images with Different Overlays</br>";
+	
+	// horizontal overlap images
+	str=str+"<div class='outer'>";
+	for(let i=0;i<images.length;i++){
+		let styles="left:"+i*30+"px";
+		str=str+"<img class='imagesize overlay' src='"+images[i]+"' style='"+styles+"'>";
+	}
+	str=str+"</div>";
+	
+	// Diagonal overlap images
+	str=str+"<div class='outer'>";
+	for(let i=0;i<images.length;i++){
+		let styles="top:"+i*40+"px;left:"+i*30+"px";
+		str=str+"<img class='imagesize overlay' src='"+images[i]+"' style='"+styles+"'>";
+	}
+	str=str+"</div>";
+	
+	// vertical overlap images	
+	str=str+"<div class='outer'>";
+	for(let i=0;i<images.length;i++){
+		let styles="top:"+i*40+"px";
+		str=str+"<img class='imagesize overlay' src='"+images[i]+"' style='"+styles+"'>";
+	}
+	str=str+"</div>";
+	//----------------
+	div1.innerHTML=str;
+</script>
+</head>
+</html>
