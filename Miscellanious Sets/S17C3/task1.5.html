@@ -110,23 +110,39 @@
 				" ondragover='allowDrop(event)'/>";
 	}	
 	// printing all cards in vertical manner 
+	
 	function show(){
 		let str="";
 		str=str+"<div class='outer'>";
-		for(let i=0;i<block1.length;i++)
+		if(block1.length==0){
+			str=str+showDropDragImage(0,"https://i.ibb.co/7V82p6m/Blank.jpg","1");
+		}
+		else{
+			for(let i=0;i<block1.length;i++)
 			str=str+showDropDragImage(i,block1[i],"1");
+		}
 		str=str+"</div>";
 		//----------------------------
 		str=str+"<div class='outer'>";
-		for(let i=0;i<block2.length;i++)
+		if(block2.length==0){
+			str=str+showDropDragImage(0,"https://i.ibb.co/7V82p6m/Blank.jpg","2");
+		}
+		else{
+			for(let i=0;i<block2.length;i++)
 			str=str+showDropDragImage(i,block2[i],"2");
+		}
 		str=str+"</div>";
 		//----------------------------
 		str=str+"<div class='outer'>";
-		for(let i=0;i<block3.length;i++)
+		if(block3.length==0){
+			str=str+showDropDragImage(0,"https://i.ibb.co/7V82p6m/Blank.jpg","3");
+		}
+		else{
+			for(let i=0;i<block3.length;i++)
 			str=str+showDropDragImage(i,block3[i],"3");
+		}
 		str=str+"</div>";
-		
+		//------------------------------
 		let div1=document.getElementById("ddsample");
 		div1.innerHTML=str;
 	}
