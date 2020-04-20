@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+</head>
+<style>
+	.cell{
+		display:inline-block;
+		width: 20%;
+		text-align: center;
+		background-color:white;
+		color: black;
+		border: double;
+	}
+</style>
+<body>
+	<div id="show"></div>
+</body>
+<script>
+	var arr=[
+				["Javascript","Angular","React","NodeJS"],
+				["Java","J2EE","Spring","Android"],
+				["Python","DataScience","Pandas","Django"],
+				["C","C++","Assemby","SystemProg"],
+				["PHP","Drupal","Laravel","Zend"]
+		  ];
+	show();
+		  
+	function show(){
+		var str="";
+		var len=arr.length;
+		for(let i=0;i<len;i++){
+			var a1=arr[i];
+			var s1="";
+			for(let j=0;j<arr[i].length;j++){
+				s1+="<div class='cell'>"+a1[j]+"</div>";
+			}
+			var row="<div>"+s1+"</div>";
+			str=str+row;
+		}
+		var ele=document.getElementById("show");
+		ele.innerHTML=str;	
+	}	  
+	
+	
+	//----------------
+	
+</script>
+</head>
+</html>

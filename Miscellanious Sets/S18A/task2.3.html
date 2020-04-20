@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[
+				["a"],
+				["c","d"],
+				[],
+				["m","n","o"],
+				["1","2","3","4"]
+			];
+
+	let num=arr.length;
+	for(let i=0;i<num;i++){
+		arr[i].unshift("X");
+		arr[i].push("Y");
+	}
+	console.log(JSON.stringify(arr));
+	console.log(arr);
+	
+	//--------------
+</script>
+</head>
+</html>

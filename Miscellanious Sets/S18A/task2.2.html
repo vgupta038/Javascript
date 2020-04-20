@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=[
+				["a"],
+				["c","d"],
+				[],
+				["m","n","o"],
+				["1","2","3","4"]
+			];
+	
+	var newarr=[];
+			
+	let num=arr.length;
+	let multTables=[];
+	for(let i=0;i<num;i++){
+		var count=0;
+		for(let j=0;j<arr[i].length;j++){
+			count++;
+		}
+		newarr.push(count);
+	}
+	console.log(JSON.stringify(newarr));
+	console.log(newarr);
+	
+	//--------------
+</script>
+</head>
+</html>

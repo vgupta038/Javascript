@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	let num=5;
+	let multTables=[];
+	for(let i=1;i<num;i++){
+		let table=[];
+		multTables.push(table);
+		for(let j=1;j<=10;j++){
+			table.push(i*j);
+		}
+	}
+	console.log(JSON.stringify(multTables));
+	
+	//----------------
+	console.log("Value at multTables[0][1] is ",multTables[0][1]);
+	console.log("Value at multTables[1][3] is ",multTables[1][3]);
+	console.log("Value at multTables[2][5] is ",multTables[2][5]);
+	console.log("Value at multTables[3][9] is ",multTables[3][9]);
+</script>
+</head>
+</html>

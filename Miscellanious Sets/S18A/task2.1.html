@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+	var arr=["Javascript","Angular","React","NodeJS","Android","Python"];
+	let num=arr.length;
+	let multTables=[];
+	for(let i=1;i<=num;i++){
+		let table=[];
+		multTables.push(table);
+		var str=arr[i-1];
+		for(let j=0;j<arr[i-1].length;j++){
+			var res = str.charAt(0);
+			table.push(str.charAt(j));
+		}
+	}
+	console.log(JSON.stringify(multTables));
+	
+	//--------------
+</script>
+</head>
+</html>
