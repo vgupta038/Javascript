@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+</head>
+<style>
+	.cell{
+		display:inline-block;
+		width: 40px;
+		text-align: center;
+		background-color:yellow;
+		color: black;
+	}
+	.b1{
+		background-color: lightblue;
+		padding: 5px 10px;
+	}
+</style>
+<body>
+	<div id="show"></div>
+	<button onclick="minus1()"  class='b1'>-1</button><button onclick="plus1()" class="b1">+1</button>
+	<button onclick="insert22()"  class='b1'>Insert 22 at End</button><button onclick="insert0()"  class="b1">Insert 0 at Start</button>
+	<button onclick="remove4orLess()"  class='b1'>Remove 4 or less</button>
+</body>
+<script>
+	var arr=[
+				[2, 3, 4, 6, 7],
+				[3, 4, 5],
+				[5, 10],
+				[14],
+				[4, 8, 12, 16]
+			];
+	show();
+		  
+	function show(){
+		var str="";
+		var len=arr.length;
+		for(let i=0;i<len;i++){
+			var a1=arr[i];
+			var s1="";
+			for(let j=0;j<arr[i].length;j++){
+				s1+="<div class='cell'>"+a1[j]+"</div>"+" ";
+			}
+			var row="<div>"+s1+"</div>";
+			str=str+row+"</br>";
+		}
+		var ele=document.getElementById("show");
+		ele.innerHTML=str;	
+	}	  
+	
+	function minus1(){
+		for(let i=0;i<arr.length;i++){
+			var a1=arr[i];
+			for(let j=0;j<a1.length;j++){
+				a1[j]=a1[j]-1;
+			}
+			arr[i]=a1;
+		}
+		show();
+	}
+	function plus1(){
+		for(let i=0;i<arr.length;i++){
+			var a1=arr[i];
+			for(let j=0;j<a1.length;j++){
+				a1[j]=a1[j]+1;
+			}
+			arr[i]=a1;
+		}
+		show();
+	}
+	function insert22(){
+		for(let i=0;i<arr.length;i++)
+			arr[i].push(22);
+		show();
+	}
+	function insert0(){
+		for(let i=0;i<arr.length;i++)
+			arr[i].unshift(0);
+		show();
+	}
+	function remove4orLess(){
+		for(let i=0;i<arr.length;i++){
+			var a1=arr[i];
+			var a2=[];
+			for(let j=0;j<a1.length;j++){
+				if(a1[j]>4)
+					a2.push(a1[j]);
+			}
+			arr[i]=a2;
+		}
+		show();
+	}
+	
+	
+	//----------------
+	
+</script>
+</head>
+</html>
