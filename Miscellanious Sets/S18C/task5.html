@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.outer{
+	width:100px;
+	margin-right:80px;
+	position:relative;
+	display:inline-block;
+}
+.imagesize{
+	width:100px;
+	height:200px;
+	border: 2px solid black;
+}
+.overlay{
+	position:absolute;
+	z-index: 2;
+}
+</style>
+<body>
+	<button onclick="start6()">6 cols</button><button onclick="start4()">4 cols</button><button onclick="start5()">5 cols</button>
+	<div id="show"></div>
+</body>
+<script>
+	var numbersArray=[
+						{value : 1, color : "blue", image : "https://i.ibb.co/1bPyBNx/1-blue.jpg"},
+						{value : 1, color : "green", image : "https://i.ibb.co/5k4cDYm/1-green.jpg"},
+						{value : 1, color : "red", image : "https://i.ibb.co/ZGJDKmt/1-red.jpg"},
+						{value : 2, color : "blue", image : "https://i.ibb.co/S5bRz8n/2-blue.jpg"},
+						{value : 2, color : "green", image : "https://i.ibb.co/gm12HXN/2-green.jpg"},
+						{value : 2, color : "red", image : "https://i.ibb.co/VWnvwqM/2-red.jpg"},
+						{value : 3, color : "blue", image : "https://i.ibb.co/ssCTJkr/3-blue.jpg"},
+						{value : 3, color : "green", image : "https://i.ibb.co/5hGS3bx/3-green.jpg"},
+						{value : 3, color : "red", image : "https://i.ibb.co/cwwg3X4/3-red.jpg"},
+						{value : 4, color : "blue", image : "https://i.ibb.co/3W5YvMg/4-blue.jpg"},
+						{value : 4, color : "green", image : "https://i.ibb.co/W0mTkdc/4-green.jpg"},
+						{value : 4, color : "red", image : "https://i.ibb.co/1Kphcg9/4-red.jpg"},
+						{value : 5, color : "blue", image : "https://i.ibb.co/GVhc56P/5-blue.jpg"},
+						{value : 5, color : "green", image : "https://i.ibb.co/G3zYcMQ/5-green.jpg"},
+						{value : 5, color : "red", image : "https://i.ibb.co/Zzzssy2/5-red.jpg"},
+						{value : 6, color : "blue", image : "https://i.ibb.co/jg2Hgxb/6-blue.jpg"},
+						{value : 6, color : "green", image : "https://i.ibb.co/py7SpN9/6-green.jpg"},
+						{value : 6, color : "red", image : "https://i.ibb.co/7N5bydC/6-red.jpg"}
+					];
+	var arr6=[];	// array of size6
+	var blank=[""];
+		
+	function start6(){
+		arr6=[[],[],[],[],[],[]];	// mandatory statement as each time we need fresh cards in this array 
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operator
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var j=0;
+		var count=0;
+		for(var i=0;i<numbersArray.length;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==3){
+				 count=0; j++;
+			}
+		}
+		show();
+	}
+	function start4(){
+		arr6=[[],[],[],[]];	// mandatory statement as each time we need fresh cards in this array 
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operator
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var j=0;
+		var count=0;
+		var i=0;
+		for(i=0;i<numbersArray.length-8;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==5){
+				 count=0; j++;
+			}
+		}
+		for(;i<numbersArray.length;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==4){
+				 count=0; j++;
+			}
+		}
+		show();
+	}
+	function start5(){
+		arr6=[[],[],[],[],[]];	// mandatory statement as each time we need fresh cards in this array 
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operator
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var j=0;
+		var count=0;
+		var i=0;
+		for(i=0;i<numbersArray.length-6;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==4){
+				 count=0; j++;
+			}
+		}
+		console.log(arr6);
+		console.log(i);
+		for(;i<numbersArray.length;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==3){
+				 count=0; j++;
+			}
+		}
+		console.log(arr6);
+		show();
+	}
+	let dragImageIndex=-1;
+	
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	function drag(ev,dragIndex, blockname){
+		blockstr= 'arr6['+blockname+']';
+		console.log('Dragging Block', blockstr)
+		dragImageIndex=dragIndex;
+	}
+	function drop(ev,dropIndex, blockname){
+		console.log("blockname",blockname);
+		ev.preventDefault();
+		let jsons=[{name:'arr6[0]', list:arr6[0]},{name:'arr6[1]', list:arr6[1]},{name:'arr6[2]', list:arr6[2]},{name:'arr6[3]', list:arr6[3]},{name:'arr6[4]', list:arr6[4]},{name:'arr6[5]', list:arr6[5]}];
+		let list1;
+		let list2;
+		blockdrop= 'arr6['+blockname+']';
+
+		jsons.map(obj=>{
+			if(obj.name===blockstr)
+				list1= obj.list;
+			if(obj.name===blockdrop)
+				list2= obj.list
+		});
+		
+		if(list2.length==0){
+			list2.push(list1[dragImageIndex]);
+			list1.splice(dragImageIndex,1);
+			dragImageIndex=-1;
+		}
+		else{
+			var colordrop=list2[list2.length-1].color; 
+			var colordrag=list1[dragImageIndex].color;
+			if(colordrop===colordrag){
+				list2.push(list1[dragImageIndex]);
+				list1.splice(dragImageIndex,1);
+				dragImageIndex=-1;
+			}
+			else{
+				alert("Not of the same color");
+			}		
+		}	
+		show();
+	}
+	function showDropDragImage(myIndex,img,blocks){
+		let styles="top:"+myIndex*40+"px";
+			return "<img class='imagesize overlay' src='" + img + "'"+ " style='"+styles+"'"+
+				" ondrop='drop(event," +myIndex + ","+blocks+")'" + " draggable='true'" + " ondragstart='drag(event," + myIndex + ","+blocks+")'"+ 
+				" ondragover='allowDrop(event)'/>";
+	}	
+	function show(){
+		var niceWork=0;
+		var str="";		
+		//-------------------
+		console.log(arr6.length);
+		for(var i=0;i<arr6.length;i++){
+			str=str+"<div class='outer'>";
+			if(arr6[i].length===0){
+				str=str+showDropDragImage(0,"https://i.ibb.co/7V82p6m/Blank.jpg",i+"");	 // means arr6[] we are passing
+			}	
+			else{
+				let mySetNumber = new Set();
+				let mySetColor = new Set();
+				var a=arr6[i];
+				for(let j=0;j<a.length;j++){
+					mySetNumber.add(a[j].value);
+					mySetColor.add(a[j].color);
+					if(j!=a.length-1){
+						let styles="top:"+j*40+"px";
+						str=str+"<img class='imagesize overlay' src='"+a[j].image+"' style='"+styles+"'>";
+					}
+					else{
+						str=str+showDropDragImage(j,a[j].image,i+"");	// means arr6[i] we are passing
+					}
+				}
+				if(mySetColor.size===1 && mySetNumber.size===6)
+					niceWork++;
+			}
+			str=str+"</div>";
+		}
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+		if(niceWork===3)
+			alert("Nice Work");
+	}
+	
+</script>
+</head>
+</html>

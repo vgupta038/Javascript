@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.outer{
+	width:100px;
+	margin-right:80px;
+	position:relative;
+	display:inline-block;
+}
+.imagesize{
+	width:100px;
+	height:200px;
+	border: 2px solid black;
+}
+.overlay{
+	position:absolute;
+	z-index: 2;
+}
+</style>
+<body>
+	<button onclick="start()">6 cols</button></br>
+	<div id="show"></div>
+</body>
+<script>
+	var numbersArray=[
+						{value : 1, color : "blue", image : "https://i.ibb.co/1bPyBNx/1-blue.jpg"},
+						{value : 1, color : "green", image : "https://i.ibb.co/5k4cDYm/1-green.jpg"},
+						{value : 1, color : "red", image : "https://i.ibb.co/ZGJDKmt/1-red.jpg"},
+						{value : 2, color : "blue", image : "https://i.ibb.co/S5bRz8n/2-blue.jpg"},
+						{value : 2, color : "green", image : "https://i.ibb.co/gm12HXN/2-green.jpg"},
+						{value : 2, color : "red", image : "https://i.ibb.co/VWnvwqM/2-red.jpg"},
+						{value : 3, color : "blue", image : "https://i.ibb.co/ssCTJkr/3-blue.jpg"},
+						{value : 3, color : "green", image : "https://i.ibb.co/5hGS3bx/3-green.jpg"},
+						{value : 3, color : "red", image : "https://i.ibb.co/cwwg3X4/3-red.jpg"},
+						{value : 4, color : "blue", image : "https://i.ibb.co/3W5YvMg/4-blue.jpg"},
+						{value : 4, color : "green", image : "https://i.ibb.co/W0mTkdc/4-green.jpg"},
+						{value : 4, color : "red", image : "https://i.ibb.co/1Kphcg9/4-red.jpg"},
+						{value : 5, color : "blue", image : "https://i.ibb.co/GVhc56P/5-blue.jpg"},
+						{value : 5, color : "green", image : "https://i.ibb.co/G3zYcMQ/5-green.jpg"},
+						{value : 5, color : "red", image : "https://i.ibb.co/Zzzssy2/5-red.jpg"},
+						{value : 6, color : "blue", image : "https://i.ibb.co/jg2Hgxb/6-blue.jpg"},
+						{value : 6, color : "green", image : "https://i.ibb.co/py7SpN9/6-green.jpg"},
+						{value : 6, color : "red", image : "https://i.ibb.co/7N5bydC/6-red.jpg"}
+					];
+	var arr6=[[],[],[],[],[],[]];	// array of size6
+		
+	function start(){
+		arr6=[[],[],[],[],[],[]];	// mandatory statement as each time we need fresh cards in this array 
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operator
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var j=0;
+		var count=0;
+		for(var i=0;i<numbersArray.length;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==3){
+				 count=0; j++;
+			}
+		}
+		show();
+	}
+	function show(){
+		var str="";
+		str=str+"<div class='outer'>";
+		for(let i=0;i<arr6[0].length;i++){
+			var a=arr6[0];
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		//-------------------------
+		str=str+"<div class='outer'>";
+		for(let i=0;i<arr6[1].length;i++){
+			var a=arr6[1];
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		//-------------------------
+		str=str+"<div class='outer'>";
+		for(let i=0;i<arr6[2].length;i++){
+			var a=arr6[2];
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		//--------------------------
+		str=str+"<div class='outer'>";
+		for(let i=0;i<arr6[3].length;i++){
+			var a=arr6[3];
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		//--------------------------
+		str=str+"<div class='outer'>";
+		for(let i=0;i<arr6[4].length;i++){
+			var a=arr6[4];
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		//--------------------------
+		str=str+"<div class='outer'>";
+		for(let i=0;i<arr6[5].length;i++){
+			var a=arr6[5];
+			let styles="top:"+i*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+		}
+		str=str+"</div>";
+		//--------------------------
+		
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+	}
+	
+</script>
+</head>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.outer{
+	width:100px;
+	margin-right:80px;
+	position:relative;
+	display:inline-block;
+}
+.imagesize{
+	width:100px;
+	height:200px;
+	border: 2px solid black;
+}
+.overlay{
+	position:absolute;
+	z-index: 2;
+}
+</style>
+<body>
+	<button onclick="start()">6 cols</button></br>
+	<div id="show"></div>
+</body>
+<script>
+	var numbersArray=[
+						{value : 1, color : "blue", image : "https://i.ibb.co/1bPyBNx/1-blue.jpg"},
+						{value : 1, color : "green", image : "https://i.ibb.co/5k4cDYm/1-green.jpg"},
+						{value : 1, color : "red", image : "https://i.ibb.co/ZGJDKmt/1-red.jpg"},
+						{value : 2, color : "blue", image : "https://i.ibb.co/S5bRz8n/2-blue.jpg"},
+						{value : 2, color : "green", image : "https://i.ibb.co/gm12HXN/2-green.jpg"},
+						{value : 2, color : "red", image : "https://i.ibb.co/VWnvwqM/2-red.jpg"},
+						{value : 3, color : "blue", image : "https://i.ibb.co/ssCTJkr/3-blue.jpg"},
+						{value : 3, color : "green", image : "https://i.ibb.co/5hGS3bx/3-green.jpg"},
+						{value : 3, color : "red", image : "https://i.ibb.co/cwwg3X4/3-red.jpg"},
+						{value : 4, color : "blue", image : "https://i.ibb.co/3W5YvMg/4-blue.jpg"},
+						{value : 4, color : "green", image : "https://i.ibb.co/W0mTkdc/4-green.jpg"},
+						{value : 4, color : "red", image : "https://i.ibb.co/1Kphcg9/4-red.jpg"},
+						{value : 5, color : "blue", image : "https://i.ibb.co/GVhc56P/5-blue.jpg"},
+						{value : 5, color : "green", image : "https://i.ibb.co/G3zYcMQ/5-green.jpg"},
+						{value : 5, color : "red", image : "https://i.ibb.co/Zzzssy2/5-red.jpg"},
+						{value : 6, color : "blue", image : "https://i.ibb.co/jg2Hgxb/6-blue.jpg"},
+						{value : 6, color : "green", image : "https://i.ibb.co/py7SpN9/6-green.jpg"},
+						{value : 6, color : "red", image : "https://i.ibb.co/7N5bydC/6-red.jpg"}
+					];
+	var arr6=[[],[],[],[],[],[]];	// array of size6
+	var blank=["https://i.ibb.co/7V82p6m/Blank.jpg"];
+		
+	function start(){
+		arr6=[[],[],[],[],[],[]];	// mandatory statement as each time we need fresh cards in this array 
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operator
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var j=0;
+		var count=0;
+		for(var i=0;i<numbersArray.length;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==3){
+				 count=0; j++;
+			}
+		}
+		show();
+	}
+	let dragImageIndex=-1;
+	
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	function drag(ev,dragIndex, blockname){
+		blockstr= 'arr6['+blockname+']';
+		console.log('Dragging Block', blockstr)
+		dragImageIndex=dragIndex;
+	}
+	function drop(ev,dropIndex, blockname){
+		ev.preventDefault();
+		let jsons=[{name:'arr6[0]', list:arr6[0]},{name:'arr6[1]', list:arr6[1]},{name:'arr6[2]', list:arr6[2]},{name:'arr6[3]', list:arr6[3]},{name:'arr6[4]', list:arr6[4]},{name:'arr6[5]', list:arr6[5]}];
+		let list1;
+		let list2;
+		blockdrop= 'arr6['+blockname+']';
+		jsons.map(obj=>{
+			if(obj.name===blockstr)
+				list1= obj.list;
+			if(obj.name===blockdrop)
+				list2= obj.list
+		});
+		
+		list2.push(list1[dragImageIndex]);
+		list1.splice(dragImageIndex,1);
+		dragImageIndex=-1;
+		show();
+	}
+	function showDropDragImage(myIndex,img,blocks){
+		let styles="top:"+myIndex*40+"px";
+			return "<img class='imagesize overlay' src='" + img + "'"+ " style='"+styles+"'"+
+				" ondrop='drop(event," +myIndex + ","+blocks+")'" + " draggable='true'" + " ondragstart='drag(event," + myIndex + ","+blocks+")'"+ 
+				" ondragover='allowDrop(event)'/>";
+	}	
+	function show(){
+		var str="";
+		str=str+"<div class='outer'>";
+		if(arr6[0].length==0){
+			let styles="top:"+0*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+blank[0]+"' style='"+styles+"'>";
+		}
+		else{
+			for(let i=0;i<arr6[0].length;i++){
+				var a=arr6[0];
+				if(i!=arr6[0].length-1){
+					let styles="top:"+i*40+"px";
+					str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+				}
+				else{
+					str=str+showDropDragImage(i,a[i].image,"0");	// means arr6[0] we are passing
+				}
+			}
+		}
+		
+		str=str+"</div>";
+		//-------------------------
+		str=str+"<div class='outer'>";
+		if(arr6[1].length==0){
+			let styles="top:"+0*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+blank[0]+"' style='"+styles+"'>";
+		}
+		else{
+			for(let i=0;i<arr6[1].length;i++){
+				var a=arr6[1];
+				if(i!=arr6[1].length-1){
+					let styles="top:"+i*40+"px";
+					str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+				}
+				else{
+					str=str+showDropDragImage(i,a[i].image,"1");	// means arr6[1] we are passing
+				}
+			}
+		}
+		str=str+"</div>";
+		
+		//-------------------------
+		str=str+"<div class='outer'>";
+		if(arr6[2].length==0){
+			let styles="top:"+0*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+blank[0]+"' style='"+styles+"'>";
+		}
+		else{
+			for(let i=0;i<arr6[2].length;i++){
+				var a=arr6[2];
+				if(i!=arr6[2].length-1){
+					let styles="top:"+i*40+"px";
+					str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+				}
+				else{
+					str=str+showDropDragImage(i,a[i].image,"2");	// means arr6[2] we are passing
+				}
+			}
+		}
+		str=str+"</div>";
+		//--------------------------
+		str=str+"<div class='outer'>";
+		if(arr6[3].length==0){
+			let styles="top:"+0*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+blank[0]+"' style='"+styles+"'>";
+		}
+		else{
+			for(let i=0;i<arr6[3].length;i++){
+				var a=arr6[3];
+				if(i!=arr6[3].length-1){
+					let styles="top:"+i*40+"px";
+					str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+				}
+				else{
+					str=str+showDropDragImage(i,a[i].image,"3");	// means arr6[3] we are passing
+				}
+			}
+		}
+		
+		str=str+"</div>";
+		//--------------------------
+		str=str+"<div class='outer'>";
+		if(arr6[4].length==0){
+			let styles="top:"+0*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+blank[0]+"' style='"+styles+"'>";
+		}
+		else{
+			for(let i=0;i<arr6[4].length;i++){
+				var a=arr6[4];
+				if(i!=arr6[4].length-1){
+					let styles="top:"+i*40+"px";
+					str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+				}
+				else{
+					str=str+showDropDragImage(i,a[i].image,"4");	// means arr6[4] we are passing
+				}
+			}
+		}
+		str=str+"</div>";
+		//--------------------------
+		str=str+"<div class='outer'>";
+		if(arr6[5].length==0){
+			let styles="top:"+0*40+"px";
+			str=str+"<img class='imagesize overlay' src='"+blank[0]+"' style='"+styles+"'>";
+		}
+		else{
+			for(let i=0;i<arr6[5].length;i++){
+				var a=arr6[5];
+				if(i!=arr6[5].length-1){
+					let styles="top:"+i*40+"px";
+					str=str+"<img class='imagesize overlay' src='"+a[i].image+"' style='"+styles+"'>";
+				}
+				else{
+					str=str+showDropDragImage(i,a[i].image,"5");	// means arr6[5] we are passing
+				}
+			}
+		}
+		str=str+"</div>";
+		//---------------------
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+	}
+	
+</script>
+</head>
+</html>
