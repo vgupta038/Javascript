@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.outer{
+	width:100px;
+	margin-right:80px;
+	position:relative;
+	display:inline-block;
+}
+.imagesize{
+	width:100px;
+	height:200px;
+	border: 2px solid black;
+}
+.overlay{
+	position:absolute;
+	z-index: 2;
+}
+</style>
+<body>
+	<button onclick="start6()">Start Game</button>
+	<div id="show"></div>
+</body>
+<script>
+	var numbersArray=[
+						{value : 1, color : "blue", image : "https://i.ibb.co/1bPyBNx/1-blue.jpg"},
+						{value : 1, color : "green", image : "https://i.ibb.co/5k4cDYm/1-green.jpg"},
+						{value : 1, color : "red", image : "https://i.ibb.co/ZGJDKmt/1-red.jpg"},
+						{value : 2, color : "blue", image : "https://i.ibb.co/S5bRz8n/2-blue.jpg"},
+						{value : 2, color : "green", image : "https://i.ibb.co/gm12HXN/2-green.jpg"},
+						{value : 2, color : "red", image : "https://i.ibb.co/VWnvwqM/2-red.jpg"},
+						{value : 3, color : "blue", image : "https://i.ibb.co/ssCTJkr/3-blue.jpg"},
+						{value : 3, color : "green", image : "https://i.ibb.co/5hGS3bx/3-green.jpg"},
+						{value : 3, color : "red", image : "https://i.ibb.co/cwwg3X4/3-red.jpg"},
+						{value : 4, color : "blue", image : "https://i.ibb.co/3W5YvMg/4-blue.jpg"},
+						{value : 4, color : "green", image : "https://i.ibb.co/W0mTkdc/4-green.jpg"},
+						{value : 4, color : "red", image : "https://i.ibb.co/1Kphcg9/4-red.jpg"},
+						{value : 5, color : "blue", image : "https://i.ibb.co/GVhc56P/5-blue.jpg"},
+						{value : 5, color : "green", image : "https://i.ibb.co/G3zYcMQ/5-green.jpg"},
+						{value : 5, color : "red", image : "https://i.ibb.co/Zzzssy2/5-red.jpg"},
+						{value : 6, color : "blue", image : "https://i.ibb.co/jg2Hgxb/6-blue.jpg"},
+						{value : 6, color : "green", image : "https://i.ibb.co/py7SpN9/6-green.jpg"},
+						{value : 6, color : "red", image : "https://i.ibb.co/7N5bydC/6-red.jpg"},
+						{value : 1, color : "blue", image : "https://i.ibb.co/1bPyBNx/1-blue.jpg"},
+						{value : 1, color : "green", image : "https://i.ibb.co/5k4cDYm/1-green.jpg"},
+						{value : 1, color : "red", image : "https://i.ibb.co/ZGJDKmt/1-red.jpg"},
+						{value : 2, color : "blue", image : "https://i.ibb.co/S5bRz8n/2-blue.jpg"},
+						{value : 2, color : "green", image : "https://i.ibb.co/gm12HXN/2-green.jpg"},
+						{value : 2, color : "red", image : "https://i.ibb.co/VWnvwqM/2-red.jpg"},
+						{value : 3, color : "blue", image : "https://i.ibb.co/ssCTJkr/3-blue.jpg"},
+						{value : 3, color : "green", image : "https://i.ibb.co/5hGS3bx/3-green.jpg"},
+						{value : 3, color : "red", image : "https://i.ibb.co/cwwg3X4/3-red.jpg"},
+						{value : 4, color : "blue", image : "https://i.ibb.co/3W5YvMg/4-blue.jpg"},
+						{value : 4, color : "green", image : "https://i.ibb.co/W0mTkdc/4-green.jpg"},
+						{value : 4, color : "red", image : "https://i.ibb.co/1Kphcg9/4-red.jpg"},
+						{value : 5, color : "blue", image : "https://i.ibb.co/GVhc56P/5-blue.jpg"},
+						{value : 5, color : "green", image : "https://i.ibb.co/G3zYcMQ/5-green.jpg"},
+						{value : 5, color : "red", image : "https://i.ibb.co/Zzzssy2/5-red.jpg"},
+						{value : 6, color : "blue", image : "https://i.ibb.co/jg2Hgxb/6-blue.jpg"},
+						{value : 6, color : "green", image : "https://i.ibb.co/py7SpN9/6-green.jpg"},
+						{value : 6, color : "red", image : "https://i.ibb.co/7N5bydC/6-red.jpg"},
+					];
+	var arr6=[];	// array of size6
+	var blank=[""];
+		
+	function start6(){
+		arr6=[[],[],[],[],[],[]];	// mandatory statement as each time we need fresh cards in this array 
+		var tempNumbers=[...numbersArray];	// duplicate created using spread operator
+		var shuffledNumbers=[];				// created empty array
+	
+		for(var i=0;i<numbersArray.length;i++){
+			var ransome=Math.floor(Math.random() * (tempNumbers.length)); // generate number 
+			shuffledNumbers.push(tempNumbers[ransome]);
+			tempNumbers.splice(ransome,1);	// remove 1 elements from index ransome
+		}
+		var j=0;
+		var count=0;
+		for(var i=0;i<numbersArray.length;i++){
+			arr6[j].push(shuffledNumbers[i]);
+			count++;
+			if(count==6){
+				 count=0; j++;
+			}
+		}
+		show();
+	}
+
+
+	let dragImageIndex=-1;
+	
+	function allowDrop(ev){
+		ev.preventDefault();
+	}
+	var drarr=[];
+	var count=0;
+	function drag(ev,dragIndex, blockname){
+		count=0;
+		drarr=[];
+		blockstr= 'arr6['+blockname+']';
+		dragImageIndex=dragIndex;
+		let jsons=[{name:'arr6[0]', list:arr6[0]},{name:'arr6[1]', list:arr6[1]},{name:'arr6[2]', list:arr6[2]},{name:'arr6[3]', list:arr6[3]},{name:'arr6[4]', list:arr6[4]},{name:'arr6[5]', list:arr6[5]}];
+		let list1;
+		jsons.map(obj=>{
+			if(obj.name===blockstr)
+				list1= obj.list;	// list1 has dragging array
+		});
+		dragBlockColor=list1[dragImageIndex].color;
+		for(var i=dragImageIndex;i<list1.length;i++){
+			drarr.push(list1[i]);
+			if(list1[i].color!=dragBlockColor)
+				count=1;
+		}		
+	}
+	function drop(ev,dropIndex, blockname){
+		ev.preventDefault();
+		let jsons=[{name:'arr6[0]', list:arr6[0]},{name:'arr6[1]', list:arr6[1]},{name:'arr6[2]', list:arr6[2]},{name:'arr6[3]', list:arr6[3]},{name:'arr6[4]', list:arr6[4]},{name:'arr6[5]', list:arr6[5]}];
+		let list1;
+		let list2;
+		blockdrop= 'arr6['+blockname+']';
+		
+		jsons.map(obj=>{
+			if(obj.name===blockstr)
+				list1= obj.list;	// list1 has dragging array
+			if(obj.name===blockdrop)
+				list2= obj.list	// list2 is dropping array
+		});
+		
+		if(list1===list2){}
+		else if(list2.length==0){
+			list2.push(list1[dragImageIndex]);
+			list1.splice(dragImageIndex,1);
+			dragImageIndex=-1;
+		}
+		else if (count==0){
+			var colordrop=list2[list2.length-1].color;	// find color of dropping array last card 
+			if(colordrop===dragBlockColor){
+				for(var i=0;i<drarr.length;i++){
+					list2.push(drarr[i]);
+					list1.splice(dragImageIndex,1);
+				}
+				dragImageIndex=-1;
+			}
+			else{alert("Not of the same color");}
+		}
+		else{
+			alert("Not of the same color");
+		}
+			
+		var n=niceWork1();
+		console.log("n=",n);
+		if(n===6){
+			alert("Nice work");
+		}
+		show();
+	}
+	function niceWork1(){
+		var val=[1,2,3,4,5,6];
+		var niceWork=0;
+		
+		for(var i=0;i<arr6.length;i++){
+			var a=arr6[i];
+			if(a.length!=0&& a.length===6){
+				var color1=a[0].color;
+				var colorcount=0;
+				var mult=0;
+				for(var j=0;j<a.length;j++){
+					if(a[j].color!=color1) colorcount=1;
+					if(a[j].value===val[j]) mult++;
+				}
+				if(mult===6&& colorcount===0)
+					niceWork++;
+			}
+		}		
+	return niceWork;
+}
+
+	function showDropDragImage(myIndex,img,blocks){
+		let styles="top:"+myIndex*40+"px";
+			return "<img class='imagesize overlay' src='" + img + "'"+ " style='"+styles+"'"+
+				" ondrop='drop(event," +myIndex + ","+blocks+")'" + " draggable='true'" + " ondragstart='drag(event," + myIndex + ","+blocks+")'"+ 
+				" ondragover='allowDrop(event)'/>";
+	}	
+	function show(){
+		var str="";		
+		//-------------------
+		for(var i=0;i<arr6.length;i++){
+			str=str+"<div class='outer'>";
+			if(arr6[i].length===0){
+				str=str+showDropDragImage(0,"https://i.ibb.co/7V82p6m/Blank.jpg",i+"");	 // means arr6[] we are passing
+			}	
+			else{
+				var a=arr6[i];
+				for(let j=0;j<a.length;j++){
+						str=str+showDropDragImage(j,a[j].image,i+"");	// means arr6[i] we are passing
+					}
+				}
+			
+			str=str+"</div>";
+		}
+		var div1=document.getElementById("show");
+		div1.innerHTML=str;
+	}
+</script>
+</head>
+</html>
