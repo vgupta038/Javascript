@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Enter number<input type="text" placeholder="enter no" id="txt1"></br>
+	<button onclick="fact()">Submit</button>
+</body>
+<script>
+
+	function fact(){
+		var m=document.getElementById("txt1").value;
+		m=+m;
+		
+		var str="";
+		var mid=m/2;
+		for(var i=1;i<=mid;i++){
+			if(m%i==0)
+				str=str+i+',';
+		}
+		console.log("Factorial: ",str);
+
+	}
+</script>
+</head>
+</html>

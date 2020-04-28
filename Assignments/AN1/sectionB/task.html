@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.divheader{
+	display: inline-block;
+	width: 25%;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+.div1{
+	padding: 5px;
+	margin: 30px;
+	border: 2px solid blue;
+	background-color: lightgrey;
+}
+.divcellodd{
+	display: inline-block;
+	width: 24.5%;
+	border: 1px solid grey;
+	background-color: lightblue;
+	text-align: center;
+}
+.divcelleven{
+	display: inline-block;
+	width: 24.5%;
+	border: 1px solid grey;
+	background-color: lightpink;
+	text-align: center;
+}
+
+</style>
+<body>
+</body>
+<script>
+		var n=7;
+		var ele=document.createElement("div");
+		var str="";
+		str=str+"<div class='divheader'>Number</div>";
+		str=str+"<div class='divheader'>A's</div>";
+		str=str+"<div class='divheader'>B's</div>";
+		str=str+"<div class='divheader'>AB's</div>";
+		var astr="";
+		var bstr="";
+		var abstr="";
+		
+		for(var i=1;i<=n;i++){
+			astr=astr+"A";
+			bstr=bstr+"B";
+			abstr=abstr+"AB";
+			if(i%2==1){
+				str=str+"<div class='divcellodd'>"+i+"</div>";
+				str=str+"<div class='divcellodd'>"+astr+"</div>";
+				str=str+"<div class='divcellodd'>"+bstr+"</div>";
+				str=str+"<div class='divcellodd'>"+abstr+"</div>";
+			}
+			else{
+				str=str+"<div class='divcelleven'>"+i+"</div>";
+				str=str+"<div class='divcelleven'>"+astr+"</div>";
+				str=str+"<div class='divcelleven'>"+bstr+"</div>";
+				str=str+"<div class='divcelleven'>"+abstr+"</div>";
+			}
+			
+		}
+		
+		ele.innerHTML=str;
+		ele.className="div1";
+		document.body.appendChild(ele);
+		
+</script>
+</head>
+</html>

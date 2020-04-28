@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Math:<input type="text" placeholder="math marks" id="mathy"></br>
+	English:<input type="text" placeholder="english marks" id="engy"></br>
+	Science:<input type="text" placeholder="science marks" id="scy"></br>
+	<button onclick="fn()">Submit</button>
+</body>
+<script>
+
+	function fn(){
+		var m=document.getElementById("mathy").value;
+		var e=document.getElementById("engy").value;
+		var s=document.getElementById("scy").value;
+		m=+m;
+		e=+e;
+		s=+s;
+		var marks=[m,e,s];
+		var subject=["Maths","English","Science"];
+		var grades=[];
+		var max=m;
+		var maxsub="Maths";
+		for(var i=0;i<marks.length;i++){
+			if(marks[i]>m){
+				max=marks[i];
+				maxsub=subject[i];
+			}
+			if(marks[i]>=80)
+				grade='A';
+			else if(marks[i]>60 && marks[i]<80)
+				grade='B';
+			else
+				grade='C';
+			grades.push(grade);
+		}
+		console.log("Maths:"+m+" Grades:"+grades[0]);
+		console.log("English:"+e+" Grades:"+grades[1]);
+		console.log("Science:"+s+" Grades:"+grades[2]);
+		console.log("Total Marks:"+(m+e+s));
+		console.log("Highest: ",maxsub);
+
+	}
+</script>
+</head>
+</html>

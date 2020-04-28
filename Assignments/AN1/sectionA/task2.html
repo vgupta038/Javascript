@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Enter the Number:<input type="text" placeholder="enter string" id="txt1"></br>
+	<button onclick="table()">Submit</button>
+</body>
+<script>
+
+	function table(){
+		var ele=document.getElementById("txt1");
+		var str=ele.value;
+		var s="x";
+		var finalstr="";
+		for(var i=0;i<str.length;i++){
+			var ch=str.charAt(i);
+			finalstr=finalstr+ch+s;
+			s=s+"x";
+		}
+		console.log("final string",finalstr);
+	}
+</script>
+</head>
+</html>

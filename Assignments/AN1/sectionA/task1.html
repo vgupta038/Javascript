@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Enter the Number:<input type="text" placeholder="enter number" id="txt1"></br>
+	<button onclick="table()">Submit</button>
+</body>
+<script>
+
+	function table(){
+		var ele=document.getElementById("txt1");
+		var str=ele.value;
+		
+		var n=+str;
+		if(isNaN(n)){
+			console.log("Not a Number");
+		}
+		else{
+			for(var i=1;i<=10;i++){
+				var str=n+"*"+i+"="+(n*i);
+				console.log(str);
+			}
+		}
+	}
+</script>
+</head>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.buttonArgentina{
+	background-color:#AADD00;
+	color: white;
+}
+.buttonBrazil{
+	background-color:#DD00AA;
+	color: white;
+}
+.texttie{
+	background-color:#AADD00;
+	color: white;
+	text-align: left;
+	width:200px;
+}
+.textInitial{
+	background-color:#AAAAAA;
+	color: white;
+	text-align: left;
+	width:200px;
+}
+</style>
+<body>
+	Football Matches</br>
+	Argentina vs Brazil</br>
+	<div id="score"></div>
+	<div id="textmsg"></div>
+	<button class='buttonArgentina' onclick="scoreArgentina()">Argentina scores a goal</button></br>
+	<button class='buttonBrazil' onclick="scoreBrazil()">Brazil scores a goal</button></br>
+	
+</body>
+<script>
+	var argentinaScore=0;
+	var brazilScore=0;
+	document.getElementById("score").innerHTML=argentinaScore+" - "+brazilScore; 
+	var txt=document.getElementById("textmsg");
+	txt.innerHTML="Still Waiting for the first Goal";
+	txt.className="textInitial";
+	function scoreArgentina(){
+		argentinaScore++;
+		document.getElementById("score").innerHTML=argentinaScore+" - "+brazilScore;
+		statement();
+	}
+	function scoreBrazil(){
+		brazilScore++;
+		document.getElementById("score").innerHTML=argentinaScore+" - "+brazilScore;
+		statement();
+	}
+	function statement(){
+		var txt=document.getElementById("textmsg");
+		if(argentinaScore>brazilScore)
+			txt.innerHTML="Argentina is leading by "+(argentinaScore-brazilScore);
+		else if(argentinaScore<brazilScore)
+			txt.innerHTML="Brazil is leading by "+(brazilScore-argentinaScore);
+		else
+			txt.innerHTML="The Scores are tied at "+argentinaScore+"-"+brazilScore;
+		txt.className="texttie";
+	}
+	
+</script>
+
+</html>
