@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.divheader{
+	display: inline-block;
+	width: 11%;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+.lightgreen{
+	display:inline-block;
+	width:11%;
+	text-align:center;
+	background-color:lightgreen;
+	color:black;
+	border: solid black;
+}
+.lightpink{
+	display:inline-block;
+	width:11%;
+	text-align:center;
+	background-color:lightpink;
+	color:black;
+	border: solid black;
+}
+.normal{
+	display:inline-block;
+	width:11%;
+	text-align:center;
+	background-color:white;
+	color:black;
+	border: solid black;
+}
+</style>
+<body>
+	Name:<input type="text" id="name1"><br>
+	Math:<input type="text" id="mathy"><br>
+	English:<input type="text" id="engy"><br>
+	Computer:<input type="text" id="compy"><br>
+	<button id="btn1" onclick="add()">Add Details</button>
+	<div id="details"></div>
+</body>
+<script>
+	var prod1={"name":"Jack","maths":81,"eng":85,"comp":66};
+	var prod2={"name":"Tim","maths":77,"eng":80,"comp":76};
+	var prod3={"name":"Sam","maths":48,"eng":22,"comp":41};
+	var prod4={"name":"Mary","maths":89,"eng":73,"comp":59};
+	var products=[prod1,prod2,prod3,prod4];
+	showProducts();
+	
+	
+	function getIndex(name1){
+		var len=products.length;
+		var index=-1;
+		for(var i=0;i<len;i++){
+			if(products[i].name===name1)
+				index=i;
+		}
+		return index;
+	}
+	
+	function edit(index){
+		console.log("edit index",index);
+		var prod=products[index];
+		var name1=document.getElementById("name1");
+		var math1=document.getElementById("mathy");
+		var eng1=document.getElementById("engy");
+		var comp1=document.getElementById("compy");
+		var btn1=document.getElementById("btn1");
+		name1.value=prod.name;		// appear on screen
+		math1.value=prod.maths;	// appear on screen
+		eng1.value=prod.eng;	// appear on screen
+		comp1.value=prod.comp;	// appear on screen
+		btn1.innerText="Update";	// name of button change to update from add
+		btn1.setAttribute("onclick","editProduct("+index+")");
+	}
+	function editProduct(index){
+		var name1=document.getElementById("name1");
+		var math1=document.getElementById("mathy");
+		var eng1=document.getElementById("engy");
+		var comp1=document.getElementById("compy");
+		var prod={"name":name1.value,"maths":math1.value,"eng":eng1.value,"comp":comp1.value};
+		name1.value="";
+		math1.value="";
+		eng1.value="";	
+		comp1.value="";
+		products[index]=prod;
+		var btn1=document.getElementById("btn1");
+		btn1.innerText="Add";	// name of button change to update from add
+		btn1.setAttribute("onclick","add()");
+		showProducts();	// updating our products array
+		
+	}
+	function remove(index){
+		console.log("remove index",index);
+		products.splice(index,1);
+		showProducts();
+	}
+	function add(){
+		var name1=document.getElementById("name1");
+		var math1=document.getElementById("mathy");
+		var eng1=document.getElementById("engy");
+		var comp1=document.getElementById("compy");
+		var prod={"name":name1.value,"maths":math1.value,"eng":eng1.value,"comp":comp1.value};
+		if(getIndex(name1.value)<0){
+			products.push(prod);
+			showProducts();	// updating our products array
+		}
+		else{
+			alert("Name Already Exists");
+		}
+		name1.value="";
+		math1.value="";	
+		eng1.value="";	
+		comp1.value="";	
+	}
+	
+	function showProducts(){
+		var len=products.length;
+		var str="";
+		str=str+"<div class='divheader'>Name</div>";
+		str=str+"<div class='divheader'>Maths</div>";
+		str=str+"<div class='divheader'>English</div>";
+		str=str+"<div class='divheader'>Computers</div>";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			
+			var name1="<div class='normal'>"+pr.name+"</div>";
+			var val=marksClass(pr.maths); 
+				var math1="<div class='"+val+"'>"+pr.maths+"</div>";
+			val=marksClass(pr.eng);
+				var eng1="<div class='"+val+"'>"+pr.eng+"</div>";
+			val=marksClass(pr.comp);
+				var comp1="<div class='"+val+"'>"+pr.comp+"</div>";
+			
+			var btn1="<div class='normal'><button onclick=remove("+i+")>Remove</button></div>";
+			var btn2="<div class='normal'><button onclick=edit("+i+")>Edit</button></div>";
+			var row="<div>"+name1+math1+eng1+comp1+btn1+btn2+"</div>";
+			str=str+row;
+		}
+		var table=document.getElementById("details");
+		table.innerHTML=str;
+	}
+	
+	function marksClass(marks){
+			console.log("marks",marks);
+			if(marks>=75)
+				return "lightgreen";
+			else if(marks<40)
+				return "lightpink";
+			return "normal";
+	}
+</script>
+</head>
+</html>

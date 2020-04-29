@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.divheader{
+	display: inline-block;
+	width: 11%;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+.lightgreen{
+	display:inline-block;
+	width:11%;
+	text-align:center;
+	background-color:lightgreen;
+	color:black;
+	border: solid black;
+}
+.green{
+	display:inline-block;
+	width:11%;
+	text-align:center;
+	background-color:green;
+	color:black;
+	border: solid black;
+}
+.lightpink{
+	display:inline-block;
+	width:11%;
+	text-align:center;
+	background-color:lightpink;
+	color:black;
+	border: solid black;
+}
+.normal{
+	display:inline-block;
+	width:11%;
+	text-align:center;
+	background-color:white;
+	color:black;
+	border: solid black;
+}
+</style>
+<body>
+	Product Name:<input type="text" id="name1"><br>
+	Sales in 2015:<input type="text" id="2015"><br>
+	Sales in 2016:<input type="text" id="2016"><br>
+	Sales in 2017:<input type="text" id="2017"><br>
+	Sales in 2018:<input type="text" id="2018"><br>
+	<button id="btn1" onclick="add()">Add Product</button>
+	<div id="details"></div>
+</body>
+<script>
+	var prod1={name: "CK724R", s2015: 77, s2016: 80, s2017: 76, s2018: 62};
+	var prod2={name: "AH224T", s2015: 89, s2016: 73, s2017: 59, s2018: 42};
+	var prod3={name: "PB155D", s2015: 39, s2016: 54, s2017: 37, s2018: 33};
+	var prod4={name: "BD110N", s2015: 48, s2016: 22, s2017: 41, s2018: 45};
+	var products=[prod1,prod2,prod3,prod4];
+	showProducts();
+	
+	
+	function getIndex(name1){
+		var len=products.length;
+		var index=-1;
+		for(var i=0;i<len;i++){
+			if(products[i].name===name1)
+				index=i;
+		}
+		return index;
+	}
+
+	function remove(index){
+		console.log("remove index",index);
+		products.splice(index,1);
+		showProducts();
+	}
+	function add(){
+		var name1=document.getElementById("name1");
+		var y2015=document.getElementById("2015");
+		var y2016=document.getElementById("2016");
+		var y2017=document.getElementById("2017");
+		var y2018=document.getElementById("2018");
+		var prod={"name":name1.value,"s2015":y2015.value,"s2016":y2016.value,"s2017":y2017.value,"s2018":y2018.value};
+		if(getIndex(name1.value)<0){
+			products.push(prod);
+			showProducts();	// updating our products array
+		}
+		else{
+			alert("Product Already Exists");
+		}
+		name1.value="";
+		y2015.value="";	
+		y2016.value="";	
+		y2017.value="";
+		y2018.value="";
+	}
+	
+	function showProducts(){
+		//---------sorting in descending order 
+			for(var i=0;i<products.length;i++){
+				var maxIndex=i;
+				var sum=products[i].s2015+products[i].s2016+products[i].s2017+products[i].s2018;
+				for(var j=i+1;j<products.length;j++){
+					var x=products[j].s2015+products[j].s2016+products[j].s2017+products[j].s2018;
+					if(x>sum){
+						maxIndex=j;
+						sum=x;
+					}
+				}
+				var val=products[i];
+				products[i]=products[maxIndex];
+				products[maxIndex]=val;			
+			}
+		// sorting ends-----------
+		var len=products.length;
+		var str="";
+		str=str+"<div class='divheader'>Rank</div>";
+		str=str+"<div class='divheader'>Name</div>";
+		str=str+"<div class='divheader'>2015</div>";
+		str=str+"<div class='divheader'>2016</div>";
+		str=str+"<div class='divheader'>2017</div>";
+		str=str+"<div class='divheader'>2018</div>";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			var a1=[pr.s2015,pr.s2016,pr.s2017,pr.s2018];
+			var max=a1[0]; var sum=0;
+			for(var j=0;j<a1.length;j++){
+				sum=sum+a1[j];
+				if(a1[j]>max)
+					max=a1[j];
+			}	// found max array
+			var average=sum/4;	// found average
+			
+			var rank1="<div class='normal'>"+(i+1)+"</div>"; 
+			var name1="<div class='normal'>"+pr.name+"</div>"; 
+			var st="";
+			var s="";
+			for(var j=0;j<a1.length;j++){
+				if(a1[j]===max)
+					s="<div class='green'>"+a1[j]+"</div>";
+				else if(a1[j]>=average)
+					s="<div class='lightgreen'>"+a1[j]+"</div>";
+				else if(a1[j]<average)
+					s="<div class='lightpink'>"+a1[j]+"</div>";
+				st=st+s;
+			}
+			var btn1="<div class='normal'><button onclick=remove("+i+")>Remove</button></div>";
+			var row="<div>"+rank1+name1+st+btn1+"</div>";
+			str=str+row;
+		}
+		var table=document.getElementById("details");
+		table.innerHTML=str;
+	}
+</script>
+</head>
+</html>

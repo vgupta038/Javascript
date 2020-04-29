@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Enter the String:<input type="text" placeholder="enter word" id="txt1"></br>
+	<button onclick="word()">Submit</button>
+</body>
+<script>
+
+	function word(){
+		var arr=[];
+		var ele=document.getElementById("txt1");
+		var str=ele.value;
+		var s="";
+		console.log(str.length);
+		var len=str.length;
+		for(var i=0;i<len;i++){
+			var ch=str.charAt(i);
+			if(ch!=' '){
+				s=s+ch;
+			}
+			else{
+				arr.push(s);
+				s="";
+			}
+		}
+		
+		arr.push(s);
+		console.log("Number of words= ",arr.length);
+		for(var i=0;i<arr.length;i++){
+			console.log((i+1)+". ",arr[i]);
+		}
+		
+	}
+</script>
+</head>
+</html>

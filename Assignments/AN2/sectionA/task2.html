@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Enter the String:<input type="text" placeholder="enter word" id="txt1"></br>
+	<button onclick="word()">Submit</button>
+</body>
+<script>
+
+	function word(){
+		var ele=document.getElementById("txt1");
+		var str=ele.value;
+		var len=str.length;
+		var s1="";
+		var s2="";
+		for(var i=0;i<len;i++){
+			var ch=str.charAt(i);
+			if(ch!='@')
+				s1=s1+ch;
+			else{
+				i++;
+				break;
+			}
+		}
+		
+		for(;i<len;i++){
+			var ch=str.charAt(i);
+			if(ch!='.')
+				s2=s2+ch;
+			else{
+				break;
+			}
+		}
+		if(s1.length>0&& s2.length>0){
+			var s=s1+"@"+s2+".com";
+			if(s===str)
+				console.log("Proper Email Id");
+			else
+				console.log("Invalid Email Id");
+		}
+		else
+			console.log("Invalid Email Id");
+	}
+		
+</script>
+</head>
+</html>
