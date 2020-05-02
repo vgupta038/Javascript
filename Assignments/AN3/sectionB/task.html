@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.cellgrey{
+	display:inline-block;
+	width: 30%;
+	text-align: center;
+	background-color:grey;
+	color: white;
+	margin:1px;
+}
+.cellred{
+	display:inline-block;
+	width: 30%;
+	text-align: center;
+	background-color:red;
+	color: white;
+	margin:1px;
+}
+.cellgreen{
+	display:inline-block;
+	width: 30%;
+	text-align: center;
+	background-color:lightgreen;
+	color: white;
+	margin:1px;
+}
+.header{
+	display:inline-block;
+	width: 30%;
+	text-align: center;
+	background-color:black;
+	color: white;
+	margin:1px;
+}
+</style>
+<body>
+	Name:<input type="text" id="name1">Marks:<input type="text" id="marks1"><button onclick="add()">Add</button></br></br>
+	<div id="filterDetails"></div></br></br>
+	<div id="products"></div>
+</body>
+<script>
+	var products=[];
+	var productChange=products;
+	
+	
+	function add(){
+		var name1=document.getElementById("name1").value;
+		var marks1=document.getElementById("marks1").value;
+		marks1=+marks1;	// important to do 
+		var json1={"name":name1,"marks":marks1};
+		products.push(json1);
+		var str="Filter Marks:"+" <input type=text id='asc1'><button onclick=byFilter()>Filter</button>";
+		var ele=document.getElementById("filterDetails");
+		ele.innerHTML=str;
+		show();
+	}
+	function show(){
+		// sorting in ascending order
+		for(var i=0;i<products.length;i++){
+				var minIndex=i;
+				var sum=products[i].marks;
+				for(var j=i+1;j<products.length;j++){
+					var x=products[j].marks;
+					if(x<sum){
+						minIndex=j;
+						sum=x;
+					}
+				}
+				var val=products[i];
+				products[i]=products[minIndex];
+				products[minIndex]=val;	
+			}
+		// sorting ends
+		console.log("sorting ",products);
+		var len=products.length;
+		var str="";
+		str+="<div class='header'>Name</div>";
+		str+="<div class='header'>Marks</div>";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			if(pr.marks>60){
+				var name1="<div class='cellgreen'>"+pr.name+"</div>";
+				var marks1="<div class='cellgreen'>"+pr.marks+"</div>";
+				var row="<div>"+name1+marks1+"</div>";
+				str=str+row;
+			}
+			else if(pr.marks>40 && pr.marks<=60){
+				var name1="<div class='cellgrey'>"+pr.name+"</div>";
+				var marks1="<div class='cellgrey'>"+pr.marks+"</div>";
+				var row="<div>"+name1+marks1+"</div>";
+				str=str+row;
+			}
+			else{
+				var name1="<div class='cellred'>"+pr.name+"</div>";
+				var marks1="<div class='cellred'>"+pr.marks+"</div>";
+				var row="<div>"+name1+marks1+"</div>";
+				str=str+row;
+			}
+		}
+		var element=document.getElementById("products");
+		element.innerHTML=str;
+		
+		document.getElementById("name1").value="";
+		document.getElementById("marks1").value="";
+	}
+	
+	function byFilter(){
+		var x=document.getElementById("asc1").value;
+		products=productChange.filter(p=>filterGreater(p,x));
+		show();
+	}
+	function filterGreater(p,x){
+		if(p.marks>x)
+			return true;
+		return false;
+	}
+	
+	
+</script>
+</head>
+</html>

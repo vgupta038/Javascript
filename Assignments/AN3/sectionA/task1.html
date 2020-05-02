@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Enter the String:<input type="text" placeholder="enter word" id="txt1"></br>
+	Enter the String:<input type="text" placeholder="enter word" id="str1"></br>
+	<button onclick="word()">Submit</button>
+</body>
+<script>
+
+	function word(){
+		var arr=[];
+		var ele=document.getElementById("txt1");
+		var str=ele.value;
+		var s="";
+		var len=str.length;
+		for(var i=0;i<len;i++){
+			var ch=str.charAt(i);
+			if(ch!=' '){
+				s=s+ch;
+			}
+			else{
+				arr.push(s);
+				s="";
+			}
+		}
+		arr.push(s);
+		console.log("ar1 is ",arr);	
+		
+		var ele=document.getElementById("str1").value;
+		var f1=arr.filter(n=>filterLonger(n,ele));
+		console.log("F1 is ",f1);
+		
+		function filterLonger(str,ele){
+			if(str.length>ele.length)
+				return true;
+			return false;
+		}
+		var f2=arr.filter(n=>filterSame(n,ele));
+		console.log("F2 is ",f2);
+		
+		function filterSame(str,ele){
+			if(str===ele)
+				return true;
+			return false;
+		}
+		var f3=arr.filter(n=>filterStart(n,ele));
+		console.log("F3 is ",f3);
+		
+		function filterStart(str,ele){
+			if(str.length<ele.length)
+				return false;
+			for(var i=0;i<ele.length;i++){
+				if(str.charAt(i)!=ele.charAt(i))
+					return false;
+			}
+			return true;
+		}
+		var f4=arr.filter(n=>filterEnd(n,ele));
+		console.log("F4 is ",f4);
+		
+		function filterEnd(str,ele){
+			if(str.length<ele.length)
+				return false;
+			var j=str.length-1;
+			for(var i=ele.length-1;i>=0;i--){
+				if(str.charAt(j)!=ele.charAt(i))
+					return false;
+				j--;
+			}
+			return true;
+		}
+	}
+</script>
+</head>
+</html>

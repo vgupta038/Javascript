@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+	Enter the String:<input type="text" placeholder="enter maxno" id="maxNum"></br>
+	Enter the String:<input type="text" placeholder="enter no" id="n1"></br>
+	<button onclick="word()">Submit</button>
+</body>
+<script>
+
+	function word(){
+		var arr=[];
+		var str=document.getElementById("maxNum").value;
+		var len=+str;
+		var ele=document.getElementById("n1").value;
+		var no=+ele;
+		if(isNaN(len)||isNaN(no)){
+			alert("Not a Number"); 
+		}
+		for(var i=1;i<=len;i++){
+			arr.push(i);
+		}
+		console.log("ar1 is ",arr);	
+		
+		var f1=arr.filter(n=>filterDiv(n,no));
+		console.log("F1 is ",f1);
+		
+		function filterDiv(n,no){
+			if(n%no==0)
+				return true;
+			return false;
+		}
+		
+		var f2=arr.filter(n=>filterNotDiv(n,no));
+		console.log("F2 is ",f2);
+		
+		function filterNotDiv(n,no){
+			if(n%no!=0)
+				return true;
+			return false;
+		}
+		
+		var f3=arr.filter(n=>filterDivideno(n,no));
+		console.log("F3 is ",f3);
+		
+		function filterDivideno(n,no){
+			if(no%n==0)
+				return true;
+			return false;
+		}
+		
+		var f4=arr.filter(n=>filterBetween(n,no));
+		console.log("F4 is ",f4);
+		
+		function filterBetween(n,no){
+			if(n>no && n<(2*no))
+				return true;
+			return false;
+		}
+	}
+</script>
+</head>
+</html>

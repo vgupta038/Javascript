@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.cellgreen{
+	display:inline-block;
+	width: 20%;
+	text-align: center;
+	background-color:lightgrey;
+	color: white;
+	margin:1px;
+}
+.header{
+	display:inline-block;
+	width: 20%;
+	text-align: center;
+	background-color:black;
+	color: white;
+	margin:1px;
+}
+.cell02 {
+  background-color: black;
+  cursor: pointer;
+  display: inline-block;
+}
+
+
+</style>
+<body>
+	Name:<input type="text" id="name1">
+	Price:<input type="text" id="price1">
+	Quantity:<input type="text" id="quantity1">
+	Store:<input type="text" id="store1">
+	<button onclick="add()">Add Products</button>
+	<div id="productsA"></div>
+	<div id="productsB"></div>
+</body>
+<script>
+	var productsA=[];
+	var productsB=[];	
+	
+	function add(){
+		var name1=document.getElementById("name1").value;
+		var price1=document.getElementById("price1").value;
+		var quantity1=document.getElementById("quantity1").value;
+		var store1=document.getElementById("store1").value;
+		price1=+price1;
+		quantity1=+quantity1;
+		if(name1.length<5)
+			alert("Name should be minimum 5 length");
+		else if(price1<=0||quantity1<=0)
+			alert("Should be greater than 0");
+		else if(store1.length>1||(store1.charAt(0)!='A'&&store1.charAt(0)!='B'))
+			alert("Store can be only A or B");
+		else{
+			var json1={"name":name1,"price":price1,"quantity":quantity1,"store":store1};
+			if(store1=='A'){
+				productsA.push(json1);
+			}
+			else{
+				productsB.push(json1);
+			}
+			show(productsA,'A');
+			show(productsB,'B');
+		}
+	}
+	function show(products,ch){
+		var len=products.length;
+		var str="";
+		str+="<div class='header'>Name</div>";
+		str+="<div class='header'>Price</div>";
+		str+="<div class='header'>Quantity</div>";
+		str+="<div class='header'>Sell</div>";
+		for(var i=0;i<len;i++){
+			var pr=products[i];
+			if(pr.quantity!=0){
+				var name1="<div class='cellgreen'>"+pr.name+"</div>";
+				var price1="<div class='cellgreen'>"+pr.price+"</div>";
+				var quantity1="<div class='cellgreen'>"+pr.quantity+"</div>";
+				var btn1="<div class='cellgreen'><div class='cell02' onclick=clicked("+i+",'"+ch+"')>sell</div></div>";
+				var row="<div>"+name1+price1+quantity1+btn1+"</div>";
+				str=str+row;
+			}
+		}
+		if(ch=='A'){
+			var element=document.getElementById("productsA");
+			element.innerHTML="StoreA:"+"</br>"+str;
+		}
+		else{
+			var element=document.getElementById("productsB");
+			element.innerHTML="StoreB:"+"</br>"+str;
+		}
+	}
+		
+		function clicked(i,ch){
+			if(ch=='A')
+				productsA[i].quantity=productsA[i].quantity-1;
+			else
+				productsB[i].quantity=productsB[i].quantity-1;
+			show(productsA,'A');
+			show(productsB,'B');
+		}
+	
+</script>
+</head>
+</html>
