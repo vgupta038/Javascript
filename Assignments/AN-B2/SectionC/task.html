@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.button{
+	background-color: black;
+	color: white;
+}
+.button:hover{
+	background-color:red;
+}
+.header{
+	display:inline-block;
+	width: 12%;
+	text-align: center;
+	background-color:lightblue;
+	color: white;
+}
+.edit {
+  background-color: black;
+  display: inline-block;
+  color:white;
+}
+.edit:hover{
+	background-color:red;
+}
+.cellpink{
+	display:inline-block;
+	width: 12%;
+	text-align: center;
+	background-color:lightpink;
+	color: black;
+}
+.cellgreen{
+	display:inline-block;
+	width: 12%;
+	text-align: center;
+	background-color:lightgreen;
+	color: black;
+}
+</style>
+<body>
+	<div id="root">
+	</div>
+	<div id="root2">
+	</div>
+</body>
+<script>
+	var prodMaster=[
+						{"prodcode":"PEP122","prodname":"Pepsi","price":12,"category":"Food","offer":"10%"},
+						{"prodcode":"COK238","prodname":"Coke","price":15,"category":"Food","offer":"15%"},
+						{"prodcode":"MIR411","prodname":"Mirinda","price":30,"category":"Food","offer":"20%"},
+						{"prodcode":"RB0277","prodname":"Red Bull","price":80,"category":"Food","offer":"None"},
+						{"prodcode":"LUX831","prodname":"Lux","price":10,"category":"Soap","offer":"15%"},
+						{"prodcode":"DOV672","prodname":"Dove","price":25,"category":"Soap","offer":"20%"},
+						{"prodcode":"DET810","prodname":"Dettol","price":15,"category":"Soap","offer":"None"},
+						{"prodcode":"PAN590","prodname":"Pantene","price":60,"category":"Shampoo","offer":"None"},
+						{"prodcode":"SUN677","prodname":"Sunsilk","price":48,"category":"Shampoo","offer":"15%"},
+						{"prodcode":"GAR004","prodname":"Garnier","price":75,"category":"Shampoo","offer":"10%"}
+					];
+	
+var orderMaster=[
+					{"custname":"Jack Smith","mobile":"425361434","location":"Sector 14","slot":"12PM-2PM","value":72.6,
+						"items":[{"prodcode":"PEP122","quantity":2},{"prodcode":"COK238","quantity":4}]},
+					{"custname":"Mary Gomes","mobile":"723476123","location":"Sector 22","slot":"4PM-6PM","value":130.60,
+						"items":[{"prodcode":"SUN677","quantity":2},{"prodcode":"LUX831","quantity":4},{"prodcode":"DET810","quantity":1}]},
+					{"custname":"Tim May","mobile":"835099614","location":"Pioneer Chowk","slot":"Before10AM","value":705,
+						"items":[{"prodcode":"GAR004","quantity":6},{"prodcode":"RB0277","quantity":3},{"prodcode":"MIR411","quantity":2}]}
+				];
+		var locations=['Sector 14A','Sector 15B','Sector 22','Pioneer Chowk'];
+		var slots=['Before 10AM','10AM-12PM','12PM-2PM','2PM-4PM','4PM-6PM','After 6PM'];
+		var quantity=[1,2,3,4,5,6];
+		var orders=[];
+	start();
+	function start(){
+		var str="<h1 align='left'>Store Managment System</h1>";
+		str+="<button class='button' onclick='allProduct()'>Products</button>";
+		str+="<button class='button' onclick='newOrder()'>Enter Order</button>";
+		str+="<button class='button' onclick='allOrder()'>All Orders</button>"+"</br>";
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+	}
+	function allProduct(){
+		var str="";
+		var str="<h1 align='left'>Store Managment System</h1>";
+		str+="<button class='button' onclick=allProduct()>Products</button>";
+		str+="<button class='button' onclick=newOrder()>Enter Order</button>";
+		str+="<button class='button' onclick=allOrder()>All Orders</button>"+"</br>";
+		
+		var len=prodMaster.length;
+		str+="<div class='header'>Code</div>";
+		str+="<div class='header'>Name</div>";
+		str+="<div class='header'>Price</div>";
+		str+="<div class='header'>Category</div>";
+		str+="<div class='header'>Discount</div>";
+		
+		for(var i=0;i<len;i++){
+			var prod=prodMaster[i];
+			if(i%2==0){
+				var code1="<div class='cellgreen'>"+prod.prodcode+"</div>";
+				var name1="<div class='cellgreen'>"+prod.prodname+"</div>";
+				var price1="<div class='cellgreen'>"+prod.price+"</div>";
+				var category1="<div class='cellgreen'>"+prod.category+"</div>";
+				var offer1="<div class='cellgreen'>"+prod.offer+"</div>";
+				var row="<div>"+code1+name1+price1+category1+offer1+"</div>";
+				str=str+row;
+			}
+			else{
+				var code1="<div class='cellpink'>"+prod.prodcode+"</div>";
+				var name1="<div class='cellpink'>"+prod.prodname+"</div>";
+				var price1="<div class='cellpink'>"+prod.price+"</div>";
+				var category1="<div class='cellpink'>"+prod.category+"</div>";
+				var offer1="<div class='cellpink'>"+prod.offer+"</div>";
+				var row="<div>"+code1+name1+price1+category1+offer1+"</div>";
+				str=str+row;
+			}
+		}
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+		var ele=document.getElementById("root2");
+		ele.innerHTML="";
+	}
+		
+	function allOrder(){
+		var str="";
+		var str="<h1 align='left'>Store Managment System</h1>";
+		str+="<button class='button' onclick=allProduct()>Products</button>";
+		str+="<button class='button' onclick=newOrder()>Enter Order</button>";
+		str+="<button class='button' onclick=allOrder()>All Orders</button>"+"</br></br>";
+		var sttotal="";
+		var len=orderMaster.length;
+		for(var i=0;i<len;i++){
+			var s="";
+			var cust=orderMaster[i];
+			var newarr=cust.items.map(n=>filterArray(n));
+			var totalQuantity=cust.items.reduce((acc,curr)=>findSum(acc,curr),0);
+			s+="Customer Name: "+cust.custname+", Mobile: "+cust.mobile+", Location: "+cust.location+", Delievery Slot: "+cust.slot+"</br>Order Value: "+cust.value+", Number of items: "+totalQuantity+"</br>";
+			s+="<div class='header'>Code</div>";
+			s+="<div class='header'>Name</div>";
+			s+="<div class='header'>Price</div>";
+			s+="<div class='header'>Quantity</div>";
+			s+="<div class='header'>Discount</div>";
+			s+="<div class='header'>Net Amount</div>"+"</br>";
+			for(var j=0;j<newarr.length;j++){
+				var custitems=newarr[j];
+				var code1="<div class='cellgreen'>"+custitems.prodcode+"</div>";
+				var name1="<div class='cellgreen'>"+custitems.prodname+"</div>";
+				var price1="<div class='cellgreen'>"+custitems.prodprice+"</div>";
+				var quantity1="<div class='cellgreen'>"+custitems.prodquantity+"</div>";
+				var offer1="<div class='cellgreen'>"+custitems.prodoffer+"</div>";
+				var netamount1="<div class='cellgreen'>"+custitems.netamount+"</div>";
+				var row="<div>"+code1+name1+price1+quantity1+offer1+netamount1+"</div>";
+				s=s+row;
+			}
+			sttotal+=s+"</br></br>";
+		}
+		var ele=document.getElementById("root");
+		ele.innerHTML=str+sttotal;
+		var ele=document.getElementById("root2");
+		ele.innerHTML="";
+	}
+	function findSum(acc,curr){
+		return acc+curr.quantity;
+	}
+	function filterArray(n){
+		var index=prodMaster.findIndex(p=>findIndexing(p,n));
+		//---------------------
+		var multiply=prodMaster[index].price*n.quantity;
+		if(prodMaster[index].offer!='None'){	
+			var off=prodMaster[index].offer.substring(0,prodMaster[index].offer.length-1);
+			off=+off;
+			var reducedPrice=multiply-(multiply*(off/100));
+		}
+		else{
+			reducedPrice=multiply;
+		}
+		var json1={"prodcode":n.prodcode,"prodname":prodMaster[index].prodname,"prodprice":prodMaster[index].price,"prodquantity":n.quantity,"prodoffer":prodMaster[index].offer,"netamount":reducedPrice};
+		return json1;
+	}
+	function findIndexing(p,n){
+		return (p.prodcode===n.prodcode);
+	}
+	function newOrder(){
+		var str="";
+		var str="<h1 align='left'>Store Managment System</h1>";
+		str+="<button class='button' onclick=allProduct()>Products</button>";
+		str+="<button class='button' onclick=newOrder()>Enter Order</button>";
+		str+="<button class='button' onclick=allOrder()>All Orders</button>"+"</br></br>";
+		
+		str+="<table align='center'>";
+		str+="<tr><td>Customer Name:</td><td><input type='text' id='name1'>"+"</td></tr>";
+		str+="<tr><td>Mobile Number:</td><td><input type='text' id='number1'>"+"</td></tr>";
+		str+="<tr><td>Location:</td><td><select id='dd01'>"+
+					"<option value='cd'>Choose Location</option>";
+			var options="";
+			for(var i=0;i<locations.length;i++){
+				var option="<option value='"+locations[i]+"'>"+locations[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+"</td></tr>";
+		//-----------------------------------
+		str+="<tr><td>Delievery Slot:</td><td><select id='dd02'>"+
+					"<option value='cd'>Choose Delievery Slots</option>";
+			options="";
+			for(var i=0;i<slots.length;i++){
+				var option="<option value='"+slots[i]+"'>"+slots[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+"</td></tr>";
+		//-----------------------------------
+		str+="<tr><td>Add to order:</td><td><select id='dd03'>"+
+					"<option value='cd'>Choose Product</option>";
+			options="";
+			for(var i=0;i<prodMaster.length;i++){
+				var option="<option value='"+prodMaster[i].prodcode+"'>"+prodMaster[i].prodcode+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>";
+		
+		str+="<select id='dd04'>"+
+					"<option value='cd'>Select Quantity</option>";
+			options="";
+			for(var i=0;i<quantity.length;i++){
+				var option="<option value='"+quantity[i]+"'>"+quantity[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>";
+		str+="<button class='edit' onclick='addToOrder()'>Add to Order</button></td></tr>";
+		//----------------------------------------
+		str+="<tr><td></td>";
+		str+="<td><button class='edit' onclick='orderComplete()'>Order Complete</button>";
+		str+="<button class='edit' onclick='cancelOrder()'>cancel Order</button></td></tr>";
+		str+="</table>"+"</br>";
+		
+		str+="<div class='header'>Code</div>";
+		str+="<div class='header'>Name</div>";
+		str+="<div class='header'>Price</div>";
+		str+="<div class='header'>Quantity</div>";
+		str+="<div class='header'>Discount</div>";
+		str+="<div class='header'>Net Amount</div>";
+		str+="<div class='header'>Remove</div>"+"</br>";
+		
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+		var ele=document.getElementById("root2");
+		ele.innerHTML="";
+	}
+	function addToOrder(){
+			var code=document.getElementById("dd03").value;
+			var quantity=document.getElementById("dd04").value;
+			quantity=+quantity;
+			var a1=[{"prodcode":code,"quantity":quantity}];
+			var newarr=a1.map(n=>filterArray(n));
+			var codeIndex=orders.findIndex(p=>p.prodcode===code);
+			if(codeIndex===-1)
+				orders.push(newarr[0]);
+			else{
+				orders[codeIndex].prodquantity=orders[codeIndex].prodquantity+quantity;
+				var multiply=orders[codeIndex].prodquantity*orders[codeIndex].prodprice;
+				if(orders[codeIndex].prodoffer!='None'){	
+					var off=orders[codeIndex].prodoffer.substring(0,orders[codeIndex].prodoffer.length-1);
+					off=+off;
+					orders[codeIndex].netamount=multiply-(multiply*(off/100));
+				}
+				else{
+					orders[codeIndex].netamount=multiply;
+				}
+			}
+			showOrder();
+	}
+	function remove(i){
+		orders.splice(i,1);
+		showOrder();
+	}
+	function showOrder(){
+		var str="";
+		for(var i=0;i<orders.length;i++){
+			var custitems=orders[i];
+			var code1="<div class='cellgreen'>"+custitems.prodcode+"</div>";
+			var name1="<div class='cellgreen'>"+custitems.prodname+"</div>";
+			var price1="<div class='cellgreen'>"+custitems.prodprice+"</div>";
+			var quantity1="<div class='cellgreen'>"+custitems.prodquantity+"</div>";
+			var offer1="<div class='cellgreen'>"+custitems.prodoffer+"</div>";
+			var netamount1="<div class='cellgreen'>"+custitems.netamount+"</div>";
+			var btn1="<div class='cellgreen'><button class='edit' onclick=remove("+i+")>Remove</button></div>";
+			var row="<div>"+code1+name1+price1+quantity1+offer1+netamount1+btn1+"</div>";
+			str=str+row;
+		}
+		var ele=document.getElementById("root2");
+		ele.innerHTML=str;	
+	}
+	
+	function orderComplete(){
+		var name1=document.getElementById("name1").value;
+		var number1=document.getElementById("number1").value;
+		var location=document.getElementById("dd01").value;
+		var slot=document.getElementById("dd02").value;
+		if(name1.length===0){
+			alert("Please Enter Name!");
+			document.getElementById("name1").value="";
+		}
+		else if(name1.length<5){
+			alert("Name should have minimum 5 characters!");
+			document.getElementById("name1").value="";
+		}
+		else if(number1.length!=10){
+			alert("Mobile Number should have 10 chars only!");
+			document.getElementById("number1").value="";
+		}
+		else if(isNaN(+number1)){
+			alert("Mobile Number should have digits only!");
+			document.getElementById("number1").value="";		
+		}
+		else if(location==="cd"){
+			alert("Please Enter Location!");
+		}
+		else if(slot==="cd"){
+			alert("Please Enter slot!");
+		}
+		else if(orders.length===0){
+			alert("Order is Empty!");
+		}
+		else{
+			var items=orders.map(n=>reduceField(n));
+			var value=orders.reduce((acc,curr)=>fnsum(acc,curr),0);
+			var json1={"custname":name1,"mobile":number1,"location":location,"slot":slot,"value":value,"items":items};
+			orderMaster.push(json1);
+			allOrder();
+		}
+	}
+	function fnsum(acc,curr){
+		return acc+curr.netamount;
+	}
+	
+	function reduceField(n){
+		var json1={"prodcode":n.prodcode,"quantity":n.prodquantity};
+		return json1;
+	}
+	function cancelOrder(){
+		orders=[];
+		newOrder();
+	}
+</script>
+</head>
+</html>

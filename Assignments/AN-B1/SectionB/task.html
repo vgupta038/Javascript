@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	var productMaster=[
+						{id:'A441',name:'Pepsi',category:'Soft Drink', price:15, quantity:2},
+						{id:'B234',name:'Coke', category:'Soft Drink', price:10, quantity:8},
+						{id:'A617',name:'Mirinda', category:'Soft Drink', price:20, quantity:20},
+						{id:'B003',name:'Sprite', category:'Soft Drink', price:16, quantity:5},
+						{id:'B225',name:'Minute Maid', category:'Soft Drink', price:25, quantity:12},
+						{id:'A742',name:'5Star', category:'Chocloate', price:10, quantity:3},
+						{id:'B388',name:'Appy', category:'Soft Drink', price:35, quantity:9},
+						{id:'A899',name:'Gems', category:'Chocloate', price:12, quantity:11},
+						{id:'B635',name:'KitKat', category:'Chocloate', price:15, quantity:7},
+						{id:'B408',name:'Perk', category:'Chocloate', price:8, quantity:15},
+						{id:'A354',name:'Dairy Milk', category:'Chocloate', price:30, quantity:4}
+					];
+					
+	var a1=productMaster.sort(functionA);
+	console.log("1A.",a1);
+	function functionA(a,b){
+		if(a.price<b.price)
+			return 1;
+		if(a.price>b.price)
+			return -1;
+		return 0;
+	}
+	//------------------------------
+	var a11=productMaster.filter(n=>functionB(n));
+	console.log("1B.",a11);
+	function functionB(n){
+		if(n.price>16 && n.category==='Soft Drink')
+			return true;
+		return false;
+	}
+	//---------------------------
+	var a2=productMaster.filter(n=>functionC(n));
+	var a21=a2.sort(functionD);
+	console.log("2.",a21);
+	function functionC(n){
+		if(n.id.charAt(0)==='A')
+			return true;
+		return false;
+	}
+	function functionD(a,b){
+		if(a.name<b.name)
+			return -1;
+		if(a.name>b.name)
+			return 1;
+		return 0;
+	}
+	//------------------------------
+	var a3=productMaster.map(n=>functionE(n));
+	console.log("3.",a3);
+	
+	function functionE(n){
+		return n.name+" belongs to the category "+n.category+". Its id is "+n.id+" and price is "+n.price;
+	}
+	//-----------------------------------
+	var a4=productMaster.map(n=>functionF(n));
+	productMaster=a4;
+	console.log("4.",productMaster);
+	function functionF(n){
+		var json1={id:n.id,name:n.name, category:n.category, price:n.price, quantity:n.quantity, type:'Food'};
+		return json1;
+	}
+	//-----------------------------------
+	var a5=productMaster.map(n=>functionG(n));
+	productMaster=a5;
+	console.log("5.",productMaster);
+	function functionG(n){
+		if(n.category==='Soft Drink'){
+			var json1={id:n.id,name:n.name, category:n.category, price:n.price+3, quantity:n.quantity, type:'Food'};
+			return json1;
+		}
+		else{
+			var json1={id:n.id,name:n.name, category:n.category, price:n.price-2, quantity:n.quantity, type:'Food'};
+			return json1;
+		}
+		
+	}
+	//-----------------------------------
+	var purchaseDetails={id:'B635', purchaseQuantity: 6};
+	purchaseDet(purchaseDetails);
+	function purchaseDet(json1){
+		var i=productMaster.findIndex(p=>functionH(p,json1.id));
+		console.log("index",i);
+		productMaster[i].quantity=productMaster[i].quantity+json1.purchaseQuantity;
+		console.log("6.",productMaster);
+	}
+	function functionH(p,id){
+		return p.id===id;
+	}
+	//------------------------------------
+	var custOrder=[
+					{id:'A441', orderQuantity: 2},
+					{id:'A354', orderQuantity: 5},
+					{id:'B003', orderQuantity: 9}
+				  ];
+	customerOrder(custOrder);
+	function customerOrder(custOrder){
+		var newarr=custOrder.map(n=>functionI(n));
+		console.log("7.",newarr);
+	}
+	function functionI(n){
+		console.log("dfd",productMaster);
+		var i=productMaster.findIndex(p=>functionJ(p,n.id));
+		var json1={id:productMaster[i].id,orderQuantity:n.orderQuantity,name:productMaster[i].name,price:productMaster[i].price};
+		return json1;
+	}
+	function functionJ(p,id){
+		return p.id===id;
+	}
+</script>
+</head>
+</html>

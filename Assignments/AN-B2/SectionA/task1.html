@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+		var number=[10,20,30,40,50];
+		var sum=number.reduce((acc,curr)=>fnSum(acc,curr),0);	// initial value to acc is 0
+		console.log("Sum= ",sum);
+		function fnSum(acc,curr){
+			return acc+curr;
+		}
+		
+		//------------
+		var max=number.reduce((acc,curr)=>fnMax(acc,curr));	
+		console.log("Max= ",max);
+		function fnMax(acc,curr){
+			if(curr>acc)
+				acc=curr;
+			return acc;
+		}
+		//--------------
+		var min=number.reduce((acc,curr)=>fnMin(acc,curr));	
+		console.log("Min= ",min);
+		function fnMin(acc,curr){
+			if(curr<acc)
+				acc=curr;
+			return acc;
+		}
+</script>
+</head>
+</html>

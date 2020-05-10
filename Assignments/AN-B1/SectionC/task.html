@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+.button{
+	background-color: black;
+	color: white;
+}
+.button:hover{
+	background-color:red;
+}
+.header8{
+	display:inline-block;
+	width: 8%;
+	text-align: center;
+	background-color:black;
+	color: white;
+	margin:1px;
+}
+.header{
+	display:inline-block;
+	width: 12%;
+	text-align: center;
+	background-color:black;
+	color: white;
+	margin:1px;
+}
+.edit {
+  background-color: black;
+  display: inline-block;
+  color:white;
+}
+.edit:hover{
+	background-color:red;
+}
+.cellgrey8{
+	display:inline-block;
+	width: 8%;
+	text-align: center;
+	background-color:lightgrey;
+	color: white;
+	margin:1px;
+}
+.cellgrey{
+	display:inline-block;
+	width: 12%;
+	text-align: center;
+	background-color:lightgrey;
+	color: white;
+	margin:1px;
+}
+</style>
+<body>
+	<div id="root">
+	</div>
+</body>
+<script>
+	var empMaster=[
+						{empcode:'A102',name:'James',age:37,gender:'Male',department:'Finance',designation:'Manager',salary:65000},
+						{empcode:'A106',name:'Mary',age:24,gender:'Female',department:'Technology',designation:'Vice-President',salary:68000},
+						{empcode:'A122',name:'Bob',age:23,gender:'Male',department:'Marketing',designation:'Manager',salary:51000},
+						{empcode:'A088',name:'Julia',age:33,gender:'Female',department:'Finance',designation:'Vice-President',salary:70000},
+						{empcode:'A055',name:'Steve',age:27,gender:'Male',department:'Technology',designation:'Manager',salary:53000},
+						{empcode:'A208',name:'Katherine',age:29,gender:'Female',department:'Marketing',designation:'Manager',salary:61000},
+						{empcode:'A181',name:'Edwards',age:31,gender:'Male',department:'Finance',designation:'Trainee',salary:49000},
+						{empcode:'A029',name:'Margaret',age:32,gender:'Female',department:'Technology',designation:'President',salary:53000},
+						{empcode:'A030',name:'Bill',age:27,gender:'Male',department:'Operations',designation:'Manager',salary:58000}
+				 ];
+	var department=['Finance','Technology','Marketing','Operations'];
+	var designation=['Manager','Vice-President','Trainee','President'];
+	var empMastertable=empMaster;
+	start();
+	function start(){
+		var str="";
+		str+="<button class='button' onclick=newEmp()>New Employee</button>";
+		str+="<button class='button' onclick=allEmp()>All Employee</button>";
+		str+="<button class='button' onclick=fullDump()>Full Dump</button>";
+		str+="<button class='button' onclick=partialDump()>Partial Dump</button>"+"</br>";
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+	}
+	function allEmp(){
+		var str="";
+		str+="<button class='button' onclick=newEmp()>New Employee</button>";
+		str+="<button class='button' onclick=allEmp()>All Employee</button>";
+		str+="<button class='button' onclick=fullDump()>Full Dump</button>";
+		str+="<button class='button' onclick=partialDump()>Partial Dump</button>"+"</br>";
+		str+="Filter Employees By ";
+			str+="<select id='dd01'>"+
+					"<option value='cd'>Choose Department</option>";
+			var options="";
+			for(var i=0;i<department.length;i++){
+				var option="<option value='"+department[i]+"'>"+department[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+" ";
+			
+			str+="<select id='dd02'>"+
+					"<option value='cd'>Choose Designation</option>";
+			options="";
+			for(var i=0;i<designation.length;i++){
+				var option="<option value='"+designation[i]+"'>"+designation[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+" ";
+			str+="<button class='button' onclick=filter1()>Filter</button>"+"</br>";
+			//---------------------
+		
+		var len=empMaster.length;
+		str+="<div class='header8'>EmpCode</div>";
+		str+="<div class='header'>Name</div>";
+		str+="<div class='header8'>Age</div>";
+		str+="<div class='header8'>Gender</div>";
+		str+="<div class='header'>Department</div>";
+		str+="<div class='header'>Designation</div>";
+		str+="<div class='header'>Salary</div>";
+		str+="<div class='header8'>Update</div>";
+		for(var i=0;i<len;i++){
+			var e=empMaster[i];
+			var empcode1="<div class='cellgrey8'>"+e.empcode+"</div>";
+			var name1="<div class='cellgrey'>"+e.name+"</div>";
+			var age1="<div class='cellgrey8'>"+e.age+"</div>";
+			var gender1="<div class='cellgrey8'>"+e.gender+"</div>";
+			var department1="<div class='cellgrey'>"+e.department+"</div>";
+			var designation1="<div class='cellgrey'>"+e.designation+"</div>";
+			var salary1="<div class='cellgrey'>"+e.salary+"</div>";
+			var btn1="<div class='cellgrey8'><button class='edit' onclick=edit("+i+")>Edit</button></div>";
+			var row="<div>"+empcode1+name1+age1+gender1+department1+designation1+salary1+btn1+"</div>";
+			str=str+row;
+		}
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+	}
+	function filter1(){
+		var dept=document.getElementById("dd01").value;
+		var desg=document.getElementById("dd02").value;
+		empMaster=empMastertable.filter(n=>filterByDeptDesg(n,dept,desg));
+		allEmp();
+	}
+	
+	function filterByDeptDesg(n,dept,desg){
+		if(dept==='cd' && desg==='cd')
+			return true;
+		else if(dept!='cd'&& desg!='cd')
+			return (n.department===dept&& n.designation===desg);
+		else if(dept!='cd')
+			return n.department===dept;
+		else 
+			return n.designation===desg;
+	}
+	
+	function edit(index){
+		var str="";
+		str+="<button class='button' onclick=newEmp()>New Employee</button>";
+		str+="<button class='button' onclick=allEmp()>All Employee</button>";
+		str+="<button class='button' onclick=fullDump()>Full Dump</button>";
+		str+="<button class='button' onclick=partialDump()>Partial Dump</button>"+"</br>";
+		
+		var emp=empMaster[index];
+		str+="<table align='center'>";
+		str+="<tr><td>Employee Code:</td><td><input type='text' id='empcode' value='"+emp.empcode+"' readonly>"+"</td></tr>";
+		str+="<tr><td>Name:</td><td><input type='text' id='name' value='"+emp.name+"'>"+"</td></tr>";
+		str+="<tr><td>Age:</td><td><input type='text' id='age' value='"+emp.age+"'>"+"</td></tr>";
+		//------------------------
+		if(emp.gender==='Male'){
+			str+="<tr><td>Gender:</td>";
+			str+="<td><input type='radio' name='gender' id='r1' value='Male' checked>Male</input>";
+			str+="<input type='radio' name='gender' id='r2' value='Female'>Female</input>"+"</td></tr>";
+		}
+		else{
+			str+="<tr><td>Gender:</td>";
+			str+="<td><input type='radio' name='gender' id='r1' value='Male'>Male</input>";
+			str+="<input type='radio' name='gender' id='r2' value='Female' checked>Female</input>"+"</td></tr>";
+		}
+		//----------------------
+		str+="<tr><td>Department:</td>"+"<td><select id='dd01'>";	
+			var options="";
+			var option1="";
+			for(var i=0;i<department.length;i++){
+				if(department[i]===emp.department){
+					option1="<option value='"+department[i]+"'>"+department[i]+"</option>";
+				}	
+				else{
+					var option="<option value='"+department[i]+"'>"+department[i]+"</option>";
+					options+=option;
+				}
+			};
+		str+=option1+options+"</select>"+"</td></tr>";
+		//-----------------------------------
+		str+="<tr><td>Designation:</td>"+"<td><select id='dd02'>";		
+			options="";
+			option1="";
+			for(var i=0;i<designation.length;i++){
+				if(designation[i]===emp.designation){
+					option1="<option value='"+designation[i]+"'>"+designation[i]+"</option>";
+				}	
+				else{
+					var option="<option value='"+designation[i]+"'>"+designation[i]+"</option>";
+					options+=option;
+				}	
+			};
+		str+=option1+options+"</select>"+"</td></tr>";
+		//-----------------------------------
+		str+="<tr><td>Salary:</td><td><input type='text' id='salary' value='"+emp.salary+"'>"+"</td></tr>";
+		str+="<tr><td colspan='2'><button class='edit' onclick='editDetails("+index+")'>Edit Employee Details</button></td></tr>";
+		str+="</table>";
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+	}
+	
+	function editDetails(index){
+		var empcode1=document.getElementById("empcode").value;
+		var name1=document.getElementById("name").value;
+		var age1=document.getElementById("age").value;
+		var gender1=document.getElementById("r1").checked;
+		var gender2=document.getElementById("r2").checked;
+		var department1=document.getElementById("dd01").value;
+		var designation1=document.getElementById("dd02").value;
+		var salary1=document.getElementById("salary").value;
+		var json1="";
+		if(gender1)
+			json1={empcode:empcode1,name:name1,age:age1,gender:document.getElementById("r1").value,department:department1,designation:designation1,salary:salary1};
+		else
+			json1={empcode:empcode1,name:name1,age:age1,gender:document.getElementById("r2").value,department:department1,designation:designation1,salary:salary1};
+		empMaster[index]=json1;
+		alert("Employee Details have been updated succesfully");
+		allEmp();
+	}
+	
+	function fullDump(){
+		var str="";
+		str+="<button class='button' onclick=newEmp()>New Employee</button>";
+		str+="<button class='button' onclick=allEmp()>All Employee</button>";
+		str+="<button class='button' onclick=fullDump()>Full Dump</button>";
+		str+="<button class='button' onclick=partialDump()>Partial Dump</button>"+"</br>";
+		var arr1=empMastertable.map(n=>functionA(n));
+		//str+="<input type='text' id='empcode' value='"+arr1+"'>"+"<br>";
+		var s="["+arr1+"]";
+		str+="<textarea cols='75' rows='8' >"+s+"</textarea>"+"</br>";
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+	}
+	function functionA(n){
+		var json1=n.empcode+"::"+n.name+"::"+n.age+"::"+n.gender+"::"+n.department+"::"+n.designation+"::"+n.salary;
+		var s=JSON.stringify(json1);
+		return s;
+	}
+	function partialDump(){
+		var str="";
+		str+="<button class='button' onclick=newEmp()>New Employee</button>";
+		str+="<button class='button' onclick=allEmp()>All Employee</button>";
+		str+="<button class='button' onclick=fullDump()>Full Dump</button>";
+		str+="<button class='button' onclick=partialDump()>Partial Dump</button>"+"</br>";
+		var arr1=empMastertable.map(n=>functionB(n));
+		var s="["+arr1+"]";
+		str+="<textarea cols='62' rows='5' >"+s+"</textarea>"+"</br>";
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+		console.log(str);
+	}
+	function functionB(n){
+		
+		var json1="Code="+n.empcode+",Name="+n.name+",Age="+n.age;
+		var s=JSON.stringify(json1);
+		return s;
+	}
+	
+	function newEmp(){
+		var str="";
+		str+="<button class='button' onclick=newEmp()>New Employee</button>";
+		str+="<button class='button' onclick=allEmp()>All Employee</button>";
+		str+="<button class='button' onclick=fullDump()>Full Dump</button>";
+		str+="<button class='button' onclick=partialDump()>Partial Dump</button>"+"</br>";
+		
+		str+="<table align='center'>";
+		str+="<tr><td>Employee Code:</td><td><input type='text' id='empcode'>"+"</td></tr>";
+		str+="<tr><td>Name:</td><td><input type='text' id='name'>"+"</td></tr>";
+		str+="<tr><td>Age:</td><td><input type='text' id='age'>"+"</td></tr>";
+		//------------------------
+			str+="<tr><td>Gender:</td>";
+			str+="<td><input type='radio' name='gender' id='r1' value='Male' checked>Male</input>";
+			str+="<input type='radio' name='gender' id='r2' value='Female'>Female</input>"+"</td></tr>";
+		//----------------------
+		str+="<tr><td>Department:</td><td><select id='dd01'>"+
+					"<option value='cd'>Choose Department</option>";
+			var options="";
+			for(var i=0;i<department.length;i++){
+				var option="<option value='"+department[i]+"'>"+department[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+"</td></tr>";
+		//-----------------------------------
+		str+="<tr><td>Designation:</td><td><select id='dd02'>"+
+					"<option value='cd'>Choose Designation</option>";
+			options="";
+			for(var i=0;i<designation.length;i++){
+				var option="<option value='"+designation[i]+"'>"+designation[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+"</td></tr>";
+		//-----------------------------------
+		str+="<tr><td>Salary:</td><td><input type='text' id='salary'>"+"</td></tr>";
+		str+="<tr><td colspan='2'><button class='edit' onclick='addDetails()'>Add Employee</button></td></tr>";
+		str+="</table>";
+		var ele=document.getElementById("root");
+		ele.innerHTML=str;
+	}
+	
+	function addDetails(){
+		var empcode1=document.getElementById("empcode").value;
+		var name1=document.getElementById("name").value;
+		var age1=document.getElementById("age").value;
+		var gender1=document.getElementById("r1").checked;
+		var gender2=document.getElementById("r2").checked;
+		var department1=document.getElementById("dd01").value;
+		var designation1=document.getElementById("dd02").value;
+		var salary1=document.getElementById("salary").value;
+		var index=empMastertable.findIndex(n=>filterCode12(n,empcode1));
+		if(index!=-1 || empcode1===""){
+			alert("Code already Exists! or its Entered Empty");
+			document.getElementById("empcode").value="";
+		}
+		else if(name1===""){
+			alert("Please Enter Name!");
+		}
+		else if(age1==="" || isNaN(age1)){
+			alert("Please Enter Age!");
+			document.getElementById("age1").value="";
+		}
+		else if(department1==="cd"){
+			alert("Please Enter Department!");
+		}
+		else if(designation1==="cd"){
+			alert("Please Enter Designation!");
+		}
+		else if(salary1==="" || isNaN(salary1)){
+			alert("Please Enter Salary!");
+			document.getElementById("salary1").value="";
+		}
+		else{
+			var json1="";
+			if(gender1)
+				json1={empcode:empcode1,name:name1,age:age1,gender:document.getElementById("r1").value,department:department1,designation:designation1,salary:salary1};
+			else
+				json1={empcode:empcode1,name:name1,age:age1,gender:document.getElementById("r2").value,department:department1,designation:designation1,salary:salary1};
+			empMaster.push(json1);
+			alert("Employee Added Succesfully");
+			allEmp();
+		}
+	}
+	function filterCode12(n,empcode1){
+		return (n.empcode===empcode1);
+	}
+</script>
+</head>
+</html>

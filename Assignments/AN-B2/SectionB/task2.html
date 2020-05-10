@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+</body>
+<script>
+		var arraySales=[
+						{id:'A441',sales:[10,12,13,10,16,22,30]},
+						{id:'B234',sales:[2,4,3,4,2,6,8,10]},
+						{id:'A617',sales:[5,5,5,5,5,5,5]},
+						{id:'C229',sales:[9,7,6,8,8,10,9]},
+						{id:'D412',sales:[25,25,23,21,26,28,26]},
+						{id:'A054',sales:[2,2,3,1,0,2,0]},
+						{id:'B955',sales:[1,1,1,1,1,1,0]},
+						{id:'M341',sales:[4,5,4,5,4,5,5]},
+						{id:'H103',sales:[1,1,2,2,3,3,4]},
+						{id:'B199',sales:[6,5,4,4,5,5,6]},
+						{id:'D388',sales:[7,8,9,8,9,10,12]}
+					   ];
+		
+		//---- Method1
+		var newarr=arraySales.map(n=>functionA(n));
+		var sum=newarr.reduce((acc,curr)=>functionB(acc,curr),0);
+		console.log("Total Units in week=",sum);
+		function functionA(n){
+			var sum=n.sales.reduce((acc,curr)=>findSum(acc,curr),0);
+			var json1={id:n.id,totalsales:sum};
+			return json1;
+		}
+		function findSum(acc,curr){
+			return acc+curr;
+		}
+		function functionB(acc,curr){
+			return acc+curr.totalsales;
+		}
+		
+		//-----Method2
+		var sum=arraySales.reduce((acc1,curr1)=>functionSum(acc1,curr1),0);
+		console.log("Total Sum=",sum);
+		function functionSum(acc1,curr1){
+			var s=curr1.sales.reduce((acc,curr)=>findingSum(acc,curr),0);
+			return acc1+s;
+		}
+		function findingSum(acc,curr){
+			return acc+curr;
+		}
+		
+		
+</script>
+</head>
+</html>

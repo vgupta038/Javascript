@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+</body>
+<script>
+	function makePattern() {
+    var str ="";
+	
+    for (var i=0; i < arguments.length; i++) {
+		if(arguments[i]==="" && i==0){
+		}
+		else{
+			str=str+(i+1)+arguments[i];
+		}
+    }
+    return str;
+}
+console.log(JSON.stringify(makePattern("a","b")));
+console.log(JSON.stringify(makePattern("a","b","c","d")));
+console.log(JSON.stringify(makePattern("xyz")));
+console.log(JSON.stringify(makePattern("")));
+
+console.log(JSON.stringify(makePattern()));
+console.log(JSON.stringify(makePattern("xyz","")));
+</script>
+</head>
+</html>
