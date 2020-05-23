@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+.button{
+	background-color: black;
+	color: white;
+}
+.button:hover{
+	background-color:red;
+}
+.header{
+	display:inline-block;
+	width: 8%;
+	text-align: center;
+	background-color:black;
+	color: white;
+}
+.edit {
+  background-color: black;
+  display: inline-block;
+  color:white;
+  height:18px;
+}
+.editplus{
+  background-color: green;
+  color:black;
+  height:25px;
+}
+.editminus{
+  background-color: yellow;
+  color:black;
+  height:25px;
+}
+.editremove{
+  background-color: red;
+  color:black;
+  height:25px;
+}
+.editclose{
+  background-color: blue;
+  color:white;
+   height:30px;
+}
+.edit:hover{
+	background-color:red;
+}
+
+.cellwhite{
+	display:inline-block;
+	width: 8%;
+	text-align: center;
+	background-color:white;
+	color: black;
+	border-bottom: solid lightgrey;
+}
+
+</style>
+<body>
+	<div id="bar0"></div>
+	<div id="bar1"></div>
+	<div id="bar2"></div>
+	<div id="bar3"></div>
+	
+	<div id="bar4"></div>
+</body>
+<script>
+	var masterTable=[
+						{"code":"PEP221","prod":"Pepsi","price":12,"instock":"Yes","category":"Beverages"},
+						{"code":"COK113","prod":"Coca Cola","price":18,"instock":"Yes","category":"Beverages"},
+						{"code":"MIR646","prod":"Mirinda","price":15,"instock":"No","category":"Beverages"},
+						{"code":"SLI874","prod":"Slice","price":22,"instock":"Yes","category":"Beverages"},
+						{"code":"MIN654","prod":"Minute Maid","price":25,"instock":"Yes","category":"Beverages"},
+						{"code":"APP652","prod":"Appy","price":10,"instock":"No","category":"Beverages"},
+						{"code":"FRO085","prod":"Frooti","price":30,"instock":"Yes","category":"Beverages"},
+						{"code":"REA546","prod":"Real","price":24,"instock":"No","category":"Beverages"},
+						{"code":"DM5461","prod":"Dairy Milk","price":40,"instock":"Yes","category":"Chocolates"},
+						{"code":"KK6546","prod":"Kitkat","price":15,"instock":"Yes","category":"Chocolates"},
+						{"code":"PER5436","prod":"Perk","price":8,"instock":"No","category":"Chocolates"},
+						{"code":"FST241","prod":"5 Star","price":25,"instock":"Yes","category":"Chocolates"},
+						{"code":"NUT553","prod":"Nutties","price":18,"instock":"Yes","category":"Chocolates"},
+						{"code":"GEM006","prod":"Gems","price":8,"instock":"No","category":"Chocolates"},
+						{"code":"GD2991","prod":"Good Day","price":25,"instock":"Yes","category":"Biscuits"},
+						{"code":"PAG542","prod":"Parle G","price":5,"instock":"Yes","category":"Biscuits"},
+						{"code":"MON119","prod":"Monaco","price":7,"instock":"No","category":"Biscuits"},
+						{"code":"BOU291","prod":"Bourbon","price":22,"instock":"Yes","category":"Biscuits"},
+						{"code":"MAR951","prod":"MarieGold","price":15,"instock":"Yes","category":"Biscuits"},
+						{"code":"ORE188","prod":"Oreo","price":30,"instock":"No","category":"Biscuits"}
+					];
+		var code=0;
+		var prod=0;
+		var category=0;
+		var price=0;
+		var instock=0;
+	var tempTable=[...masterTable];
+	var temp2=masterTable;
+	var categoryTable=["Beverages","Chocolates","Biscuits"];
+	var instockTable=["Yes","No"];
+	var priceTable=['<10','10-20','>20'];
+	var billtable=[];
+	start();
+	function start(){
+		var str="";
+		str+="<ul>";
+		str+="<li><a>Billing System</a></li>";
+		str+="<li><a><div onclick='newbill()'>New Bill</div></a></li>";
+		str+="</ul>";
+		var ele=document.getElementById("bar0");
+		ele.innerHTML=str;
+	}
+	
+	function newbill(){
+		bill();
+		allEmp();
+	}
+	function bill(){
+		var str="";
+		str+="<h1>Details of Current Bill</h1>";
+		if(billtable.length===0){
+			str+="<h2>Items:0 ,Quantity:0 ,Amount:0</h2>";
+		}
+		else{
+			var quantity=billtable.reduce((acc,curr)=>sumQ(acc,curr),0); 
+			var amount=billtable.reduce((acc,curr)=>sumA(acc,curr),0);
+			str+="<h2>Items:"+billtable.length+" ,Quantity: "+quantity+" ,Amount: "+amount+" </h2>";
+		
+			str+="<table border='1'>";
+			for(var i=0;i<billtable.length;i++){
+				var b=billtable[i];
+				str+="<tr>";
+					str+="<td>"+b.code+" "+b.prod+" Price:"+b.price+" Quantity:"+b.quantity+" Value:"+b.value+"&nbsp&nbsp&nbsp</td>";
+					str+="<td><button  class='editplus' onclick='addQuantity("+i+")'>+</button></td>";
+					str+="<td><button class='editminus' onclick='minusQuantity("+i+")'>-</button></td></td>";
+					str+="<td><button class='editremove' onclick='remove("+i+")'>X</button></td></td>";
+				str+="</tr>";
+			}
+			str+="<tr><td  colspan='4'><button class='editclose' onclick='close1()'>Close Bill</button></td></tr>";
+			str+="</table>";
+		}
+		var ele=document.getElementById("bar1");
+		ele.innerHTML=str;
+	}
+	function close1(){
+		alert("Confirm to close bill!");
+		billtable=[];
+		newbill();
+	}
+	function sumQ(acc,curr){
+		return acc+curr.quantity;
+	}
+	function sumA(acc,curr){
+		return acc+curr.value;
+	}
+	
+	function addQuantity(i){
+		var bill1=billtable[i];
+		var price=+bill1.price;
+		var quantity=+bill1.quantity;
+		quantity+=1;
+		var value=price*quantity;
+		billtable[i].quantity=quantity;
+		billtable[i].value=value;
+		bill();
+	}
+	function minusQuantity(i){
+		var bill1=billtable[i];
+		var price=+bill1.price;
+		var quantity=+bill1.quantity;
+		if(quantity===0){
+			billtable.splice(i,1);
+		}
+		else{
+			quantity-=1;
+			var value=price*quantity;
+			billtable[i].quantity=quantity;
+			billtable[i].value=value;
+		}
+		bill();
+	}
+	function remove(i){
+		billtable.splice(i,1);
+		bill();
+	}
+	function allEmp(){
+		var str="<center><h2>Product List</h2></center>"+"</br>";
+		str+="<center>Filter Products By ";
+			str+="<select id='dd01' onchange='changeCategory(this)'>"+
+					"<option value='cd'>Select Category</option>";
+			var options="";
+			for(var i=0;i<categoryTable.length;i++){
+				var option="<option value='"+categoryTable[i]+"'>"+categoryTable[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+" ";
+			
+			str+="<select id='dd02' onchange='changeCategory(this)'>"+
+					"<option value='cd'>Select in stock</option>";
+			options="";
+			for(var i=0;i<instockTable.length;i++){
+				var option="<option value='"+instockTable[i]+"'>"+instockTable[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+" ";
+			
+			str+="<select id='dd03' onchange='changeCategory(this)'>"+
+					"<option value='cd'>Select Price Range</option>";
+			options="";
+			for(var i=0;i<priceTable.length;i++){
+				var option="<option value='"+priceTable[i]+"'>"+priceTable[i]+"</option>";
+				options+=option;
+			}
+			str+=options+"</select>"+"</center>"+"</br>"+" ";
+			var ele=document.getElementById("bar2");
+			ele.innerHTML=str;
+			show();
+			//---------------------
+		}
+		function changeCategory(ele){
+			var id1=document.getElementById("dd01").value;	// category
+			var id2=document.getElementById("dd02").value;	// instock 
+			var id3=document.getElementById("dd03").value;	// price
+			if(document.getElementById("code").innerHTML==='Code' &&
+				document.getElementById("prod").innerHTML==='Product'&&
+				document.getElementById("category").innerHTML==='Category'&&
+				document.getElementById("price").innerHTML==='Price'&&
+				document.getElementById("instock").innerHTML==='In Stock'){
+				masterTable=tempTable.filter(n=>filterOriginal(n,id1,id2,id3));	// tempTable is duplicate copy of original Master table
+			}
+			else{
+					masterTable=temp2.filter(n=>filterOriginal(n,id1,id2,id3));
+			}
+			show();			
+		}
+		function filterOriginal(n,id1,id2,id3){
+			if(id1==='cd' && id2==='cd' && id3==='cd')
+				return true;
+			else if(id1!='cd' && id2!='cd'&& id3!='cd'){
+				if(id3==='<10')
+					return n.category===id1&&n.instock===id2 && n.price<10;
+				if(id3==='10-20')
+					return n.category===id1&&n.instock===id2 && n.price>=10&& n.price<=20;
+				return n.category===id1&&n.instock===id2 && n.price>20;
+			}
+			else if(id1!='cd'&& id2!='cd'){
+				return n.category===id1&&n.instock===id2;
+			}
+			else if(id1!='cd'&& id3!='cd'){
+				if(id3==='<10')
+					return n.category===id1&& n.price>10;
+				if(id3==='10-20')
+					return n.category===id1&& n.price>=10&& n.price<=20;
+				return n.category===id1&& n.price>20;
+			}
+			else if(id2!='cd'&& id3!='cd'){
+				if(id3==='<10')
+					return n.instock===id2 && n.price<10;
+				if(id3==='10-20')
+					return n.instock===id2 && n.price>=10&& n.price<=20;
+				return n.instock===id2 && n.price>20;
+			}
+			else if(id1!='cd'){
+				return n.category===id1;
+			}
+			else if(id2!='cd'){
+				return n.instock===id2;
+			}
+			else if(id3!='cd'){
+				if(id3==='<10')
+					return n.price<10;
+				if(id3==='10-20')
+					return n.price>10&& n.price<20;
+				return n.price>20;
+			}
+			return false;
+		}
+		
+		function filterCategory(n,value){
+			if(value==='cd')
+				return true;
+			if(value===n.category)
+				return true;
+			return false;
+		}
+		
+		function show(){
+			var str="<center>";
+			if(code===0)
+				str+="<div class='header' id='code' onclick='code1()'>Code</div>";
+			else
+				str+="<div class='header' id='code' onclick='code1()'>Code(X)</div>";
+			if(prod===0)
+				str+="<div class='header' id='prod' onclick='prod1()'>Product</div>";
+			else
+				str+="<div class='header' id='prod' onclick='prod1()'>Product(X)</div>";
+			
+			if(category===0)
+				str+="<div class='header' id='category' onclick='category1()'>Category</div>";
+			else
+				str+="<div class='header' id='category' onclick='category1()'>Category(X)</div>";
+			if(price===0)
+				str+="<div class='header' id='price' onclick='price1()'>Price</div>";
+			else	
+				str+="<div class='header' id='price' onclick='price1()'>Price(X)</div>";
+			if(instock===0)
+				str+="<div class='header' id='instock' onclick='instock1()'>In Stock</div>";
+			else
+				str+="<div class='header' id='instock' onclick='instock1()'>In Stock(X)</div>";
+			
+			str+="<div class='header'>Add Bill</div>";
+			var len=masterTable.length;
+			for(var i=0;i<len;i++){
+				var e=masterTable[i];
+				var code1="<div class='cellwhite'>"+e.code+"</div>";
+				var prod1="<div class='cellwhite'>"+e.prod+"</div>";
+				var category1="<div class='cellwhite'>"+e.category+"</div>";
+				var price1="<div class='cellwhite'>"+e.price+"</div>";
+				var instock1="<div class='cellwhite'>"+e.instock+"</div>";
+				var btn1="<div class='cellwhite'><button class='edit' onclick=add("+i+")>Add To Bill</button></div>";
+				var row="<div>"+code1+prod1+category1+price1+instock1+btn1+"</div>";
+				str=str+row;
+			}
+			str=str+"</center>";
+			var ele=document.getElementById("bar3");
+			ele.innerHTML=str;
+		}
+		function add(i){
+			var det=masterTable[i];
+			var index=billtable.findIndex(n=>findIndexBill(n,det.code));
+			if(index===-1){ // if code not present in billtable array
+				var json1={"code":det.code,"prod":det.prod,"price":det.price,"quantity":1,"value":det.price};
+				billtable.push(json1);
+			}
+			bill();
+		}
+		function findIndexBill(n,code){
+			return n.code===code;
+		}
+			
+		function code1(){
+			var ele=document.getElementById("code");
+			if(ele.innerHTML==='Code'){
+				var x=temp2.sort(functionCodeSorting); 		// sort code in ascending order and filter 
+				code=1;
+				masterTable=x.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			else{
+				masterTable=[...tempTable];	// to keep temptable and masterTable different to each other always use [...] operator
+				code=0;
+				masterTable=tempTable.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			prod=0;
+			category=0;
+			price=0;
+			instock=0;
+			show();
+		}
+		
+		function prod1(){
+			var ele=document.getElementById("prod");
+			if(ele.innerHTML==='Product'){
+				var x=temp2.sort(functionProductSorting); 		// sort code in ascending order and filter 
+				prod=1;
+				masterTable=x.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			else{
+				masterTable=[...tempTable];
+				prod=0;
+				masterTable=tempTable.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			code=0;
+			category=0;
+			price=0;
+			instock=0;
+			show();
+		}
+		function category1(){
+			var ele=document.getElementById("category");
+			if(ele.innerHTML==='Category'){
+				var x=temp2.sort(functionCategorySorting); 		// sort code in ascending order and filter 
+				category=1;
+				masterTable=x.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			else{
+				masterTable=[...tempTable];
+				category=0;
+				masterTable=tempTable.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			code=0;
+			prod=0;
+			price=0;
+			instock=0;
+			show();
+		}
+		function price1(){
+			var ele=document.getElementById("price");
+			if(ele.innerHTML==='Price'){
+				var x=temp2.sort(functionPriceSorting); 		// sort code in ascending order and filter 
+				price=1;
+				masterTable=x.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			else{
+				masterTable=[...tempTable];	// to keep temptable and masterTable different to each other always use [...] operator
+				price=0;
+				masterTable=tempTable.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			prod=0;
+			category=0;
+			code=0;
+			instock=0;
+			show();
+		}
+		function instock1(){
+			var ele=document.getElementById("instock");
+			if(ele.innerHTML==='In Stock'){
+				var x=temp2.sort(functionStockSorting); 		// sort code in ascending order and filter 
+				instock=1;
+				masterTable=x.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			else{
+				masterTable=[...tempTable];
+				instock=0;
+				masterTable=tempTable.filter(n=>filterOriginal(n,document.getElementById("dd01").value,document.getElementById("dd02").value,document.getElementById("dd03").value));
+			}
+			code=0;
+			prod=0;
+			category=0;
+			price=0;
+			show();
+		}
+
+		function functionCodeSorting(a,b){
+			if(a.code<b.code)
+				return -1;
+			if(a.code>b.code)
+				return 1;
+			return 0;
+		}
+		function functionProductSorting(a,b){
+			if(a.prod<b.prod)
+				return -1;
+			if(a.prod>b.prod)
+				return 1;
+			return 0;
+		}
+		function functionCategorySorting(a,b){
+			if(a.category<b.category)
+				return -1;
+			if(a.category>b.category)
+				return 1;
+			return 0;
+		}
+		function functionPriceSorting(a,b){
+			if(a.price<b.price)
+				return -1;
+			if(a.price>b.price)
+				return 1;
+			return 0;
+		}
+		function functionStockSorting(a,b){
+			if(a.instock<b.instock)
+				return -1;
+			if(a.instock>b.instock)
+				return 1;
+			return 0;
+		}
+</script>
+</head>
+</html>
