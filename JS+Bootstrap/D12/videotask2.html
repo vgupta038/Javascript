@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div id="mytable01">
+			</div>
+	</div>
+</body>
+<script>
+	var persons=[
+					{"name":"Jack","age":28,"city":"London"},
+					{"name":"Mary","age":22,"city":"Paris"},
+					{"name":"Bob","age":37,"city":"NewYork"},
+					{"name":"Steve","age":25,"city":"Delhi"},
+					{"name":"Kathy","age":29,"city":"Tokyo"},
+					{"name":"Tim","age":30,"city":"London"},
+					{"name":"David","age":41,"city":"Delhi"},
+					{"name":"Julia","age":33,"city":"London"}
+				];
+
+	showPersons(persons,"");
+	function showPersons(data,selCity){
+		var header="<div class='row border bg-dark text-white'>";
+					header+="<div class='col-4'>Name</div>";
+					header+="<div class='col-2'>Age</div>";
+					header+="<div class='col-3'>City</div>";
+		header+="</div>";
+		var mapPersons=data.map(makeElement);
+		var strData=mapPersons.join("");
+		var element=document.getElementById("mytable01");
+		var selStr=showCityOptions(selCity);
+		var sel1="<form><div lass='form-group'>"+selStr+"</div></form>";
+		element.innerHTML=sel1+"</br>"+header+strData;
+		showCityOptions();
+	}
+	function makeElement(per){
+			var str="<div class='row border'>";
+					str+="<div class='col-4'>"+per.name+"</div>";
+					str+="<div class='col-2'>"+per.age+"</div>";
+					str+="<div class='col-3'>"+per.city+"</div>";
+			str+="</div>";
+		return str;
+	}
+	function showCityOptions(selCity){
+		var cities=[];
+		for(var i=0;i<persons.length;i++){
+			var c1=persons[i].city;
+			if(cities.indexOf(c1)<0)
+				cities.push(c1);
+		}
+		var options=cities.map(city=>({"display":city,"value":city}));
+		options.unshift({"display":"Select City","value":""});
+		console.log(options);
+		var optsmap=options.map(opt=>makeOption(opt,selCity));
+		var strOpts=optsmap.join(" ");
+		var selectStr="<select id='citydd' class='form-control' onchange='filter()'>"+strOpts+"</select>";
+		console.log(selectStr);
+		return selectStr;
+	}
+	function makeOption(opt,selCity){
+		var sel="";
+		if(opt.value===selCity)
+			sel="selected";
+		return "<option value='"+opt.value+"' "+ sel+" >"+opt.display+"</option>";
+	}
+	function filter(){
+		var citydd=document.getElementById("citydd");
+		var c1=citydd.value;
+		var filteredData=persons;
+		if(c1!=="")
+			filteredData=persons.filter(p1=>p1.city===c1);
+		showPersons(filteredData,c1);
+	}
+</script>
+</html>
+
+

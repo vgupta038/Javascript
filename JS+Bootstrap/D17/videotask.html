@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">	
+	<div>
+		<button class="btn btn-secondary m-2" onclick="showPersonAll()">Show Persons</button>
+		<button class="btn btn-secondary m-2" onclick="addPersonForm()">Add a Person</button>
+	</div>
+	<div id="mytable01">
+	</div>
+	<div id="myform">
+		<form>
+		<h4 id="formHeader">Add a New Person</h4>
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" class="form-control" id="name" placeholder="Enter name">
+		</div>
+		<div class="form-group">
+			<label for="age">Age</label>
+			<input type="number" class="form-control" id="age" placeholder="Enter age">
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="gender" id="radio1" value="Male">
+			<label class="form-check-label" for="radio1">Male</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="gender" id="radio2" value="Female">
+			<label class="form-check-label" for="radio"2>Female</label>
+		</div>
+		<div class="form-group" id="divcity">
+			<label for="name">City</label>
+			<input type="text" class="form-control" id="city" placeholder="Enter city">
+		</div>
+		<div class="form-check">
+			<input type="checkbox" class="form-check-input" id="working">
+			<label class="form-check-label" for="working">Working</label>
+		</div>
+		<button type="submit" class="btn btn-primary" onclick="addPerson()">Submit</button>
+	</form>
+	</div>
+</div>
+</body>
+<script>
+	var persons=[
+					{"name":"Jack","age":28,"city":"London","working":true,"gender":"Male"},
+					{"name":"Mary","age":22,"city":"Paris","working":false,"gender":"Female"},
+					{"name":"Bob","age":37,"city":"NewYork","working":true,"gender":"Male"},
+					{"name":"Steve","age":25,"city":"Delhi","working":false,"gender":"Male"},
+					{"name":"Kathy","age":29,"city":"Tokyo","working":true,"gender":"Female"},
+					{"name":"Tim","age":30,"city":"London","working":false,"gender":"Male"},
+					{"name":"David","age":41,"city":"Delhi","working":true,"gender":"Male"},
+					{"name":"Julia","age":33,"city":"London","working":true,"gender":"Female"}
+				];
+	var cities=['London','Paris','NewYork','Delhi','Tokyo'];
+	var editIndex=-1;
+	var form1=document.getElementById("myform").innerHTML;
+	document.getElementById("myform").innerHTML="";
+	
+	function showPersonAll(){
+		showPersons(persons);
+	}
+	function addPersonForm(){
+		var element=document.getElementById("mytable01");
+		element.innerHTML=form1;
+		var divcity=document.getElementById("divcity");
+		divcity.innerHTML=showCityOptions("");
+		editIndex=-1;
+	}
+	function addPerson(){
+		var n1=document.getElementById("name").value;
+		var a1=document.getElementById("age").value;
+		var c1=document.getElementById("city").value;
+		var w1=document.getElementById("working").checked;
+		var g1="";
+		var radios=document.getElementsByName("gender");
+		for(var i=0;i<radios.length;i++){
+			if(radios[i].checked)
+				g1=radios[i].value;
+		}
+		var person={"name":n1,"age":a1,"city":c1,"working":w1,"gender":g1};
+		if(editIndex===-1)
+			persons.push(person);
+		else
+			persons[editIndex]=person;
+		showPersonAll();
+	}
+	function showPersons(data){
+		var header="<div class='row border bg-dark text-white'>";
+					header+="<div class='col-3' onclick='sort(0)'>Name</div>";
+					header+="<div class='col-1' onclick='sort(1)'>Age</div>";
+					header+="<div class='col-2' onclick='sort(2)'>Gender</div>";
+					header+="<div class='col-2' onclick='sort(3)'>City</div>";
+					header+="<div class='col-2' onclick='sort(4)'>Working</div>";
+					header+="<div class='col-2'></div>";
+		header+="</div>";
+		var mapPersons=data.map(makeElement);
+		var strData=mapPersons.join("");
+		var element=document.getElementById("mytable01");
+		element.innerHTML=header+strData;
+	}
+	function makeElement(per,index){
+			var str="<div class='row border'>";
+					str+="<div class='col-3'>"+per.name+"</div>";
+					str+="<div class='col-1'>"+per.age+"</div>";
+					str+="<div class='col-2'>"+per.gender+"</div>";
+					str+="<div class='col-2'>"+per.city+"</div>";
+					str+="<div class='col-2'>"+per.working+"</div>";
+					str+="<div class='col-2'><button class='btn btn-sm mr-2 btn-primary' onclick=editPerson("+index+")>Edit</button><button class='btn btn-sm btn-danger' onclick=deletePerson("+index+")>Delete</button></div>";
+			str+="</div>";
+		return str;
+	}
+	function deletePerson(index){
+		persons.splice(index,1);
+		showPersonAll();
+	}
+	function editPerson(index){
+		var person=persons[index];
+		editIndex=index;
+		var element=document.getElementById("mytable01");
+		element.innerHTML=form1;
+
+		document.getElementById("formHeader").innerHTML="Edit Details";
+		document.getElementById("name").value=person.name;
+		document.getElementById("age").value=person.age;
+		document.getElementById("divcity").innerHTML=showCityOptions(person.city);
+
+		if(person.gender==="Male"){
+			document.getElementById("radio1").checked=true;
+		}
+		else if(person.gender==="Female"){
+			document.getElementById("radio2").checked=true;
+		}
+		if(person.working){
+			document.getElementById("working").checked=true;
+		}
+	}
+	function sort(index){
+		var data=[...persons];
+		switch(index){
+			case 0: data.sort(sortname);
+					break;
+			case 1: data.sort(sortage);
+					break;
+			case 2: data.sort(sortgender);
+					break;		
+			case 3: data.sort(sortcity);
+					break;
+			case 4: data.sort(sortworking);
+					break;
+
+		}
+		showPersons(data);
+	}
+
+	function sortname(p1,p2){
+		return p1.name.localeCompare(p2.name);
+	}
+	function sortage(p1,p2){
+		return p1.age-p2.age;
+	}
+	function sortgender(p1,p2){
+		return p1.gender.localeCompare(p2.gender);
+	}
+	function sortcity(p1,p2){
+		return p1.city.localeCompare(p2.city);
+	}
+	function sortworking(p1,p2){
+		var s1=""+p1.working;
+		var s2=""+p2.working;
+		return s1.localeCompare(s2);
+	}
+	function showCityOptions(selectedCity){
+		var options=cities.map(c1=>({"display":c1,"value":c1}));
+		options.unshift({"display":"Select City","value":""});
+		var optionsMap=options.map(opt=>makeCityOption(opt,selectedCity));
+		var strCity=optionsMap.join(" ");
+		var selectstr="<select id='city' class='form-control'>"+strCity+"</select>";
+		return selectstr;
+	}
+	function makeCityOption(opt,city1){
+		var sel="";
+		if(opt.value===city1)
+			sel="selected";
+		return "<option value='"+opt.value+"'"+sel+">"+opt.display+"</option>";
+	}
+</script>
+</html>
+
+

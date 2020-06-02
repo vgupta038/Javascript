@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">	
+	<div>
+		<button class="btn btn-secondary m-2" onclick="showProductsAll()">Show Product</button>
+		<button class="btn btn-secondary m-2" onclick="addProductForm()">Add a Product</button>
+	</div>
+	<div id="mytable01">
+	</div>
+	<div id="myform">
+		<form>
+		<h4 id="formHeader">Add a New product</h4>
+		<div class="form-group">
+			<label for="name">Product Name</label>
+			<input type="text" class="form-control" id="prod" placeholder="Enter product">
+		</div>
+		<div class="form-group">
+			<label for="age">Category</label>
+			<input type="text" class="form-control" id="category" placeholder="Enter category">
+		</div>
+		<div class="form-group">
+			<label for="name">Price</label>
+			<input type="number" class="form-control" id="price" placeholder="Enter price">
+		</div>
+		<div class="form-group">
+			<label for="name">Quantity</label>
+			<input type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+		</div>
+		<button type="submit" class="btn btn-primary" onclick="addProduct()">Submit</button>
+	</form>
+	</div>
+</div>
+</body>
+<script>
+</script>
+</html>

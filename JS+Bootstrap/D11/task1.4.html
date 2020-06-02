@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div id="mytable01">
+			</div>
+	</div>
+</body>
+<script>
+	var products=[
+						{"prod":"Pepsi","price":12,"quantity":16,"category":"Food"},
+						{"prod":"Coke","price":15,"quantity":12,"category":"Food"},
+						{"prod":"Mirinda","price":30,"quantity":15,"category":"Food"},
+						{"prod":"RedBull","price":80,"quantity":2,"category":"Food"},
+						{"prod":"Lux","price":10,"quantity":11,"category":"Soap"},
+						{"prod":"Dove","price":25,"quantity":4,"category":"Soap"},
+						{"prod":"Dettol","price":15,"quantity":6,"category":"Soap"},
+						{"prod":"Pantene","price":60,"quantity":3,"category":"Shampoo"}
+				];
+
+	showPersons();
+	function showPersons(){
+		var mapProducts=products.map(makeElement);
+		console.log(mapProducts);
+		var strData=mapProducts.join("");
+		var element=document.getElementById("mytable01");
+		element.innerHTML="<div class='row'>"+strData+"</div>";
+	}
+	function makeElement(pro){
+			var str="";
+			if(pro.price*pro.quantity>175){
+				str="<div class='col-3 border bg-dark text-white'>"+pro.prod+"</br>"+pro.category+"</br>"+pro.price+"</br>"+pro.quantity+"</br>";
+			}
+			else{
+				str="<div class='col-3 border bg-light'>"+pro.prod+"</br>"+pro.category+"</br>"+pro.price+"</br>"+pro.quantity+"</br>";
+			} 
+		str+="</div>";
+		return str;
+	}
+</script>
+</html>
+
+

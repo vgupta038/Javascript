@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">	
+	<div>
+		<button class="btn btn-secondary m-2" onclick="showProductsAll()">Show Product</button>
+		<button class="btn btn-secondary m-2" onclick="addProductForm()">Add a Product</button>
+	</div>
+	<div id="mytable01">
+	</div>
+	<div id="myform">
+		<form>
+		<h4 id="formHeader">Add a New product</h4>
+		<div class="form-group">
+			<label for="name">Product Name</label>
+			<input type="text" class="form-control" id="prod" placeholder="Enter product">
+		</div>
+		<div class="form-group" id="divcategory">
+			<label for="category">Category</label>
+			<input type="text" class="form-control" id="category" placeholder="Enter category">
+		</div>
+		<div class="form-group">
+			<label for="price">Price</label>
+			<input type="number" class="form-control" id="price" placeholder="Enter price">
+		</div>
+		<div class="form-group">
+			<label for="quantity">Quantity</label>
+			<input type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+		</div>
+		<button type="submit" class="btn btn-primary" onclick="addProduct()">Submit</button>
+	</form>
+	</div>
+</div>
+</body>
+<script>
+	var products=[
+					{"prod":"Pepsi","price":12,"quantity":16,"category":"Food"},
+					{"prod":"Coke","price":15,"quantity":12,"category":"Food"},
+					{"prod":"Mirinda","price":30,"quantity":15,"category":"Food"},
+					{"prod":"RedBull","price":80,"quantity":2,"category":"Food"},
+					{"prod":"Lux","price":10,"quantity":11,"category":"Soap"},
+					{"prod":"Dove","price":25,"quantity":4,"category":"Soap"},
+					{"prod":"Dettol","price":15,"quantity":6,"category":"Soap"},
+					{"prod":"Pantene","price":60,"quantity":3,"category":"Shampoo"}
+				];
+
+	var prod=0;
+	var category=0;
+	var price=0;
+	var quantity=0;
+	var editIndex=-1;
+	var categories=['Food','Soap','Shampoo'];
+	var form1=document.getElementById("myform").innerHTML;
+	document.getElementById("myform").innerHTML="";
+	function showProductsAll(){
+		showProducts(products);
+	}
+	function addProductForm(){
+		var element=document.getElementById("mytable01");
+		element.innerHTML=form1;
+		document.getElementById("divcategory").innerHTML=showCategoryOptions("");
+		editIndex=-1;
+	}
+	
+	function addProduct(){
+		var prod1=document.getElementById("prod").value;
+		var c1=document.getElementById("category").value;
+		var pr1=document.getElementById("price").value;
+		var q1=document.getElementById("quantity").value;
+		var product={"prod":prod1,"price":pr1,"quantity":q1,"category":c1};
+		if(editIndex===-1)
+			products.push(product);
+		else
+			products[editIndex]=product;
+		showProductsAll();
+	}
+	
+	function showProducts(data){
+		var header="<div class='row border bg-dark text-white'>";
+		if(prod===0)
+			header+="<div class='col-2' onclick='sort(0)'>Prod</div>";
+		else
+			header+="<div class='col-2' onclick='sort(-1)'>Prod(X)</div>";
+
+		if(category===0)
+			header+="<div class='col-2' onclick='sort(1)'>Category</div>";
+		else 
+			header+="<div class='col-2' onclick='sort(-1)'>Category(X)</div>";
+
+		if(price===0)
+			header+="<div class='col-2' onclick='sort(2)'>Price</div>";
+		else
+			header+="<div class='col-2' onclick='sort(-1)'>Price(X)</div>";
+
+		if(quantity===0)
+			header+="<div class='col-2' onclick='sort(3)'>Quantity</div>";
+		else
+			header+="<div class='col-2' onclick='sort(-1)'>Quantity(X)</div>";
+
+		header+="<div class='col-2'></div>";
+		header+="<div class='col-2'></div>";
+		header+="</div>";
+		var mapProducts=data.map(makeElement);
+		var strData=mapProducts.join(" ");
+
+		var element=document.getElementById("mytable01");
+		element.innerHTML=header+strData;
+	}
+	function makeElement(per,index){
+			var str="<div class='row border'>";
+			if(prod===0)
+				str+="<div class='col-2'>"+per.prod+"</div>";
+			else
+				str+="<div class='col-2 bg-light'>"+per.prod+"</div>";
+
+			if(category===0)
+				str+="<div class='col-2'>"+per.category+"</div>";
+			else
+				str+="<div class='col-2 bg-light'>"+per.category+"</div>";
+
+			if(price===0)
+				str+="<div class='col-2'>"+per.price+"</div>";
+			else
+				str+="<div class='col-2 bg-light'>"+per.price+"</div>";
+
+			if(quantity===0)
+				str+="<div class='col-2'>"+per.quantity+"</div>";
+			else
+				str+="<div class='col-2 bg-light'>"+per.quantity+"</div>";
+
+			str+="<div class='col-2'><button class='btn btn-sm mr-2 btn-secondary' onclick=editProduct("+index+")>Edit</button><button class='btn btn-sm btn-danger' onclick=deleteProduct("+index+")>Delete</button></div>";
+
+			str+="<div class='col-2'><button class='btn btn-sm mr-2 btn-success' onclick=increaseQuantity("+index+")>+</button><button class='btn btn-sm btn-danger' onclick=decreaseQuantity("+index+")>-</button></div>";
+			str+="</div>";
+		return str;
+	}
+	function increaseQuantity(index){
+		var product=products[index];
+		products[index].quantity=product.quantity+1;
+		showProductsAll();
+	}
+	function decreaseQuantity(index){
+		var product=products[index];
+		if(product.quantity-1<1)
+			products.splice(index,1);
+		else	
+			products[index].quantity=product.quantity-1;
+		showProductsAll();
+	}
+	function deleteProduct(index){
+		products.splice(index,1);
+		showProductsAll();
+	}
+	function editProduct(index){
+		var product=products[index];
+		editIndex=index;
+		document.getElementById("mytable01").innerHTML=form1;
+		document.getElementById("formHeader").innerHTML="Edit Details";
+		document.getElementById("prod").value=product.prod;
+		document.getElementById("divcategory").innerHTML=showCategoryOptions(product.category);
+		document.getElementById("price").value=product.price;
+		document.getElementById("quantity").value=product.quantity;
+	}
+	function sort(index){
+		var data=[...products];
+		switch(index){
+			case 0: data.sort(sortprod);
+					prod=1;category=0;price=0;quantity=0;
+					break;
+			case 1: data.sort(sortcategory);
+					prod=0;category=1;price=0;quantity=0;
+					break;
+			case 2: data.sort(sortprice);
+					prod=0;category=0;price=1;quantity=0;
+					break;		
+			case 3: data.sort(sortquantity);
+					prod=0;category=0;price=0;quantity=1;
+					break;
+			case -1:prod=0;category=0;price=0;quantity=0;
+					break;		
+		}
+		showProducts(data);
+	}
+
+	function sortprod(p1,p2){
+		return p1.prod.localeCompare(p2.prod);
+	}
+	function sortcategory(p1,p2){
+		return p1.category.localeCompare(p2.category);
+	}
+	function sortprice(p1,p2){
+		return p1.price-p2.price;
+	}
+	function sortquantity(p1,p2){
+		return p1.quantity-p2.quantity;
+	}
+	function showCategoryOptions(selectedCategory){
+		var options=categories.map(c1=>({"display":c1,"value":c1}));
+		options.unshift({"display":"Select Category","value":""});
+		var optionsMap=options.map(opt=>makeCategoryOption(opt,selectedCategory));
+		var strCategory=optionsMap.join(" ");
+		var selectstr="<label for='category'>Category</label></br><select id='category' class='form-control'>"+strCategory+"</select>";
+		return selectstr;
+	}
+	function makeCategoryOption(opt,category1){
+		var sel="";
+		if(opt.value===category1)
+			sel="selected";
+		return "<option value='"+opt.value+"'"+sel+">"+opt.display+"</option>";
+	}
+	
+</script>
+</html>
+
+

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">Products</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+	target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-
+	expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" onclick="showProductsAll()">Show Products</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" onclick="addProductForm()">Add a Product</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" onclick="recievingStockForm()">Recieving Stock</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+</br>
+	<div id="mytable01">
+	</div>
+	<div id="myform1">
+		<form>
+		<h4 id="formHeader">Add a New product</h4>
+		<div class="form-group">
+			<label for="name">Product Name</label>
+			<input type="text" class="form-control" id="prod" placeholder="Enter product">
+		</div>
+		<div class="form-group" id="divcategory">
+			<label for="category">Category</label>
+			<input type="text" class="form-control" id="category" placeholder="Enter category">
+		</div>
+		<div class="form-group">
+			<label for="price">Price</label>
+			<input type="number" class="form-control" id="price" placeholder="Enter price">
+		</div>
+		<div class="form-group">
+			<label for="quantity">Quantity</label>
+			<input type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+		</div>
+		<div class="form-check">
+			<input type="checkbox" class="form-check-input" id="newarrival">
+			<label class="form-check-label" for="newarrival">New Arrival</label>
+		</div>
+		<div class="form-check">
+			<input type="checkbox" class="form-check-input" id="featured">
+			<label class="form-check-label" for="featured">Featured</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<label>On Offer</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="offer" id="radio1" value="10%">
+			<label class="form-check-label" for="radio1">10%</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="offer" id="radio2" value="15%">
+			<label class="form-check-label" for="radio2">15%</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="offer" id="radio3" value="None">
+			<label class="form-check-label" for="radio3">None</label>
+		</div></br>
+		<div class="form-check form-check-inline">
+			<label>Home Delievery</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="delievery" id="radio4" value="Yes">
+			<label class="form-check-label" for="radio4">Yes</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="delievery" id="radio5" value="No">
+			<label class="form-check-label" for="radio5">No</label>
+		</div></br>
+		<button type="submit" class="btn btn-primary" onclick="addProduct()">Submit</button>
+	</form>
+	</div>
+	<div id="myform2">
+		<form>
+		<h4 id="formHeader">Recieving Stocks</h4>
+		<div class="form-group" id="divprodname">
+			<label for="name">Product Name</label>
+			<input type="text" class="form-control" id="prod" placeholder="Enter category">
+		</div>
+		<div class="form-group">
+			<label for="quantity">Quantity</label>
+			<input type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+		</div>
+		<button type="submit" class="btn btn-primary" onclick="addStock()">Submit</button>
+	</form>
+	</div>
+</div>
+</body>
+<script>
+	var products=[
+			{"prod":"Pepsi","price":12,"quantity":16,"category":"Food","newarrival":true,"featured":false,
+			"offer":"10%","homedelivery":"No"},
+			{"prod":"Coke","price":15,"quantity":12,"category":"Food","newarrival":false,"featured":false,
+			"offer":"15%","homedelivery":"Yes"},
+			{"prod":"Mirinda","price":30,"quantity":15,"category":"Food","newarrival":true,"featured":true,
+			"offer":"10%","homedelivery":"No"},
+			{"prod":"Red	Bull","price":80,"quantity":2,"category":"Food","newarrival":true,"featured":false,
+			"offer":"None","homedelivery":"No"},
+			{"prod":"Lux","price":10,"quantity":11,"category":"Soap","newarrival":false,"featured":false,
+			"offer":"15%","homedelivery":"Yes"},
+			{"prod":"Dove","price":25,"quantity":4,"category":"Soap","newarrival":true,"featured":true,
+			"offer":"10%","homedelivery":"Yes"},
+			{"prod":"Dettol","price":15,"quantity":6,"category":"Soap","newarrival":true,"featured":false,
+			"offer":"None","homedelivery":"Yes"},
+			{"prod":"Pantene","price":60,"quantity":3,"category":"Shampoo","newarrival":false,"featured":true,
+			"offer":"None","homedelivery":"Yes"}
+				];
+
+	var prod=0;
+	var category=0;
+	var price=0;
+	var quantity=0;
+	var onoffer=0;
+	var delievery=0;
+	var featured=0;
+	var newarrival=0;
+	var editIndex=-1;
+	var categories=['Food','Soap','Shampoo'];
+	var form1=document.getElementById("myform1").innerHTML;
+	var form2=document.getElementById("myform2").innerHTML;
+	document.getElementById("myform1").innerHTML="";
+	document.getElementById("myform2").innerHTML="";
+	function showProductsAll(){
+		showProducts(products);
+	}
+	function addProductForm(){
+		var element=document.getElementById("mytable01");
+		element.innerHTML=form1;
+		document.getElementById("divcategory").innerHTML=showCategoryOptions("");
+		editIndex=-1;
+	}
+	function recievingStockForm(){
+		var element=document.getElementById("mytable01");
+		element.innerHTML=form2;
+		document.getElementById("divprodname").innerHTML=showProdnameOptions();
+
+	}
+	function addProduct(){
+		var prod1=document.getElementById("prod").value;
+		var c1=document.getElementById("category").value;
+		var pr1=document.getElementById("price").value;
+		var q1=document.getElementById("quantity").value;
+		var na1=document.getElementById("newarrival").checked;
+		var f1=document.getElementById("featured").checked;
+		var g1offer="";
+		var radios=document.getElementsByName("offer");
+		for(var i=0;i<radios.length;i++){
+			if(radios[i].checked)
+				g1offer=radios[i].value;
+		}
+		var g1delievery="";
+		var radios1=document.getElementsByName("delievery");
+		for(var i=0;i<radios1.length;i++){
+			if(radios1[i].checked)
+				g1delievery=radios1[i].value;
+		}
+		var product={"prod":prod1,"price":pr1,"quantity":q1,"category":c1,"newarrival":na1,"featured":f1,
+			"offer":g1offer,"homedelivery":g1delievery};
+		if(editIndex===-1)
+			products.push(product);
+		else
+			products[editIndex]=product;
+		showProductsAll();
+	}
+	
+	function showProducts(data){
+			var mapProducts=data.map(makeElement);
+			console.log(mapProducts);
+			var strData=mapProducts.join(" ");
+
+			var element=document.getElementById("mytable01");
+			element.innerHTML="<div class='row'>"+strData+"</div>";
+	}
+
+	
+	function makeElement(per,index){
+			var str="<div class='col-3 border bg-light text-center'>"+"Product: "+per.prod+"</br>"+"Category: "+per.category+"</br>"+"Price: "+per.price+"</br>"+"Quantity: "+per.quantity+"</br>"+"Offer: "+per.offer+"</br>"+"Home Delievery: "+per.homedelivery+"</br>"+"Featured: "+per.featured+"</br>"+"New Arrival: "+per.newarrival+"</br>"+"<button class='btn btn-sm mr-2 btn-secondary' onclick=editProduct("+index+")>Edit</button><button class='btn btn-sm btn-danger' onclick=deleteProduct("+index+")>Delete</button>"+"</br>"+"<button class='btn btn-sm mr-2 btn-success' onclick=increaseQuantity("+index+")>+</button><button class='btn btn-sm btn-danger' onclick=decreaseQuantity("+index+")>-</button>";
+			str+="</div>";
+		return str;
+	}
+	function increaseQuantity(index){
+		var product=products[index];
+		var prodq=+product.quantity;
+		products[index].quantity=prodq+1;
+		showProductsAll();
+	}
+	function decreaseQuantity(index){
+		var product=products[index];
+		var prodq=+product.quantity;
+		if(prodq-1<1)
+			products.splice(index,1);
+		else	
+			products[index].quantity=prodq-1;
+		showProductsAll();
+	}
+	function deleteProduct(index){
+		products.splice(index,1);
+		showProductsAll();
+	}
+	function editProduct(index){
+		var product=products[index];
+		editIndex=index;
+		document.getElementById("mytable01").innerHTML=form1;
+		document.getElementById("formHeader").innerHTML="Edit Details";
+		document.getElementById("prod").value=product.prod;
+		document.getElementById("divcategory").innerHTML=showCategoryOptions(product.category);
+		document.getElementById("price").value=product.price;
+		document.getElementById("quantity").value=product.quantity;
+		//-------------
+
+		if(product.newarrival){
+			document.getElementById("newarrival").checked=true;
+		}
+		if(product.featured){
+			document.getElementById("featured").checked=true;
+		}
+		if(product.offer==="10%"){
+			document.getElementById("radio1").checked=true;
+		}
+		else if(product.offer==="15%"){
+			document.getElementById("radio2").checked=true;
+		}
+		else if(product.offer==="None"){
+			document.getElementById("radio3").checked=true;
+		}
+		if(product.homedelivery==="Yes"){
+			document.getElementById("radio4").checked=true;
+		}
+		else if(product.homedelivery==="No"){
+			document.getElementById("radio5").checked=true;
+		}
+	}
+
+	function showCategoryOptions(selectedCategory){
+		var options=categories.map(c1=>({"display":c1,"value":c1}));
+		options.unshift({"display":"Select Category","value":""});
+		var optionsMap=options.map(opt=>makeCategoryOption(opt,selectedCategory));
+		var strCategory=optionsMap.join(" ");
+		var selectstr="<label for='category'>Category</label></br><select id='category' class='form-control'>"+strCategory+"</select>";
+		return selectstr;
+	}
+	function makeCategoryOption(opt,category1){
+		var sel="";
+		if(opt.value===category1)
+			sel="selected";
+		return "<option value='"+opt.value+"'"+sel+">"+opt.display+"</option>";
+	}
+
+	function showProdnameOptions(){
+		var options=products.map(p1=>p1.prod);	// array of only product
+		options.unshift("Select Product Name");
+		var optionsMap=options.map(makeProdOption);
+		var strprod=optionsMap.join(" ");
+		var selectstr="<label for='prod'>Product Name</label></br><select id='prod' class='form-control'>"+strprod+"</select>";
+		return selectstr;
+	}
+	function makeProdOption(opt){
+		return "<option>"+opt+"</option>";
+	}
+	function addStock(){
+		var quantity=document.getElementById("quantity").value;
+		var prodname=document.getElementById("prod").value;
+		var arr=products.map(p1=>p1.prod);
+		var index1= arr.indexOf(prodname);
+		var q=+products[index1].quantity;
+		quantity=+quantity;
+		products[index1].quantity=q+quantity;
+		showProductsAll();
+	}
+	
+</script>
+</html>
+
+

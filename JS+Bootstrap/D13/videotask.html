@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div id="mytable01">
+			</div>
+	</div>
+</body>
+<script>
+	var persons=[
+					{"name":"Jack","age":28,"city":"London"},
+					{"name":"Mary","age":22,"city":"Paris"},
+					{"name":"Bob","age":37,"city":"NewYork"},
+					{"name":"Steve","age":25,"city":"Delhi"},
+					{"name":"Kathy","age":29,"city":"Tokyo"},
+					{"name":"Tim","age":30,"city":"London"},
+					{"name":"David","age":41,"city":"Delhi"},
+					{"name":"Julia","age":33,"city":"London"}
+				];
+
+	showPersons(persons);
+	function showPersons(data){
+		var header="<div class='row border bg-dark text-white'>";
+					header+="<div class='col-4' onclick='sort(0)'>Name</div>";
+					header+="<div class='col-2' onclick='sort(1)'>Age</div>";
+					header+="<div class='col-3' onclick='sort(2)'>City</div>";
+		header+="</div>";
+		var mapPersons=data.map(makeElement);
+		var strData=mapPersons.join("");
+		var element=document.getElementById("mytable01");
+		element.innerHTML=header+strData;
+	}
+	function makeElement(per){
+			var str="<div class='row border'>";
+					str+="<div class='col-4'>"+per.name+"</div>";
+					str+="<div class='col-2'>"+per.age+"</div>";
+					str+="<div class='col-3'>"+per.city+"</div>";
+			str+="</div>";
+		return str;
+	}
+	function sort(index){
+		var data=[...persons];
+		switch(index){
+			case 0: data.sort(sortname);
+					break;
+			case 1: data.sort(sortage);
+					break;
+			case 2: data.sort(sortcity);
+					break;		
+		}
+		showPersons(data);
+	}
+
+	function sortname(p1,p2){
+		return p1.name.localeCompare(p2.name);
+	}
+	function sortage(p1,p2){
+		return p1.age-p2.age;
+	}
+	function sortcity(p1,p2){
+		return p1.city.localeCompare(p2.city);
+	}
+</script>
+</html>
+
+

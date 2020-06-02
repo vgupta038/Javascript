@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div id="mytable01">
+			</div>
+	</div>
+</body>
+<script>
+	var products=[
+					{"prod":"Pepsi","price":12,"quantity":16,"category":"Food"},
+					{"prod":"Coke","price":15,"quantity":12,"category":"Food"},
+					{"prod":"Mirinda","price":30,"quantity":15,"category":"Food"},
+					{"prod":"RedBull","price":80,"quantity":2,"category":"Food"},
+					{"prod":"Lux","price":10,"quantity":11,"category":"Soap"},
+					{"prod":"Dove","price":25,"quantity":4,"category":"Soap"},
+					{"prod":"Dettol","price":15,"quantity":6,"category":"Soap"},
+					{"prod":"Pantene","price":60,"quantity":3,"category":"Shampoo"}
+				];
+
+	showProducts(products,"");
+	function showProducts(data,selCategory){
+		var header="<div class='row border bg-dark text-white'>";
+					header+="<div class='col-3'>Name</div>";
+					header+="<div class='col-3'>Category</div>";
+					header+="<div class='col-3'>Price</div>";
+					header+="<div class='col-3'>Quantity</div>";
+		header+="</div>";
+		var mapProducts=data.map(makeElement);
+		var strData=mapProducts.join(" ");
+
+		var selStr=showCategoryOptions(selCategory);
+		var sel1="<form><div lass='form-group'>"+selStr+"</div></form>";
+
+		var element=document.getElementById("mytable01");
+		element.innerHTML=sel1+"</br>"+header+strData;
+		
+	}
+	function makeElement(per){
+			var str="<div class='row border'>";
+					str+="<div class='col-3'>"+per.prod+"</div>";
+					str+="<div class='col-3'>"+per.category+"</div>";
+					str+="<div class='col-3'>"+per.price+"</div>";
+					str+="<div class='col-3'>"+per.quantity+"</div>";
+			str+="</div>";
+		return str;
+	}
+	function showCategoryOptions(selCategory){
+		var categories=[];
+		for(var i=0;i<products.length;i++){
+			var c1=products[i].category;
+			if(categories.indexOf(c1)<0)
+				categories.push(c1);
+		}
+		var options=categories.map(category=>({"display":category,"value":category}));
+		options.unshift({"display":"Select Category","value":""});
+
+		var optsmap=options.map(opt=>makeOption(opt,selCategory));
+		var strOpts=optsmap.join(" ");
+		var selectStr="<select id='categorydd' class='form-control' onchange='filter()'>"+strOpts+"</select>";
+		console.log(selectStr);
+		return selectStr;
+	}
+	function makeOption(opt,selCategory){
+		 var sel="";
+		if(opt.value===selCategory)
+			sel="selected";
+		return "<option value='"+opt.value+"' "+ sel+" >"+opt.display+"</option>";
+	}
+	function filter(){
+		var categorydd=document.getElementById("categorydd");
+		var c1=categorydd.value;
+		var filteredData=products;
+		if(c1!=="")
+			filteredData=products.filter(p1=>p1.category===c1);
+		showProducts(filteredData,c1);
+	}
+</script>
+</html>
+
+

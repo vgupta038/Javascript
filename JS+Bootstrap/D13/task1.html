@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div id="mytable01">
+			</div>
+	</div>
+</body>
+<script>
+	var products=[
+					{"prod":"Pepsi","price":12,"quantity":16,"category":"Food"},
+					{"prod":"Coke","price":15,"quantity":12,"category":"Food"},
+					{"prod":"Mirinda","price":30,"quantity":15,"category":"Food"},
+					{"prod":"RedBull","price":80,"quantity":2,"category":"Food"},
+					{"prod":"Lux","price":10,"quantity":11,"category":"Soap"},
+					{"prod":"Dove","price":25,"quantity":4,"category":"Soap"},
+					{"prod":"Dettol","price":15,"quantity":6,"category":"Soap"},
+					{"prod":"Pantene","price":60,"quantity":3,"category":"Shampoo"}
+				];
+
+	var prod=0;
+	var category=0;
+	var price=0;
+	var quantity=0;
+	showProducts(products);
+	
+	function showProducts(data){
+		var header="<div class='row border bg-dark text-white'>";
+		if(prod===0)
+			header+="<div class='col-3' onclick='sort(0)'>Prod</div>";
+		else
+			header+="<div class='col-3' onclick='sort(-1)'>Prod(X)</div>";
+
+		if(category===0)
+			header+="<div class='col-3' onclick='sort(1)'>Category</div>";
+		else 
+			header+="<div class='col-3' onclick='sort(-1)'>Category(X)</div>";
+
+		if(price===0)
+			header+="<div class='col-3' onclick='sort(2)'>Price</div>";
+		else
+			header+="<div class='col-3' onclick='sort(-1)'>Price(X)</div>";
+
+		if(quantity===0)
+			header+="<div class='col-3' onclick='sort(3)'>Quantity</div>";
+		else
+			header+="<div class='col-3' onclick='sort(-1)'>Quantity(X)</div>";
+		header+="</div>";
+		var mapProducts=data.map(makeElement);
+		var strData=mapProducts.join(" ");
+
+		var element=document.getElementById("mytable01");
+		element.innerHTML=header+strData;
+	}
+	function makeElement(per){
+			var str="<div class='row border'>";
+			if(prod===0)
+				str+="<div class='col-3'>"+per.prod+"</div>";
+			else
+				str+="<div class='col-3 bg-light'>"+per.prod+"</div>";
+
+			if(category===0)
+				str+="<div class='col-3'>"+per.category+"</div>";
+			else
+				str+="<div class='col-3 bg-light'>"+per.category+"</div>";
+
+			if(price===0)
+				str+="<div class='col-3'>"+per.price+"</div>";
+			else
+				str+="<div class='col-3 bg-light'>"+per.price+"</div>";
+
+			if(quantity===0)
+				str+="<div class='col-3'>"+per.quantity+"</div>";
+			else
+				str+="<div class='col-3 bg-light'>"+per.quantity+"</div>";
+			str+="</div>";
+		return str;
+	}
+	function sort(index){
+		var data=[...products];
+		switch(index){
+			case 0: data.sort(sortprod);
+					prod=1;category=0;price=0;quantity=0;
+					break;
+			case 1: data.sort(sortcategory);
+					prod=0;category=1;price=0;quantity=0;
+					break;
+			case 2: data.sort(sortprice);
+					prod=0;category=0;price=1;quantity=0;
+					break;		
+			case 3: data.sort(sortquantity);
+					prod=0;category=0;price=0;quantity=1;
+					break;
+			case -1:prod=0;category=0;price=0;quantity=0;
+					break;		
+		}
+		showProducts(data);
+	}
+
+	function sortprod(p1,p2){
+		return p1.prod.localeCompare(p2.prod);
+	}
+	function sortcategory(p1,p2){
+		return p1.category.localeCompare(p2.category);
+	}
+	function sortprice(p1,p2){
+		return p1.price-p2.price;
+	}
+	function sortquantity(p1,p2){
+		return p1.quantity-p2.quantity;
+	}
+	
+</script>
+</html>
+
+
