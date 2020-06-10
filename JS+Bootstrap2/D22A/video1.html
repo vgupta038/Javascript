@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">ShirtSite</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+	target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-
+	expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" onclick="showShirts()">Shirts</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" onclick="addShirtForm()">Add a Shirt</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+</br>
+<div id="divid1">
+</div>
+</body>
+<script>
+	var allShirts=[
+				{"image":"https://i.ibb.co/VvGjZnK/s1.jpg","sizes":["S","L","XXL"],
+					"brand":"Van Heusen","price":1299,"discount":"10%"},
+				{"image":"https://i.ibb.co/XyXsX4w/s2.jpg","sizes":["XS","M","XXL"],
+					"brand":"Louis Phillipe","price":1499,"discount":"20%"},
+				{"image":"https://i.ibb.co/LZbmJyK/s3.jpg","sizes":["XS","S","L","XXL"],
+					"brand":"Arrow","price":1199,"discount":"30%"},
+				{"image":"https://i.ibb.co/swFq71s/s4.jpg","sizes":["S","M","L"],
+					"brand":"Blackberrys","price":849,"discount":"10%"}
+				];
+		var allSizes=["XS","S","M","L","XL","XXL"];
+		var allDiscounts=["10%","20%","30%","None"];
+		var allBrands=["Van Heusen","Louis Phillipe","Arrow","Blackberrys","Allen Solly"];
+		var showShirtIndex=-1;
+		function showShirts(){
+			var shirts=allShirts;
+			var str=shirts.map(makeShirtElement).join(" ");
+			console.log(str);
+			var element=document.getElementById("divid1");
+			var x1="<div class='row border'>";
+			x1=x1+"<div class='col-6'>"+str+"</div>";
+			x1=x1+"<div class='col-6'>"+showAShirt()+"</div>";
+			x1=x1+"</div>";
+			element.innerHTML=x1;
+		}
+		
+		function showAShirt(){
+			if(showShirtIndex<0)
+				return "";
+			var selShirt=allShirts[showShirtIndex];
+			var show1="<div class='row text-center'>";
+			show1=show1+"<div class='col-12 text-center'>";
+			show1=show1+"<img src='"+selShirt.image+"' style='height:300px'>";
+			show1=show1+"<h4>"+selShirt.brand+"</h4>";
+			show1=show1+"<button class='btn btn-primary' onclick='editForm()'>Edit</button>";
+			show1=show1+"</div>";
+			show1=show1+"</div>";
+			return show1;
+		}
+		
+		function show(index){
+			showShirtIndex=index;
+			showShirts();
+		}
+		
+		function makeShirtElement(shirt,index){
+			var sh1="<div class='row border' onclick=show("+index+")>";
+				sh1=sh1+"<div class='col-6 text-center align-self-center'>";
+				sh1=sh1+"<img src='"+shirt.image+"' style='height:100px'>";
+				sh1=sh1+"</div>";
+				sh1=sh1+"<div class='col-6 text-center'>";
+					sh1=sh1+"Brand : "+shirt.brand+"</br>";
+					sh1=sh1+"Price : "+shirt.price+"</br>";
+					sh1=sh1+"Sizes : "+shirt.sizes.join(", ")+"</br>";
+					sh1=sh1+"Discount : "+shirt.discount+"</br>";
+					sh1=sh1+"</div>";
+					sh1=sh1+"</div>";
+			return sh1;
+		}
+		function addShirtForm(){
+			var form1="<form>";
+			form1=form1+"<h4 id='formHeader'>Add a New Shirt</h4>";
+			form1=form1+"<div class='form-group'>";
+			form1=form1+"<label>Product Image</label>";
+			form1=form1+"<input type='text' class='form-control' id='image' placeholder='Enter URL of product image'>";
+			form1=form1+"</div>";
+
+			form1=form1+"<div class='form-group'>";
+			form1=form1+"<label>price</label>";
+			form1=form1+"<input type='text' class='form-control' id='price' placeholder='Enter price'>";
+			form1=form1+"</div>";
+			form1=form1+showADropdown("Select Brand","brand",allBrands);
+			form1=form1+"</form>";
+			var element=document.getElementById("divid1");
+			element.innerHTML=form1;
+		}
+		function showADropdown(firstVal,id,allValues){
+			var strOpt=showDDOptions(firstVal,allValues);
+			var str="<select id='"+id+"' class='form-control'>"+strOpt+"</select>";
+			return str;
+		}
+		function showDDOptions(firstVal,allValues){
+			var options=allValues.map(v1=>({"display":v1,"value":v1}));
+			options.unshift({"display":firstVal,"value":""});
+			var strOptions=options.map(opt=>makeOption(opt)).join(" ");
+			return strOptions;
+		}
+		function makeOption(opt){
+			return "<option value='"+opt.value+"'>"+opt.display+"</option>";
+		}
+
+</script>
+</html>

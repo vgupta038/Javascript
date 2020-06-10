@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand" href="#">MobileStore</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+	target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-
+	expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" onclick="showAllMobiles()">Mobiles</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" onclick="addMobileForm()">Add a Mobile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" onclick="showAllCart()">Cart</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+</br>
+<div id="cartcount">
+	</div>
+<div id="divid1">
+	</div>
+</body>
+<script>
+	var allMobiles=[
+					{
+						"image":"https://i.ibb.co/cLV4RvX/google-pixel-3.jpg",
+						"RAM":["8GB"],
+						"ROM":["256 GB","128 GB","64 GB"],
+						"name":"Pixel 3",
+						"brand":"Google",
+						"colors":["Blue","Black","White"]
+					},
+
+					{
+						"image":"https://i.ibb.co/160YSpk/mi-redmi-5.jpg",
+						"RAM":["6 GB","4 GB"],
+						"ROM":["128	GB","64	GB"],
+						"name":"Redmi 5",
+						"brand":"Xiaomi",
+						"colors":["Red","Gold","Black","White"]
+					},
+
+					{
+						"image":"https://i.ibb.co/y6dk6n1/mi-redmi-y2.jpg",
+						"RAM":["3 GB"],
+						"ROM":["32 GB"],
+						"name":"Redmi Y2",
+						"brand":"Xiaomi",
+						"colors":["Rose	Gold","Gold","Black","White"]
+					},
+					{
+						"image":"https://i.ibb.co/McQMDF8/motorola-moto-e5-plus.jpg",
+						"RAM":["6 GB"],
+						"ROM":["128	GB","64	GB"],
+						"name":"MotoE5 Plus",
+						"brand":"Motorola",
+						"colors":["Grey","Black","Pink"]
+					},
+					{
+						"image":"https://i.ibb.co/1QGFW28/nokia-6-1.jpg",
+						"RAM":["6 GB"],
+						"ROM":["128	GB"],
+						"name":"6.1",
+						"brand":"Nokia",
+						"colors":["Grey","Black","Blue"]
+					},
+
+					{
+						"image":"https://i.ibb.co/vJbK6qM/realme-c1.jpg",
+						"RAM":["6 GB","4 GB","3 GB"],
+						"ROM":["128	GB","64	GB"],
+						"name":"C1",
+						"brand":"Realme",
+						"colors":["Red","Gold","Black","White","Grey"]
+					},
+					{
+						"image":"https://i.ibb.co/F6c80H6/realme-x.jpg",
+						"RAM":["4 GB","3 GB"],
+						"ROM":["64 GB","32 GB"],
+						"name":"X",
+						"brand":"Realme",
+						"colors":["Rose	Gold","Gold","Black","White","Pink"]
+					},
+					{
+						"image":"https://i.ibb.co/TWLNRyW/samsung-galaxy-s10-plus.jpg",
+						"RAM":["6 GB","4 GB"],
+						"ROM":["64 GB"],
+						"name":"Galaxy S10",
+						"brand":"Samsung",
+						"colors":["Red","Gold","White"]
+					},
+					{
+						"image":"https://i.ibb.co/ScZsMtW/vivo-z1-pro.jpg",
+						"RAM":["8 GB","6 GB"],
+						"ROM":["128	GB","64	GB"],
+						"name":"Z1 Pro",
+						"brand":"Vivo",
+						"colors":["White","Deep Blue"]
+					}
+
+				];
+		var allRam=["8	GB","6 GB","4 GB","3 GB","2	GB"];
+		var allRom=["256 GB","128 GB","64 GB","32 GB","16 GB"];
+		var allColor=["Rose Gold","Gold","Black","Grey","White","Red","Pink","Blue","Deep Blue"];
+		var allBrand=["Google","Samsung","Oppo","Nokia","Xiaomi","Realme","Apple"];
+		var allcart=[];
+		var showMobileIndex=-1;
+		function showAllMobiles(){
+			showMobiles();
+		}
+		function showMobiles(){
+			var mobiles=allMobiles;
+			var str=mobiles.map(makeMobileElement).join(" ");
+			var element=document.getElementById("divid1");
+			var x1="<div class='row border'>";
+			x1=x1+"<div class='col-6'>"+str+"</div>";
+			x1=x1+"<div class='col-6'>"+showAMobile()+"</div>";
+			x1=x1+"</div>";
+			element.innerHTML=x1;
+		}
+		function showAMobile(){
+			if(showMobileIndex<0)
+				return "";
+			var selMobile=allMobiles[showMobileIndex];
+			var show1="<div class='row text-center'>";
+					show1=show1+"<div class='col-12 text-center'>";
+						show1=show1+"<img src='"+selMobile.image+"' style='height:300px'>";
+						show1=show1+"<h4>"+selMobile.name+" from "+selMobile.brand+"</h4>";
+					show1=show1+"</div>";
+			show1=show1+"</div>";
+			//--------------------------
+			show1=show1+"<div class='row text-center'>";
+						show1=show1+"<div class='col-4 text-center'>";
+						show1=show1+showRAM(selMobile.RAM,"");
+						show1=show1+"</div>";
+
+						show1=show1+"<div class='col-4 text-center'>";
+						show1=show1+showROM(selMobile.ROM,"");
+						show1=show1+"</div>";
+
+						show1=show1+"<div class='col-4 text-center'>";
+						show1=show1+showCOLOR(selMobile.colors,"");
+						show1=show1+"</div>";
+		show1=show1+"</div>";
+		//----------------------------
+		show1=show1+"<div class='row text-center'>";
+						show1=show1+"<div class='col-12 text-center'>";
+						show1=show1+"<button class='btn btn-primary' onclick='addtocart()'>Add to Cart</button>";
+						show1=show1+"</div>";
+		show1=show1+"</div>";
+		return show1;
+		}
+		function addtocart(){
+			var ram1=document.getElementById("ram").value;
+			var rom1=document.getElementById("rom").value;
+			var color1=document.getElementById("color").value;
+			if(ram1===""||rom1===""||color1==="")
+				alert("Choose all the options before adding to cart!");
+			else{
+				var mobile=allMobiles[showMobileIndex];
+				var a1=allcart.map(c1=>c1.mobName);
+				if(a1.indexOf(mobile.name+" from "+mobile.brand)<0){
+					var j1={"image":mobile.image,"mobName":mobile.name+" from "+mobile.brand,"RAM":ram1,"ROM":rom1,"color":color1};
+					allcart.push(j1);
+					alert("Succesfully added to cart!");
+				}
+				else
+					alert("MobName has already been added to the cart");
+			}
+		}
+		function show(index){
+			showMobileIndex=index;
+			showAllMobiles();
+		}
+		function makeMobileElement(mobile,index){
+			var sh1="<div class='row border' onclick=show("+index+")>";
+			sh1=sh1+"<div class='col-6 text-center align-self-center'>";
+			sh1=sh1+"<img src='"+mobile.image+"' style='height:100px'>";
+			sh1=sh1+"</div>";
+			sh1=sh1+"<div class='col-6 text-center'>";
+			sh1=sh1+"Name : "+mobile.name+"</br>";
+			sh1=sh1+"Brand : "+mobile.brand+"</br>";
+			sh1=sh1+"Colors : "+mobile.colors.join(", ")+"</br>";
+			sh1=sh1+"RAM : "+mobile.RAM.join(", ")+"</br>";
+			sh1=sh1+"ROM : "+mobile.ROM.join(", ")+"</br>";
+			sh1=sh1+"</div>";
+			sh1=sh1+"</div>";
+			return sh1;
+		}
+	function showRAM(rams,selectedRam){
+		var options=rams.map(r1=>({"display":r1,"value":r1}));
+		options.unshift({"display":"Select RAM","value":""});
+		var optionsMap=options.map(opt=>makeRamRomColorOption(opt,selectedRam));
+		var strRam=optionsMap.join(" ");
+		var selectstr="<select id='ram' class='form-control'>"+strRam+"</select>";
+		return selectstr;
+	}
+	function showROM(roms,selectedRom){
+		var options=roms.map(r1=>({"display":r1,"value":r1}));
+		options.unshift({"display":"Select ROM","value":""});
+		var optionsMap=options.map(opt=>makeRamRomColorOption(opt,selectedRom));
+		var strRom=optionsMap.join(" ");
+		var selectstr="<select id='rom' class='form-control'>"+strRom+"</select>";
+		return selectstr;
+	}
+	function showCOLOR(colors,selectedColor){
+		var options=colors.map(c1=>({"display":c1,"value":c1}));
+		options.unshift({"display":"Select Color","value":""});
+		var optionsMap=options.map(opt=>makeRamRomColorOption(opt,selectedColor));
+		var strColor=optionsMap.join(" ");
+		var selectstr="<select id='color' class='form-control'>"+strColor+"</select>";
+		return selectstr;
+	}
+	function makeRamRomColorOption(opt,ram1){
+		var sel="";
+		if(opt.value===ram1)
+			sel="selected";
+		return "<option value='"+opt.value+"'"+sel+">"+opt.display+"</option>";
+	}
+	function  showAllCart(){
+		showCart();	
+	}
+	function showCart(){
+			showMobileIndex=-1;
+			var carts=allcart;
+			var str=carts.map(makeCartElement).join(" ");
+			document.getElementById("cartcount").innerHTML=callCount();
+			var element=document.getElementById("divid1");
+			element.innerHTML=str;
+	}
+	function callCount(){
+		if(allcart.length===0)
+			return "";
+		var sh1="<div class='row text-left'>";
+			sh1=sh1+"<div class='col-4 text-center'>";
+				sh1=sh1+"Number of items in cart : "+allcart.length+"</br>";
+			sh1=sh1+"</div>";
+		sh1=sh1+"</div>";
+			return sh1;
+	}
+	function makeCartElement(cart,index){
+			var sh1="<div class='row border'>";
+			sh1=sh1+"<div class='col-6 text-center align-self-center'>";
+			sh1=sh1+"<img src='"+cart.image+"' style='height:100px'>";
+			sh1=sh1+"</div>";
+			sh1=sh1+"<div class='col-6 text-center'>";
+			sh1=sh1+cart.mobName+"</br>";
+			sh1=sh1+"Color: "+cart.color+" ";
+			sh1=sh1+"RAM : "+cart.RAM+" ";
+			sh1=sh1+"ROM : "+cart.ROM+"</br>";
+			sh1=sh1+"<button class='btn btn-danger' onclick='removeFromCart("+index+")'>Remove from Cart</button>";
+			sh1=sh1+"</div>";
+			sh1=sh1+"</div>";
+			return sh1;
+		}
+
+		function removeFromCart(index){
+			allcart.splice(index,1);
+			showCart();
+		}
+		function addMobileForm(){
+			var form1="<form>";
+			form1=form1+"<h4 id='formHeader'>Add a New Product</h4>";
+			form1=form1+"<div class='form-group'>";
+			form1=form1+"<label>Product Name</label>";
+			form1=form1+"<input type='text' class='form-control' id='name' placeholder='Enter product name'>";
+			form1=form1+"</div>";
+
+			form1=form1+"<div class='form-group'>";
+			form1=form1+"<label>Product Image</label>";
+			form1=form1+"<input type='text' class='form-control' id='image' placeholder='Enter URL of product image'>";
+			form1=form1+"</div>";
+
+			form1=form1+showADropdown("Select Brand","brand",allBrand);
+			form1=form1+showAllCheckboxes("Choose RAM Options",allRam,"ram");
+			form1=form1+showAllCheckboxes("Choose ROM Options",allRom,"rom");
+			form1=form1+showAllCheckboxes("Choose Color Options",allColor,"color");
+			form1=form1+"<button id='shirtfmbtn' type='submit' class='btn btn-primary' onclick='addMobile()'>Add Product</button>";
+			form1=form1+"</form>";
+			var element=document.getElementById("divid1");
+			element.innerHTML=form1;
+		}
+		function showADropdown(firstVal,id,allValues){
+			var strOpt=showDDOptions(firstVal,allValues);
+			var str="<select id='"+id+"' class='form-control'>"+strOpt+"</select>";
+			return str;
+		}
+		function showDDOptions(firstVal,allValues){
+			var options=allValues.map(v1=>({"display":v1,"value":v1}));
+			options.unshift({"display":firstVal,"value":""});
+			var strOptions=options.map(opt=>makeOption(opt)).join(" ");
+			return strOptions;
+		}
+		function makeOption(opt){
+			return "<option value='"+opt.value+"'>"+opt.display+"</option>";
+		}
+		function showAllCheckboxes(label0,values,idStart){
+			var cbAll=label0;
+			for(var i=0;i<values.length;i++){
+				var cb=showACheckbox(values[i],idStart+i);
+				cbAll=cbAll+cb;
+			}
+			return cbAll;
+		}
+		function showACheckbox(label,id){
+			var cb1="<div class='form-check'>";
+			cb1=cb1+"<input type='checkbox' class='form-check-input' id='"+id+"'>";
+			cb1=cb1+"<label class='form-check-label'>"+label+"</label>";
+			cb1=cb1+"</div>";
+			return cb1;
+		}
+</script>
+</html>
